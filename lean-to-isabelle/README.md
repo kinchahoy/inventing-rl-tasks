@@ -10,9 +10,9 @@ a template). It must write a structured, readable Isar proof. Reward is binary.
 
 | Task | Theorem | Trusted base | Line cap |
 | --- | --- | --- | --- |
-| `haiku-hard-cauchy/` | Cauchy: if a prime p divides \|G\|, some element has order p | `Main` + `Group_Axioms` (left identity and left inverses only) | 750 |
-| `sonnet-hard-candidate-shor-general/` | Shor, general period: for 0 < r < N each outcome within r/2 of a multiple of N/r has probability ≥ 4/(π²r)(1 − r/N)³; if r² < N, `recover` returns r with probability ≥ 4/π² · φ(r)/r · (1 − r/N)³ | `Complex_Main` + `Quantum_Basics` | 900 |
-| `sonnet-hard-candidate-shor-general-paper/` | Same theorems as shor-general, but the reference is a human-written paper (PDF, `pdftotext` installed) instead of a Lean proof | `Complex_Main` + `Quantum_Basics` | 900 |
+| `haiku-hard-cauchy/` | Cauchy: if a prime p divides \|G\|, some element has order p | `Main` + `Group_Axioms` (left identity and left inverses only) | 600 |
+| `sonnet-hard-candidate-shor-general/` | Shor, general period: for 0 < r < N each outcome within r/2 of a multiple of N/r has probability ≥ 4/(π²r)(1 − r/N)³; if r² < N, `recover` returns r with probability ≥ 4/π² · φ(r)/r · (1 − r/N)³ | `Complex_Main` + `Quantum_Basics` | 700 |
+| `sonnet-hard-candidate-shor-general-paper/` | Same theorems as shor-general, but the reference is a human-written paper (PDF, `pdftotext` installed) instead of a Lean proof | `Complex_Main` + `Quantum_Basics` | 700 |
 
 Provenance: the paper is Fang Xi Lin, "Shor's Algorithm and the Quantum Fourier Transform" (McGill, 2013),
 https://www.math.mcgill.ca/darmon/courses/12-13/nt/projects/Fangxi-Lin.pdf, stored as
@@ -98,7 +98,7 @@ Browse with `harbor view jobs`.
 - `haiku-hard-cauchy` is hand-written; edit in place. Only `tests/verify.py` is rendered by `gen.py`.
 - `sonnet-hard-candidate-shor-general` and `-paper` are fully generated (the latter ships `quantum-src/references/*.pdf`). Edit `quantum-src/Quantum_Basics.thy`,
   `Shor_General.thy`, `Shor_General.lean`, `verify_template.py` or the tables in `quantum-src/gen.py`,
-  then run `python3 quantum-src/gen.py` from this directory. Don't edit the generated files.
+  then run `python3 quantum-src/gen.py` from this directory. It overwrites the generated files in the task directories; don't edit them by hand.
 - After any change rerun the controls. Don't modify task dirs while evals run.
 
 ## Pilot runs with a different time budget

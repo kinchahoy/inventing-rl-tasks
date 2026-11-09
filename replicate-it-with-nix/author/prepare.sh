@@ -20,6 +20,8 @@ fi
 docker run --rm --device /dev/kvm -e RESUME="${RESUME:-0}" \
     -e RECIPE="/work/$RECIPE" -e OUT="/work/$OUT" \
     -v "$PWD:/work" -w /work "$IMAGE" bash "/work/$RECIPE/provision"
+# The provision container runs as root; hand its output back to the host user.
+docker run --rm -v "$PWD:/work" "$IMAGE" chown -R "$(id -u):$(id -g)" /work/.cache
 
 # 2. Shared builder credentials. Only the verifier image receives the client key.
 KEYS=.cache/builder

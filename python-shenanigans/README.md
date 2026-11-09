@@ -28,7 +28,7 @@ Cheap, no Docker (from `python-shenanigans/`):
 
 ```sh
 for t in lark-earley sympy-state-space; do python3 -m py_compile series/third-attempt/$t/tests/*.py; done
-uvx ruff check --isolated --line-length 120 --select F,E,B,UP --ignore E501 series/third-attempt/*/tests
+uv tool run ruff check --isolated --line-length 120 --select F,E,B,UP --ignore E501 series/third-attempt/*/tests
 ```
 
 The root `pyproject.toml` ruff config excludes `series/`, hence `--isolated`. Remove `__pycache__` after.
