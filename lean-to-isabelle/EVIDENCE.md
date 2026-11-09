@@ -4,7 +4,7 @@ Generated from job artifacts on 2026-11-03. All model trials predate the current
 
 Notes on sources:
 - Every model trial, including the `sonnet-*` task names, has `config.json` model `anthropic/claude-haiku-5-5`.
-- Lean figures were read directly from the job files; the shared `tools/trial-stats.py` now handles Lean's dict-shaped `checks.json` too (the older copy in faking-it-with-nix/author crashed on it). Totals: 25 trials, 18 passed, 7 failed (most passes are on since-archived tasks).
+- Lean figures were read directly from the job files; the shared `tools/trial-stats.py` now handles Lean's dict-shaped `checks.json` too (the older copy in replicate-it-with-nix/author crashed on it). Totals: 25 trials, 18 passed, 7 failed (most passes are on since-archived tasks).
 - Harbor `check_report.json` files for all 2026-11-03 checks contain no criteria (`DownloadVerifierDirError`). Verdicts below are taken from each check agent's written result (`check-result.json` content and final message in `agent/claude-code.txt`).
 - The WRAPUP does not name the Cauchy harbor check job. Used `2026-11-03__17-26-23`, the latest Cauchy check.
 

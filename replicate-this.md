@@ -7,8 +7,8 @@ Paths mirror the original workspace, so scripts and `pack-manifest.tsv` run unch
 
 ## Not shipped (generated or private)
 
-- `.cache/` in `faking-it-with-nix/`: Ubuntu 22.04 cloud image, frozen reference disks (`base.qcow2`, about 14 GB for all tasks), CA and builder keys. `mise run prepare <id>` recreates them (about 35 min per task).
-- Gateway credentials: put `ANTHROPIC_API_KEY`, `ANTHROPIC_BASE_URL` (and `OPENROUTER_API_KEY` for non-Haiku models) in a `.env` one level above `faking-it-with-nix/`; the commands below pass `--env-file ../.env`.
+- `.cache/` in `replicate-it-with-nix/`: Ubuntu 22.04 cloud image, frozen reference disks (`base.qcow2`, about 14 GB for all tasks), CA and builder keys. `mise run prepare <id>` recreates them (about 35 min per task).
+- Gateway credentials: put `ANTHROPIC_API_KEY`, `ANTHROPIC_BASE_URL` (and `OPENROUTER_API_KEY` for non-Haiku models) in a `.env` one level above `replicate-it-with-nix/`; the commands below pass `--env-file ../.env`.
 - The written report and the take-home brief.
 - Prebuilt task images are on Docker Hub as `beginagain/<task-id>` (plus `-verifier`, `-builder`), pinned by digest in each `task.toml`, so trials need no local build.
 
@@ -16,7 +16,7 @@ Paths mirror the original workspace, so scripts and `pack-manifest.tsv` run unch
 
 Linux with KVM (`/dev/kvm`), Docker with buildx, [Harbor](https://harborframework.com), `uv`, `mise`.
 
-## Nix family (`faking-it-with-nix/`)
+## Nix family (`replicate-it-with-nix/`)
 
 1. `mise run prepare node17-reconstruction-hard`: provisions the reference VM with CINC/Chef from `author/tasks/<id>/cookbooks`, bakes the image graph (`docker-bake.hcl`), starts the builder.
 2. Controls: `mise run check-reference <id>`, then `harbor run -p <id> -a oracle -y` (expect 1.0) and `-a nop -y` (expect 0.0).
