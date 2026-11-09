@@ -1,0 +1,24 @@
+version = "1.0"
+# Only the submission crosses into the (fresh, separate) verifier container.
+artifacts = ["/app/Shor_General.thy"]
+[metadata]
+difficulty = "sonnet-hard-candidate"
+difficulty_evidence = "estimated: shor-general with a human-written paper (Lin, McGill 2013) instead of a Lean proof; no model trial yet"
+author_name = "lean-to-isabelle"
+category = "theorem-proving"
+tags = ["isabelle", "isar", "quantum", "shor", "first-principles"]
+[verifier]
+environment_mode = "separate"
+timeout_sec = 600.0
+[agent]
+timeout_sec = 3600.0
+[environment]
+build_timeout_sec = 3600.0
+cpus = 2
+memory_mb = 6144
+storage_mb = 10240
+
+[environment.env]
+# Route model calls through the take-home gateway (required by the take-home brief).
+ANTHROPIC_BASE_URL = "https://take-home-automation.vercel.app"
+ANTHROPIC_API_BASE = "https://take-home-automation.vercel.app"

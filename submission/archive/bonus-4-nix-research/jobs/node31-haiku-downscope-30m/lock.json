@@ -1,0 +1,70 @@
+{
+    "schema_version": 3,
+    "created_at": "2026-11-03T23:28:00.758752Z",
+    "harbor": {
+        "version": "0.25.0",
+        "is_editable": false
+    },
+    "n_concurrent_trials": 4,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "AgentAuthenticationError",
+            "UnsupportedModelParametersError",
+            "AgentSafetyRefusalError",
+            "RewardFileNotFoundError",
+            "AgentTimeoutError",
+            "ApiUsageLimitError",
+            "VerifierOutputParseError",
+            "RewardFileEmptyError",
+            "VerifierTimeoutError",
+            "ModelNotFoundError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "node31-reconstruction-hard",
+                "type": "local",
+                "digest": "sha256:f7550cbe717eb5a2e892752b0c53d7e2c16e3cee7e6c386b2bb84f3cf599417a",
+                "path": "/tmp/tmp.S8shPscPEN/node31-reconstruction-hard"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent_timeout_multiplier": 0.5,
+            "agent": {
+                "name": "claude-code",
+                "model_name": "anthropic/claude-haiku-5-5",
+                "skip_model_parsing": false,
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {
+                    "reasoning_effort": "high"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "stream": false,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "separate"
+            }
+        }
+    ]
+}

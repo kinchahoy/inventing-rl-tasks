@@ -1,0 +1,117 @@
+{
+  "reward": 1.0,
+  "seconds": {
+    "build": 233.52,
+    "boot": 18.19
+  },
+  "checks": [
+    {
+      "name": "host_identity",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.2
+    },
+    {
+      "name": "accounts",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.11
+    },
+    {
+      "name": "kernel_cmdline",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.06
+    },
+    {
+      "name": "module_policy",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.32
+    },
+    {
+      "name": "lockup_sysctl",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.11
+    },
+    {
+      "name": "sleep_policy",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.56
+    },
+    {
+      "name": "sleep_cleanup",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 39.25
+    },
+    {
+      "name": "accel_setup",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.1
+    },
+    {
+      "name": "idle_monitor",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.51
+    },
+    {
+      "name": "infer_unit",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.32
+    },
+    {
+      "name": "tool_env",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.34
+    },
+    {
+      "name": "metrics_agent",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.28
+    },
+    {
+      "name": "operator_sudo",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.17
+    },
+    {
+      "name": "udev_i2c",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.24
+    },
+    {
+      "name": "cmdline_decoy",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.05
+    },
+    {
+      "name": "sysctl_decoy",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.05
+    },
+    {
+      "name": "sysstat_timer",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.07
+    },
+    {
+      "name": "etc_environment",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.21
+    }
+  ]
+}

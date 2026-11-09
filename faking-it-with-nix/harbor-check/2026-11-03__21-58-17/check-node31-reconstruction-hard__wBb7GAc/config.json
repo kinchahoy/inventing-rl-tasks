@@ -1,0 +1,12 @@
+{
+    "task": {
+        "path": "/tmp/harbor-check-fyg55fys/check-node31-reconstruction-hard"
+    },
+    "trial_name": "check-node31-reconstruction-hard__wBb7GAc",
+    "trials_dir": "harbor-check/2026-11-03__21-58-17",
+    "agent": {
+        "name": "claude-code",
+        "model_name": "claude-haiku-5-5"
+    },
+    "job_id": "63ecbbda-a061-44c3-ba62-d4d1d9d6e863"
+}

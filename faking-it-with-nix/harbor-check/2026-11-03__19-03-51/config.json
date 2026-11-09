@@ -1,0 +1,15 @@
+{
+    "job_name": "2026-11-03__19-03-51",
+    "jobs_dir": "harbor-check",
+    "agents": [
+        {
+            "name": "claude-code",
+            "model_name": "claude-haiku-5-5"
+        }
+    ],
+    "tasks": [
+        {
+            "path": "/tmp/harbor-check-yalggx5e/check-node17-reconstruction-hard"
+        }
+    ]
+}

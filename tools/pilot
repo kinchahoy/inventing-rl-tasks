@@ -1,0 +1,47 @@
+#!/bin/bash
+# Run one task with a different time budget, without editing the task.
+#
+#   tools/pilot <task-dir> [minutes, default 60] [harbor run args...]
+#
+# Copies the task to a temporary directory (same basename, so the task name is
+# unchanged), rewrites the prompt's "You have N minutes." sentence, and runs
+# `harbor run` on the copy with the matching --agent-timeout-multiplier.
+# With no -a/--agent argument it uses the standard model config: claude-code,
+# Haiku 5.5, reasoning_effort=high, one attempt, the workspace .env.
+# Jobs are written under the current directory, as with a plain `harbor run`.
+set -euo pipefail
+
+TASK=${1:?usage: tools/pilot <task-dir> [minutes, default 60] [harbor run args...]}
+shift
+MINUTES=60
+if [[ "${1:-}" =~ ^[0-9]+$ ]]; then MINUTES=$1; shift; fi
+TASK=$(realpath "$TASK")
+ROOT=$(dirname "$(realpath "$0")")/..
+[[ "$MINUTES" =~ ^[0-9]+$ ]] || { echo "minutes must be a whole number" >&2; exit 1; }
+[ -f "$TASK/task.toml" ] && [ -f "$TASK/instruction.md" ] || { echo "not a task dir: $TASK" >&2; exit 1; }
+grep -qE 'You have [0-9]+ minutes\.' "$TASK/instruction.md" \
+    || { echo "$TASK/instruction.md has no 'You have N minutes.' sentence" >&2; exit 1; }
+
+# Agent timeout from [agent] timeout_sec.
+TIMEOUT=$(python3 -c 'import sys, tomllib; print(tomllib.load(open(sys.argv[1], "rb"))["agent"]["timeout_sec"])' "$TASK/task.toml")
+MULTIPLIER=$(python3 -c "print(round($MINUTES * 60 / $TIMEOUT, 6))")
+
+WORK=$(mktemp -d)
+trap 'rm -rf "$WORK"' EXIT
+COPY="$WORK/$(basename "$TASK")"
+cp -a "$TASK" "$COPY"
+sed -i -E "s/You have [0-9]+ minutes\./You have $MINUTES minutes./" "$COPY/instruction.md"
+
+ARGS=("$@")
+if ! printf '%s\n' "${ARGS[@]+"${ARGS[@]}"}" | grep -qxE -- '-a|--agent'; then
+    ARGS=(-a claude-code -m anthropic/claude-haiku-5-5 --ak reasoning_effort=high -k 1 "${ARGS[@]+"${ARGS[@]}"}")
+fi
+if ! printf '%s\n' "${ARGS[@]}" | grep -qx -- '--env-file'; then
+    ARGS+=(--env-file "$ROOT/.env")
+fi
+if ! printf '%s\n' "${ARGS[@]}" | grep -qx -- '--job-name'; then
+    ARGS+=(--job-name "$(basename "$TASK")-${MINUTES}m-$(date +%Y%m%d-%H%M%S)")
+fi
+
+echo "pilot: $(basename "$TASK"), $MINUTES min (agent timeout ${TIMEOUT}s x $MULTIPLIER)" >&2
+harbor run -p "$COPY" --agent-timeout-multiplier "$MULTIPLIER" -y "${ARGS[@]}"

@@ -1,0 +1,11 @@
+{
+    "task": {
+        "path": "third-attempt/lark-earley"
+    },
+    "trial_name": "lark-earley__2qAbbT9",
+    "trials_dir": "jobs/lark-nop-final2",
+    "agent": {
+        "name": "nop"
+    },
+    "job_id": "5d85df14-d928-4a6f-86b4-85bea5fbd311"
+}

@@ -1,0 +1,254 @@
+{
+  "reward": 0.0,
+  "seconds": {
+    "build": 210.68,
+    "boot": 18.29
+  },
+  "checks": [
+    {
+      "name": "host_resolution",
+      "passed": false,
+      "detail": "hostname",
+      "origin": "recipe",
+      "seconds": 0.04
+    },
+    {
+      "name": "accounts",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'python3 -c '\"'\"'import grp,os,pwd\nfor u,uid,gid in [('\"'\"'\"'\"'\"'\"'\"'\"'amber'\"'\"'\"'\"'\"'\"'\"'\"',1101,1000),('\"'\"'\"'\"'\"'\"'\"'\"'cobalt'\"'\"'\"'\"'\"'\"'\"'\"',1102,1001)]:\n p=pwd.getpwnam(u); assert (p.pw_uid,p.pw_gid,p.pw_dir,os.path.basename(p.pw_shell),grp.getgrgid(gid).gr_name)==(uid,gid,'\"'\"'\"'\"'\"'\"'\"'\"'/home/'\"'\"'\"'\"'\"'\"'\"'\"'+u,'\"'\"'\"'\"'\"'\"'\"'\"'bash'\"'\"'\"'\"'\"'\"'\"'\"',u),p'\"'\"'' exited 1:\nTraceback (most recent call last):\n  File \"<string>\", line 3, in <module>\n    p=pwd.getpwnam(u); assert (p.pw_uid,p.pw_gid,p.pw_dir,os.path.basename(p.pw_shell),grp.getgrgid(gid).gr_name)==(uid,gid,'/home/'+u,'bash',u),p\nKeyError: \"getpwnam(): name not found: 'amber'\"\n",
+      "origin": "recipe",
+      "seconds": 0.45
+    },
+    {
+      "name": "filesystem_ownership",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'python3 -c '\"'\"'import os,pwd,stat;\nfor u in ('\"'\"'\"'\"'\"'\"'\"'\"'amber'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'cobalt'\"'\"'\"'\"'\"'\"'\"'\"'):\n for sub,mode in [('\"'\"'\"'\"'\"'\"'\"'\"''\"'\"'\"'\"'\"'\"'\"'\"',0o755),('\"'\"'\"'\"'\"'\"'\"'\"'public_html'\"'\"'\"'\"'\"'\"'\"'\"',0o755),('\"'\"'\"'\"'\"'\"'\"'\"'public_html/cgi-bin'\"'\"'\"'\"'\"'\"'\"'\"',0o755),('\"'\"'\"'\"'\"'\"'\"'\"'public_html/wsgi-bin'\"'\"'\"'\"'\"'\"'\"'\"',0o755),('\"'\"'\"'\"'\"'\"'\"'\"'private'\"'\"'\"'\"'\"'\"'\"'\"',0o700),('\"'\"'\"'\"'\"'\"'\"'\"'private/token'\"'\"'\"'\"'\"'\"'\"'\"',0o600)]:\n  p='\"'\"'\"'\"'\"'\"'\"'\"'/home/'\"'\"'\"'\"'\"'\"'\"'\"'+u+'\"'\"'\"'\"'\"'\"'\"'\"'/'\"'\"'\"'\"'\"'\"'\"'\"'+sub; s=os.stat(p); assert pwd.getpwuid(s.st_uid).pw_name==u and stat.S_IMODE(s.st_mode)==mode,p'\"'\"'' exited 1:\nTraceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n    p='/home/'+u+'/'+sub; s=os.stat(p); assert pwd.getpwuid(s.st_uid).pw_name==u and stat.S_IMODE(s.st_mode)==mode,p\n                            ~~~~~~~^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/amber/'\n",
+      "origin": "recipe",
+      "seconds": 0.15
+    },
+    {
+      "name": "private_isolation",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'runuser -u amber -- sh -c '\"'\"'cat /home/amber/private/token'\"'\"'' exited 1:\nrunuser: user amber does not exist or the user entry does not contain all the required fields\n",
+      "origin": "recipe",
+      "seconds": 0.08
+    },
+    {
+      "name": "sudo_log_policy",
+      "passed": false,
+      "detail": "Command curl --silent --show-error --noproxy '*' --max-time 15 --cacert /opt/contract/ca.crt --connect-to amber.node.test:443:127.0.0.1:9443 -D /tmp/tmpjj7k4zt4/headers https://amber.node.test/ exited 28:\ncurl: (28) Connection timed out after 15002 milliseconds\n",
+      "origin": "recipe",
+      "seconds": 15.01
+    },
+    {
+      "name": "slice_limits",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'python3 -c '\"'\"'import os,pwd,subprocess; uid=pwd.getpwnam('\"'\"'\"'\"'\"'\"'\"'\"'amber'\"'\"'\"'\"'\"'\"'\"'\"').pw_uid; unit=f'\"'\"'\"'\"'\"'\"'\"'\"'user-{uid}.slice'\"'\"'\"'\"'\"'\"'\"'\"'; subprocess.run(['\"'\"'\"'\"'\"'\"'\"'\"'systemctl'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'start'\"'\"'\"'\"'\"'\"'\"'\"',unit],check=True); total=os.sysconf('\"'\"'\"'\"'\"'\"'\"'\"'SC_PHYS_PAGES'\"'\"'\"'\"'\"'\"'\"'\"')*os.sysconf('\"'\"'\"'\"'\"'\"'\"'\"'SC_PAGE_SIZE'\"'\"'\"'\"'\"'\"'\"'\"');\nfor prop,ratio in [('\"'\"'\"'\"'\"'\"'\"'\"'MemoryHigh'\"'\"'\"'\"'\"'\"'\"'\"',.8),('\"'\"'\"'\"'\"'\"'\"'\"'MemoryMax'\"'\"'\"'\"'\"'\"'\"'\"',.9)]:\n value=int(subprocess.check_output(['\"'\"'\"'\"'\"'\"'\"'\"'systemctl'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'show'\"'\"'\"'\"'\"'\"'\"'\"',unit,'\"'\"'\"'\"'\"'\"'\"'\"'--property='\"'\"'\"'\"'\"'\"'\"'\"'+prop,'\"'\"'\"'\"'\"'\"'\"'\"'--value'\"'\"'\"'\"'\"'\"'\"'\"'])); assert abs(value/total-ratio)<.01,(prop,value,total)'\"'\"'' exited 1:\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import os,pwd,subprocess; uid=pwd.getpwnam('amber').pw_uid; unit=f'user-{uid}.slice'; subprocess.run(['systemctl','start',unit],check=True); total=os.sysconf('SC_PHYS_PAGES')*os.sysconf('SC_PAGE_SIZE');\n                                  ~~~~~~~~~~~~^^^^^^^^^\nKeyError: \"getpwnam(): name not found: 'amber'\"\n",
+      "origin": "recipe",
+      "seconds": 0.29
+    },
+    {
+      "name": "postgres_peer",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'runuser -u amber -- sh -c '\"'\"'psql -X -tAc \"SELECT current_user,current_database()\" amber'\"'\"'' exited 1:\nrunuser: user amber does not exist or the user entry does not contain all the required fields\n",
+      "origin": "recipe",
+      "seconds": 0.06
+    },
+    {
+      "name": "postgres_password",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'PGPASSWORD=amber-pass psql -X -h catalog.node.test -U amber -d amber -tAc \"SELECT current_user\"' exited 127:\nbash: line 1: psql: command not found\n",
+      "origin": "recipe",
+      "seconds": 0.04
+    },
+    {
+      "name": "postgres_isolation",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'runuser -u amber -- sh -c '\"'\"'psql -X -d amber -tAc \"SELECT 1\"'\"'\"'' exited 1:\nrunuser: user amber does not exist or the user entry does not contain all the required fields\n",
+      "origin": "recipe",
+      "seconds": 0.04
+    },
+    {
+      "name": "postgis",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'runuser -u amber -- sh -c '\"'\"'psql -X -d amber -tAc \"SELECT ST_Distance(ST_Point(0,0),ST_Point(3,4))\"'\"'\"'' exited 1:\nrunuser: user amber does not exist or the user entry does not contain all the required fields\n",
+      "origin": "recipe",
+      "seconds": 0.05
+    },
+    {
+      "name": "mysql_root_socket",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'mysql -Nse \"SELECT CURRENT_USER()\"' exited 127:\nbash: line 1: mysql: command not found\n",
+      "origin": "recipe",
+      "seconds": 0.1
+    },
+    {
+      "name": "mysql_password",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'mysql --protocol=TCP -h sql.node.test -u amber -pamber-pass -Nse \"SELECT DATABASE()\" amber' exited 127:\nbash: line 1: mysql: command not found\n",
+      "origin": "recipe",
+      "seconds": 0.04
+    },
+    {
+      "name": "mysql_isolation",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'mysql --protocol=TCP -h sql.node.test -u amber -pamber-pass -Nse \"SHOW TABLES\" amber' exited 127:\nbash: line 1: mysql: command not found\n",
+      "origin": "recipe",
+      "seconds": 0.05
+    },
+    {
+      "name": "cache_protocol",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'python3 -c '\"'\"'import socket; s=socket.create_connection(('\"'\"'\"'\"'\"'\"'\"'\"'cache.node.test'\"'\"'\"'\"'\"'\"'\"'\"',11211)); s.sendall(b'\"'\"'\"'\"'\"'\"'\"'\"'set 647c8fb5fbf5c06f 0 30 1\\r\\n7\\r\\n'\"'\"'\"'\"'\"'\"'\"'\"'); assert s.recv(1024)==b'\"'\"'\"'\"'\"'\"'\"'\"'STORED\\r\\n'\"'\"'\"'\"'\"'\"'\"'\"'; s.sendall(b'\"'\"'\"'\"'\"'\"'\"'\"'incr 647c8fb5fbf5c06f 2\\r\\n'\"'\"'\"'\"'\"'\"'\"'\"'); assert s.recv(1024)==b'\"'\"'\"'\"'\"'\"'\"'\"'9\\r\\n'\"'\"'\"'\"'\"'\"'\"'\"'; s.sendall(b'\"'\"'\"'\"'\"'\"'\"'\"'get 647c8fb5fbf5c06f\\r\\n'\"'\"'\"'\"'\"'\"'\"'\"'); f=s.makefile('\"'\"'\"'\"'\"'\"'\"'\"'rb'\"'\"'\"'\"'\"'\"'\"'\"'); assert f.readline()==b'\"'\"'\"'\"'\"'\"'\"'\"'VALUE 647c8fb5fbf5c06f 0 1\\r\\n'\"'\"'\"'\"'\"'\"'\"'\"' and f.readline()==b'\"'\"'\"'\"'\"'\"'\"'\"'9\\r\\n'\"'\"'\"'\"'\"'\"'\"'\"' and f.readline()==b'\"'\"'\"'\"'\"'\"'\"'\"'END\\r\\n'\"'\"'\"'\"'\"'\"'\"'\"''\"'\"'' exited 1:\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import socket; s=socket.create_connection(('cache.node.test',11211)); s.sendall(b'set 647c8fb5fbf5c06f 0 30 1\\r\\n7\\r\\n'); assert s.recv(1024)==b'STORED\\r\\n'; s.sendall(b'incr 647c8fb5fbf5c06f 2\\r\\n'); assert s.recv(1024)==b'9\\r\\n'; s.sendall(b'get 647c8fb5fbf5c06f\\r\\n'); f=s.makefile('rb'); assert f.readline()==b'VALUE 647c8fb5fbf5c06f 0 1\\r\\n' and f.readline()==b'9\\r\\n' and f.readline()==b'END\\r\\n'\n                     ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/nix/store/kp6p38x6zb21n7gdlnp9nsm2aagq7sg2-python3-3.13.17/lib/python3.13/socket.py\", line 844, in create_connection\n    for res in getaddrinfo(host, port, 0, SOCK_STREAM):\n               ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/nix/store/kp6p38x6zb21n7gdlnp9nsm2aagq7sg2-python3-3.13.17/lib/python3.13/socket.py\", line 983, in getaddrinfo\n    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):\n               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsocket.gaierror: [Errno -2] Name or service not known\n",
+      "origin": "recipe",
+      "seconds": 0.42
+    },
+    {
+      "name": "loopback_services",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'ss -H -lntup; echo; ps -o user= -C memcached' exited 1:\nudp UNCONN 0      0      0.0.0.0:68 0.0.0.0:* users:((\"dhcpcd\",pid=707,fd=15))\ntcp LISTEN 0      128    0.0.0.0:22 0.0.0.0:* users:((\"sshd\",pid=709,fd=6))\ntcp LISTEN 0      128       [::]:22    [::]:* users:((\"sshd\",pid=709,fd=7))\n\n",
+      "origin": "recipe",
+      "seconds": 0.3
+    },
+    {
+      "name": "server_tuning",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'python3 -c '\"'\"'import os,re,socket,subprocess\nprocs={}\nfor pid in filter(str.isdigit,os.listdir('\"'\"'\"'\"'\"'\"'\"'\"'/proc'\"'\"'\"'\"'\"'\"'\"'\"')):\n    try: procs[pid]=(open(f'\"'\"'\"'\"'\"'\"'\"'\"'/proc/{pid}/cmdline'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'rb'\"'\"'\"'\"'\"'\"'\"'\"').read().split(b'\"'\"'\"'\"'\"'\"'\"'\"'\\0'\"'\"'\"'\"'\"'\"'\"'\"'),os.readlink(f'\"'\"'\"'\"'\"'\"'\"'\"'/proc/{pid}/exe'\"'\"'\"'\"'\"'\"'\"'\"'),open(f'\"'\"'\"'\"'\"'\"'\"'\"'/proc/{pid}/stat'\"'\"'\"'\"'\"'\"'\"'\"').read().split()[3])\n    except OSError: pass\npools={}\nfor pid,(argv,exe,ppid) in procs.items():\n    m=re.match(rb'\"'\"'\"'\"'\"'\"'\"'\"'php-fpm: master process \\((.+)\\)'\"'\"'\"'\"'\"'\"'\"'\"',argv[0])\n    if not m: continue\n    pool=None\n    for line in subprocess.run([exe,'\"'\"'\"'\"'\"'\"'\"'\"'-tt'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'-y'\"'\"'\"'\"'\"'\"'\"'\"',m.group(1).decode()],capture_output=True,text=True).stderr.splitlines():\n        m=re.search(r'\"'\"'\"'\"'\"'\"'\"'\"'NOTICE\\]?:?(.*)$'\"'\"'\"'\"'\"'\"'\"'\"',line)\n        if not m: continue\n        line=m.group(1).strip()\n        if re.fullmatch(r'\"'\"'\"'\"'\"'\"'\"'\"'\\[[\\w-]+\\]'\"'\"'\"'\"'\"'\"'\"'\"',line): pool=line[1:-1]; pools.setdefault(pool,{})\n        elif pool and '\"'\"'\"'\"'\"'\"'\"'\"' = '\"'\"'\"'\"'\"'\"'\"'\"' in line: k,v=line.split('\"'\"'\"'\"'\"'\"'\"'\"' = '\"'\"'\"'\"'\"'\"'\"'\"',1); pools[pool][k.strip()]=v.strip()\npools.pop('\"'\"'\"'\"'\"'\"'\"'\"'global'\"'\"'\"'\"'\"'\"'\"'\"',None)\nassert sorted(pools)==['\"'\"'\"'\"'\"'\"'\"'\"'amber'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'cobalt'\"'\"'\"'\"'\"'\"'\"'\"'],sorted(pools)\nwant={'\"'\"'\"'\"'\"'\"'\"'\"'pm'\"'\"'\"'\"'\"'\"'\"'\"':'\"'\"'\"'\"'\"'\"'\"'\"'dynamic'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'pm.max_children'\"'\"'\"'\"'\"'\"'\"'\"':'\"'\"'\"'\"'\"'\"'\"'\"'10'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'pm.start_servers'\"'\"'\"'\"'\"'\"'\"'\"':'\"'\"'\"'\"'\"'\"'\"'\"'2'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'pm.min_spare_servers'\"'\"'\"'\"'\"'\"'\"'\"':'\"'\"'\"'\"'\"'\"'\"'\"'1'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'pm.max_spare_servers'\"'\"'\"'\"'\"'\"'\"'\"':'\"'\"'\"'\"'\"'\"'\"'\"'3'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'pm.max_requests'\"'\"'\"'\"'\"'\"'\"'\"':'\"'\"'\"'\"'\"'\"'\"'\"'10000'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'request_terminate_timeout'\"'\"'\"'\"'\"'\"'\"'\"':'\"'\"'\"'\"'\"'\"'\"'\"'180s'\"'\"'\"'\"'\"'\"'\"'\"'}\nfor u in pools:\n    got={k:pools[u].get(k) for k in want}; assert got==want,(u,got)\nmasters=[(pid,argv,exe) for pid,(argv,exe,ppid) in procs.items() if os.path.basename(exe) in ('\"'\"'\"'\"'\"'\"'\"'\"'apache2'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'httpd'\"'\"'\"'\"'\"'\"'\"'\"') and procs.get(ppid,(0,'\"'\"'\"'\"'\"'\"'\"'\"''\"'\"'\"'\"'\"'\"'\"'\"'))[1]!=exe]\nassert len(masters)==1,masters\npid,argv,exe=masters[0]\nargs=[a.decode() for a in argv[1:] if a and a not in (b'\"'\"'\"'\"'\"'\"'\"'\"'-DFOREGROUND'\"'\"'\"'\"'\"'\"'\"'\"',b'\"'\"'\"'\"'\"'\"'\"'\"'-k'\"'\"'\"'\"'\"'\"'\"'\"',b'\"'\"'\"'\"'\"'\"'\"'\"'start'\"'\"'\"'\"'\"'\"'\"'\"')]\nenv=dict(e.decode().split('\"'\"'\"'\"'\"'\"'\"'\"'='\"'\"'\"'\"'\"'\"'\"'\"',1) for e in open(f'\"'\"'\"'\"'\"'\"'\"'\"'/proc/{pid}/environ'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'rb'\"'\"'\"'\"'\"'\"'\"'\"').read().split(b'\"'\"'\"'\"'\"'\"'\"'\"'\\0'\"'\"'\"'\"'\"'\"'\"'\"') if b'\"'\"'\"'\"'\"'\"'\"'\"'='\"'\"'\"'\"'\"'\"'\"'\"' in e)\ndump=subprocess.run([exe,*args,'\"'\"'\"'\"'\"'\"'\"'\"'-t'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'-D'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'DUMP_INCLUDES'\"'\"'\"'\"'\"'\"'\"'\"'],capture_output=True,text=True,env=env).stdout\nfiles=re.findall(r'\"'\"'\"'\"'\"'\"'\"'\"'\\)\\s+(/\\S+)'\"'\"'\"'\"'\"'\"'\"'\"',dump)\nvalues=[v for f in files for v in re.findall(r'\"'\"'\"'\"'\"'\"'\"'\"'(?mi)^\\s*ProxyTimeout\\s+(\\S+)'\"'\"'\"'\"'\"'\"'\"'\"',open(f).read())]\nassert files and set(values)=={'\"'\"'\"'\"'\"'\"'\"'\"'90'\"'\"'\"'\"'\"'\"'\"'\"'},(len(files),values)\ns=socket.create_connection(('\"'\"'\"'\"'\"'\"'\"'\"'127.0.0.1'\"'\"'\"'\"'\"'\"'\"'\"',11211)); s.sendall(b'\"'\"'\"'\"'\"'\"'\"'\"'stats settings\\r\\nquit\\r\\n'\"'\"'\"'\"'\"'\"'\"'\"'); data=b'\"'\"'\"'\"'\"'\"'\"'\"''\"'\"'\"'\"'\"'\"'\"'\"'\nwhile not data.endswith(b'\"'\"'\"'\"'\"'\"'\"'\"'END\\r\\n'\"'\"'\"'\"'\"'\"'\"'\"'): data+=s.recv(65536)\nstats=dict(l.split()[1:3] for l in data.decode().splitlines() if l.startswith('\"'\"'\"'\"'\"'\"'\"'\"'STAT '\"'\"'\"'\"'\"'\"'\"'\"'))\nassert (stats['\"'\"'\"'\"'\"'\"'\"'\"'maxbytes'\"'\"'\"'\"'\"'\"'\"'\"'],stats['\"'\"'\"'\"'\"'\"'\"'\"'udpport'\"'\"'\"'\"'\"'\"'\"'\"'])==('\"'\"'\"'\"'\"'\"'\"'\"'33554432'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'0'\"'\"'\"'\"'\"'\"'\"'\"'),stats'\"'\"'' exited 1:\nTraceback (most recent call last):\n  File \"<string>\", line 18, in <module>\n    assert sorted(pools)==['amber','cobalt'],sorted(pools)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: []\n",
+      "origin": "recipe",
+      "seconds": 0.14
+    },
+    {
+      "name": "userdir_redirect",
+      "passed": false,
+      "detail": "Command curl --silent --show-error --noproxy '*' --max-time 15 --cacert /opt/contract/ca.crt --connect-to node.test:443:127.0.0.1:9443 -D /tmp/tmpanw8i9eb/headers 'https://node.test/~amber/example?x=1' exited 28:\ncurl: (28) Connection timed out after 15001 milliseconds\n",
+      "origin": "recipe",
+      "seconds": 15.01
+    },
+    {
+      "name": "tls_aliases",
+      "passed": false,
+      "detail": "Command curl --silent --show-error --noproxy '*' --max-time 15 --cacert /opt/contract/ca.crt --connect-to node.test:443:127.0.0.1:9443 -D /tmp/tmpciji_0dd/headers https://node.test/ exited 28:\ncurl: (28) Connection timed out after 15002 milliseconds\n",
+      "origin": "recipe",
+      "seconds": 15.01
+    },
+    {
+      "name": "http_redirects",
+      "passed": false,
+      "detail": "Command curl --silent --show-error --noproxy '*' --max-time 15 --cacert /opt/contract/ca.crt --connect-to node.test:80:127.0.0.1:9080 -D /tmp/tmpuwykr_qr/headers 'http://node.test/path?q=2' exited 28:\ncurl: (28) Operation timed out after 15002 milliseconds with 0 bytes received\n",
+      "origin": "recipe",
+      "seconds": 15.01
+    },
+    {
+      "name": "static_range",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'install -d -m 0755 -o amber -g amber /home/amber/public_html; printf %s YThkZjg5MGViNDg2ZDQwZQ== | base64 -d > /home/amber/public_html/a8df890eb486d40e.txt; chown amber:amber /home/amber/public_html/a8df890eb486d40e.txt; chmod 0644 /home/amber/public_html/a8df890eb486d40e.txt' exited 1:\ninstall: invalid user 'amber'\nbash: line 1: /home/amber/public_html/a8df890eb486d40e.txt: No such file or directory\nchown: invalid user: \u2018amber:amber\u2019\nchmod: cannot access '/home/amber/public_html/a8df890eb486d40e.txt': No such file or directory\n",
+      "origin": "recipe",
+      "seconds": 0.1
+    },
+    {
+      "name": "php_identity",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'install -d -m 0755 -o amber -g amber /home/amber/public_html; printf %s PD9waHAgaGVhZGVyKCJDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb24iKTsgZWNobyBqc29uX2VuY29kZShwb3NpeF9nZXRwd3VpZChwb3NpeF9nZXRldWlkKCkpWyJuYW1lIl0pOw== | base64 -d > /home/amber/public_html/probe-8eede5852fdf991b.php; chown amber:amber /home/amber/public_html/probe-8eede5852fdf991b.php; chmod 0644 /home/amber/public_html/probe-8eede5852fdf991b.php' exited 1:\ninstall: invalid user 'amber'\nbash: line 1: /home/amber/public_html/probe-8eede5852fdf991b.php: No such file or directory\nchown: invalid user: \u2018amber:amber\u2019\nchmod: cannot access '/home/amber/public_html/probe-8eede5852fdf991b.php': No such file or directory\n",
+      "origin": "recipe",
+      "seconds": 0.06
+    },
+    {
+      "name": "php_environment",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'install -d -m 0755 -o amber -g amber /home/amber/public_html; printf %s PD9waHAgaGVhZGVyKCJDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb24iKTsgZWNobyBqc29uX2VuY29kZShbZ2V0ZW52KCJOT0RFX0xBQkVMIiksZ2V0ZW52KCJIT01FIiksZ2V0ZW52KCJUTVBESVIiKV0pOw== | base64 -d > /home/amber/public_html/probe-001688ae170250c9.php; chown amber:amber /home/amber/public_html/probe-001688ae170250c9.php; chmod 0644 /home/amber/public_html/probe-001688ae170250c9.php' exited 1:\ninstall: invalid user 'amber'\nbash: line 1: /home/amber/public_html/probe-001688ae170250c9.php: No such file or directory\nchown: invalid user: \u2018amber:amber\u2019\nchmod: cannot access '/home/amber/public_html/probe-001688ae170250c9.php': No such file or directory\n",
+      "origin": "recipe",
+      "seconds": 0.07
+    },
+    {
+      "name": "php_open_basedir",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'install -d -m 0755 -o amber -g amber /home/amber/public_html; printf %s PD9waHAgaGVhZGVyKCJDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb24iKTsgZWNobyBqc29uX2VuY29kZShbZmlsZV9nZXRfY29udGVudHMoIi9ob21lL2FtYmVyL3ByaXZhdGUvdG9rZW4iKSwgQGZpbGVfZ2V0X2NvbnRlbnRzKCIvaG9tZS9jb2JhbHQvcHVibGljX2h0bWwvaW5kZXguaHRtbCIpLCBAZmlsZV9nZXRfY29udGVudHMoIi9ldGMvcGFzc3dkIildKTs= | base64 -d > /home/amber/public_html/probe-80aa8edd90bb21cd.php; chown amber:amber /home/amber/public_html/probe-80aa8edd90bb21cd.php; chmod 0644 /home/amber/public_html/probe-80aa8edd90bb21cd.php' exited 1:\ninstall: invalid user 'amber'\nbash: line 1: /home/amber/public_html/probe-80aa8edd90bb21cd.php: No such file or directory\nchown: invalid user: \u2018amber:amber\u2019\nchmod: cannot access '/home/amber/public_html/probe-80aa8edd90bb21cd.php': No such file or directory\n",
+      "origin": "recipe",
+      "seconds": 0.07
+    },
+    {
+      "name": "php_pool_limits",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'install -d -m 0755 -o amber -g amber /home/amber/public_html; printf %s PD9waHAgaGVhZGVyKCJDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb24iKTsgZWNobyBqc29uX2VuY29kZShbaW5pX2dldCgidXBsb2FkX21heF9maWxlc2l6ZSIpLGluaV9nZXQoInBvc3RfbWF4X3NpemUiKSxpbmlfZ2V0KCJtZW1vcnlfbGltaXQiKSxpbmlfZ2V0KCJtYXhfZXhlY3V0aW9uX3RpbWUiKSxmaWx0ZXJfdmFyKGluaV9nZXQoImRpc3BsYXlfZXJyb3JzIiksRklMVEVSX1ZBTElEQVRFX0JPT0xFQU4pLGV4dGVuc2lvbl9sb2FkZWQoIm1ic3RyaW5nIildKTs= | base64 -d > /home/amber/public_html/probe-13401dc0bb35a7c4.php; chown amber:amber /home/amber/public_html/probe-13401dc0bb35a7c4.php; chmod 0644 /home/amber/public_html/probe-13401dc0bb35a7c4.php' exited 1:\ninstall: invalid user 'amber'\nbash: line 1: /home/amber/public_html/probe-13401dc0bb35a7c4.php: No such file or directory\nchown: invalid user: \u2018amber:amber\u2019\nchmod: cannot access '/home/amber/public_html/probe-13401dc0bb35a7c4.php': No such file or directory\n",
+      "origin": "recipe",
+      "seconds": 0.07
+    },
+    {
+      "name": "php_postgres",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'install -d -m 0755 -o amber -g amber /home/amber/public_html; printf %s PD9waHAgaGVhZGVyKCJDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb24iKTsgJGQ9bmV3IFBETygicGdzcWw6aG9zdD1jYXRhbG9nLm5vZGUudGVzdDtkYm5hbWU9YW1iZXIiLCJhbWJlciIsImFtYmVyLXBhc3MiKTsgZWNobyBqc29uX2VuY29kZSgkZC0+cXVlcnkoIlNFTEVDVCBjdXJyZW50X3VzZXIiKS0+ZmV0Y2hDb2x1bW4oKSk7 | base64 -d > /home/amber/public_html/probe-479b0802295ff5bc.php; chown amber:amber /home/amber/public_html/probe-479b0802295ff5bc.php; chmod 0644 /home/amber/public_html/probe-479b0802295ff5bc.php' exited 1:\ninstall: invalid user 'amber'\nbash: line 1: /home/amber/public_html/probe-479b0802295ff5bc.php: No such file or directory\nchown: invalid user: \u2018amber:amber\u2019\nchmod: cannot access '/home/amber/public_html/probe-479b0802295ff5bc.php': No such file or directory\n",
+      "origin": "recipe",
+      "seconds": 0.08
+    },
+    {
+      "name": "php_mysql",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'install -d -m 0755 -o amber -g amber /home/amber/public_html; printf %s PD9waHAgaGVhZGVyKCJDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb24iKTsgJGQ9bmV3IFBETygibXlzcWw6aG9zdD1zcWwubm9kZS50ZXN0O2RibmFtZT1hbWJlciIsImFtYmVyIiwiYW1iZXItcGFzcyIpOyBlY2hvIGpzb25fZW5jb2RlKCRkLT5xdWVyeSgiU0VMRUNUIERBVEFCQVNFKCkiKS0+ZmV0Y2hDb2x1bW4oKSk7 | base64 -d > /home/amber/public_html/probe-2e93159219d99a8a.php; chown amber:amber /home/amber/public_html/probe-2e93159219d99a8a.php; chmod 0644 /home/amber/public_html/probe-2e93159219d99a8a.php' exited 1:\ninstall: invalid user 'amber'\nbash: line 1: /home/amber/public_html/probe-2e93159219d99a8a.php: No such file or directory\nchown: invalid user: \u2018amber:amber\u2019\nchmod: cannot access '/home/amber/public_html/probe-2e93159219d99a8a.php': No such file or directory\n",
+      "origin": "recipe",
+      "seconds": 0.07
+    },
+    {
+      "name": "cgi_identity",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'install -d -m 0755 -o amber -g amber /home/amber/public_html/cgi-bin; printf %s IyEvdXNyL2Jpbi9weXRob24zCmltcG9ydCBvcyxwd2QKcHJpbnQoIkNvbnRlbnQtVHlwZTogdGV4dC9wbGFpblxuIikKcHJpbnQocHdkLmdldHB3dWlkKG9zLmdldHVpZCgpKS5wd19uYW1lKQo= | base64 -d > /home/amber/public_html/cgi-bin/5941e2b8b87a67ec.py; chown amber:amber /home/amber/public_html/cgi-bin/5941e2b8b87a67ec.py; chmod 0755 /home/amber/public_html/cgi-bin/5941e2b8b87a67ec.py' exited 1:\ninstall: invalid user 'amber'\nbash: line 1: /home/amber/public_html/cgi-bin/5941e2b8b87a67ec.py: No such file or directory\nchown: invalid user: \u2018amber:amber\u2019\nchmod: cannot access '/home/amber/public_html/cgi-bin/5941e2b8b87a67ec.py': No such file or directory\n",
+      "origin": "recipe",
+      "seconds": 0.09
+    },
+    {
+      "name": "wsgi_identity",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'install -d -m 0755 -o amber -g amber /home/amber/public_html/wsgi-bin; printf %s aW1wb3J0IG9zLHB3ZApkZWYgYXBwbGljYXRpb24oZW52aXJvbixzdGFydF9yZXNwb25zZSk6CiBzdGFydF9yZXNwb25zZSgiMjAwIE9LIixbKCJDb250ZW50LVR5cGUiLCJ0ZXh0L3BsYWluIildKQogcmV0dXJuIFtwd2QuZ2V0cHd1aWQob3MuZ2V0dWlkKCkpLnB3X25hbWUuZW5jb2RlKCldCg== | base64 -d > /home/amber/public_html/wsgi-bin/733a0561fe43d9cd.wsgi; chown amber:amber /home/amber/public_html/wsgi-bin/733a0561fe43d9cd.wsgi; chmod 0644 /home/amber/public_html/wsgi-bin/733a0561fe43d9cd.wsgi' exited 1:\ninstall: invalid user 'amber'\nbash: line 1: /home/amber/public_html/wsgi-bin/733a0561fe43d9cd.wsgi: No such file or directory\nchown: invalid user: \u2018amber:amber\u2019\nchmod: cannot access '/home/amber/public_html/wsgi-bin/733a0561fe43d9cd.wsgi': No such file or directory\n",
+      "origin": "recipe",
+      "seconds": 0.11
+    },
+    {
+      "name": "proxy_header",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'install -d -m 0755 -o amber -g amber /home/amber/public_html; printf %s PD9waHAgaGVhZGVyKCJDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb24iKTsgZWNobyBqc29uX2VuY29kZShpc3NldCgkX1NFUlZFUlsiSFRUUF9QUk9YWSJdKSk7 | base64 -d > /home/amber/public_html/probe-51adc6c846279a67.php; chown amber:amber /home/amber/public_html/probe-51adc6c846279a67.php; chmod 0644 /home/amber/public_html/probe-51adc6c846279a67.php' exited 1:\ninstall: invalid user 'amber'\nbash: line 1: /home/amber/public_html/probe-51adc6c846279a67.php: No such file or directory\nchown: invalid user: \u2018amber:amber\u2019\nchmod: cannot access '/home/amber/public_html/probe-51adc6c846279a67.php': No such file or directory\n",
+      "origin": "recipe",
+      "seconds": 0.09
+    },
+    {
+      "name": "htaccess_and_symlinks",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'install -d -m 0755 -o amber -g amber /home/amber/public_html/case-25ae3cb6023890f1; printf %s MjVhZTNjYjYwMjM4OTBmMQ== | base64 -d > /home/amber/public_html/case-25ae3cb6023890f1/value.txt; chown amber:amber /home/amber/public_html/case-25ae3cb6023890f1/value.txt; chmod 0644 /home/amber/public_html/case-25ae3cb6023890f1/value.txt' exited 1:\ninstall: invalid user 'amber'\nbash: line 1: /home/amber/public_html/case-25ae3cb6023890f1/value.txt: No such file or directory\nchown: invalid user: \u2018amber:amber\u2019\nchmod: cannot access '/home/amber/public_html/case-25ae3cb6023890f1/value.txt': No such file or directory\n",
+      "origin": "recipe",
+      "seconds": 0.08
+    },
+    {
+      "name": "persistent_storage",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'python3 -c '\"'\"'import subprocess\nrun=lambda *a,**k: subprocess.run(a,capture_output=True,text=True,check=True,**k).stdout.strip()\npaths=['\"'\"'\"'\"'\"'\"'\"'\"'/home/amber/public_html'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'/home/cobalt/public_html'\"'\"'\"'\"'\"'\"'\"'\"',\n run('\"'\"'\"'\"'\"'\"'\"'\"'runuser'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'-u'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'postgres'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'--'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'psql'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'-X'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'-tAc'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'SHOW data_directory'\"'\"'\"'\"'\"'\"'\"'\"',cwd='\"'\"'\"'\"'\"'\"'\"'\"'/'\"'\"'\"'\"'\"'\"'\"'\"'),\n run('\"'\"'\"'\"'\"'\"'\"'\"'mysql'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'-Nse'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'SELECT @@datadir'\"'\"'\"'\"'\"'\"'\"'\"').rstrip('\"'\"'\"'\"'\"'\"'\"'\"'/'\"'\"'\"'\"'\"'\"'\"'\"')]\nfor path in paths:\n    fstype=run('\"'\"'\"'\"'\"'\"'\"'\"'findmnt'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'-n'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'-o'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'FSTYPE'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'-T'\"'\"'\"'\"'\"'\"'\"'\"',path)\n    assert fstype not in ('\"'\"'\"'\"'\"'\"'\"'\"'tmpfs'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'ramfs'\"'\"'\"'\"'\"'\"'\"'\"'),(path,fstype)\ncovers=lambda rule,path: rule.rstrip('\"'\"'\"'\"'\"'\"'\"'\"'/'\"'\"'\"'\"'\"'\"'\"'\"')==path or path.startswith(rule.rstrip('\"'\"'\"'\"'\"'\"'\"'\"'/'\"'\"'\"'\"'\"'\"'\"'\"')+'\"'\"'\"'\"'\"'\"'\"'\"'/'\"'\"'\"'\"'\"'\"'\"'\"') or rule.startswith(path+'\"'\"'\"'\"'\"'\"'\"'\"'/'\"'\"'\"'\"'\"'\"'\"'\"')\nfor line in run('\"'\"'\"'\"'\"'\"'\"'\"'systemd-tmpfiles'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'--cat-config'\"'\"'\"'\"'\"'\"'\"'\"').splitlines():\n    f=line.split()\n    if len(f)<2 or f[0].startswith('\"'\"'\"'\"'\"'\"'\"'\"'#'\"'\"'\"'\"'\"'\"'\"'\"'): continue\n    age=f[5] if len(f)>5 else '\"'\"'\"'\"'\"'\"'\"'\"'-'\"'\"'\"'\"'\"'\"'\"'\"'\n    cleans=f[0].rstrip('\"'\"'\"'\"'\"'\"'\"'\"'!+-=~^'\"'\"'\"'\"'\"'\"'\"'\"')[:1] in '\"'\"'\"'\"'\"'\"'\"'\"'DRre'\"'\"'\"'\"'\"'\"'\"'\"' or age not in ('\"'\"'\"'\"'\"'\"'\"'\"'-'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"''\"'\"'\"'\"'\"'\"'\"'\"')\n    bad=[p for p in paths if cleans and covers(f[1],p)]\n    assert not bad,(line,bad)'\"'\"'' exited 1:\nTraceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n    run('runuser','-u','postgres','--','psql','-X','-tAc','SHOW data_directory',cwd='/'),\n    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 2, in <lambda>\n    run=lambda *a,**k: subprocess.run(a,capture_output=True,text=True,check=True,**k).stdout.strip()\n                       ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/nix/store/kp6p38x6zb21n7gdlnp9nsm2aagq7sg2-python3-3.13.17/lib/python3.13/subprocess.py\", line 578, in run\n    raise CalledProcessError(retcode, process.args,\n                             output=stdout, stderr=stderr)\nsubprocess.CalledProcessError: Command '('runuser', '-u', 'postgres', '--', 'psql', '-X', '-tAc', 'SHOW data_directory')' returned non-zero exit status 1.\n",
+      "origin": "recipe",
+      "seconds": 0.17
+    },
+    {
+      "name": "sudo_decoy",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'sudo -l -U cobalt' exited 1:\nsudo: unknown user cobalt\n",
+      "origin": "complexifier",
+      "seconds": 0.08
+    },
+    {
+      "name": "login_limits",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'runuser -l amber -c '\"'\"'ulimit -Hu; ulimit -Hn'\"'\"'' exited 1:\nrunuser: user amber does not exist or the user entry does not contain all the required fields\n",
+      "origin": "complexifier",
+      "seconds": 0.06
+    },
+    {
+      "name": "log_rotation",
+      "passed": false,
+      "detail": "Command curl --silent --show-error --noproxy '*' --max-time 15 --cacert /opt/contract/ca.crt --connect-to amber.node.test:443:127.0.0.1:9443 -D /tmp/tmpqfk_gbc8/headers https://amber.node.test/ exited 28:\ncurl: (28) Connection timed out after 15002 milliseconds\n",
+      "origin": "complexifier",
+      "seconds": 15.01
+    },
+    {
+      "name": "db_role_limits",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'cd / && runuser -u postgres -- psql -X -tAc \"SELECT rolname||'\"'\"':'\"'\"'||rolconnlimit FROM pg_roles WHERE rolname IN ('\"'\"'amber'\"'\"','\"'\"'cobalt'\"'\"') ORDER BY 1\"' exited 1:\nrunuser: user postgres does not exist or the user entry does not contain all the required fields\n",
+      "origin": "complexifier",
+      "seconds": 0.04
+    }
+  ]
+}

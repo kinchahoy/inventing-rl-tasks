@@ -1,0 +1,132 @@
+{
+    "id": "d63757a5-5ed2-4779-b2d7-84498ebc1375",
+    "task_name": "node31-reconstruction-hard",
+    "trial_name": "node31-reconstruction-hard__u6G8G2V",
+    "trial_uri": "file:///home/raist/code/workshop/rl-env-explore/faking-it-with-nix/jobs/node31-sonnet-or-60m-r2/node31-reconstruction-hard__u6G8G2V",
+    "task_id": {
+        "path": "node31-reconstruction-hard"
+    },
+    "source": null,
+    "task_checksum": "dab81bb73f943e6fcfd687d02bfd2a8b89861b43e68f6feee4042484d4e7746d",
+    "config": {
+        "task": {
+            "path": "node31-reconstruction-hard",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "node31-reconstruction-hard__u6G8G2V",
+        "trials_dir": "jobs/node31-sonnet-or-60m-r2",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "claude-code",
+            "import_path": null,
+            "model_name": "openrouter/anthropic/claude-sonnet-5.5",
+            "base_url": "https://openrouter.ai/api",
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "reasoning_effort": "high"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "758ba057-d369-4463-b4a7-6c4ba3939feb",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "claude-code",
+        "version": "2.1.317",
+        "model_info": {
+            "name": "anthropic/claude-sonnet-5.5",
+            "provider": "openrouter"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 2755823,
+        "n_cache_tokens": 2666036,
+        "n_output_tokens": 33027,
+        "cost_usd": 0.8212951,
+        "model_usage": {
+            "anthropic/claude-sonnet-5.5": {
+                "n_input_tokens": 2755823,
+                "n_cache_tokens": 2666036,
+                "n_output_tokens": 33027,
+                "cost_usd": 0.0
+            }
+        },
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.96
+        }
+    },
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-03T22:59:40.282832Z",
+    "finished_at": "2026-11-03T23:19:16.129517Z",
+    "environment_setup": {
+        "started_at": "2026-11-03T22:59:40.293241Z",
+        "finished_at": "2026-11-03T22:59:42.666837Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-03T22:59:42.666877Z",
+        "finished_at": "2026-11-03T23:01:15.577916Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-03T23:01:15.578519Z",
+        "finished_at": "2026-11-03T23:14:44.956173Z"
+    },
+    "verifier": {
+        "started_at": "2026-11-03T23:14:59.493529Z",
+        "finished_at": "2026-11-03T23:19:16.129466Z"
+    },
+    "step_results": null
+}

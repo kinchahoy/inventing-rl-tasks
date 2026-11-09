@@ -1,0 +1,43 @@
+{
+  "reward": 0.0,
+  "correctness": {
+    "passed": true,
+    "cases": 47,
+    "failures": []
+  },
+  "performance": {
+    "passed": false,
+    "skipped": "single-core limit failed for ['solution_entry_doit']; multi-core modes skipped"
+  },
+  "diagnostics": {
+    "extra_threads_after_call": []
+  },
+  "seed": 6032664829746464613,
+  "config": {
+    "package": "sympy",
+    "dependencies": [
+      "mpmath"
+    ],
+    "python_version": [
+      3,
+      15,
+      2
+    ],
+    "cpu_allocations": [
+      1,
+      2,
+      4
+    ],
+    "repetitions": 3,
+    "maximum_serial_regression": 1.05,
+    "startup_timeout_seconds": 20,
+    "call_timeout_seconds": 10,
+    "operations": [
+      "end_to_end:dsolve_8",
+      "end_to_end:dsolve_10",
+      "solution_entry_doit"
+    ],
+    "minimum_step_speedup": 1.1,
+    "minimum_step_speedup_constituent": 1.05
+  }
+}

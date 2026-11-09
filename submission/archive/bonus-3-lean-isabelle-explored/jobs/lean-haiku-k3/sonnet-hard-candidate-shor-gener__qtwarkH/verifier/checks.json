@@ -1,0 +1,17 @@
+{
+  "reward": 1.0,
+  "checks": {
+    "theory_header": true,
+    "imports_allowed": true,
+    "imports": "Quantum_Basics",
+    "no_forbidden_tokens": true,
+    "forbidden_found": "",
+    "theorems_present": true,
+    "theorems_missing": "",
+    "line_count": "689",
+    "within_line_limit": true,
+    "structured_isar_proof": true,
+    "isabelle_build_and_check": true,
+    "build_log": "Running Verify ...\nFinished Verify (0:00:04 elapsed time, 0:00:03 cpu time, factor 0.83)\n0:00:08 elapsed time, 0:00:03 cpu time, factor 0.44\n"
+  }
+}

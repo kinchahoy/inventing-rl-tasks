@@ -1,0 +1,160 @@
+{
+  "reward": 0.96,
+  "seconds": {
+    "build": 139.98,
+    "boot": 18.0
+  },
+  "checks": [
+    {
+      "name": "host_identity",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.09
+    },
+    {
+      "name": "accounts",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.14
+    },
+    {
+      "name": "listeners",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.18
+    },
+    {
+      "name": "tls_and_redirect",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.02
+    },
+    {
+      "name": "proxy_auth",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.05
+    },
+    {
+      "name": "proxy_apis",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.04
+    },
+    {
+      "name": "prom_flags",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.18
+    },
+    {
+      "name": "prom_targets",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 4.23
+    },
+    {
+      "name": "prom_rules",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.08
+    },
+    {
+      "name": "recording_rules",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 2.44
+    },
+    {
+      "name": "alert_pipeline",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 12.55
+    },
+    {
+      "name": "sink_service",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.19
+    },
+    {
+      "name": "am_routing",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 12.4
+    },
+    {
+      "name": "am_grouping",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 11.35
+    },
+    {
+      "name": "am_inhibit",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 11.48
+    },
+    {
+      "name": "am_silence",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 11.48
+    },
+    {
+      "name": "am_resolved",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 18.83
+    },
+    {
+      "name": "amtool_operator",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'runuser -u reed -- sh -c '\"'\"'amtool alert query -o json'\"'\"'' exited 127:\nsh: line 1: amtool: command not found\n",
+      "origin": "recipe",
+      "seconds": 0.08
+    },
+    {
+      "name": "blackbox_modules",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.5
+    },
+    {
+      "name": "probe_series",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.1
+    },
+    {
+      "name": "node_collectors",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.11
+    },
+    {
+      "name": "persistent_storage",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.43
+    },
+    {
+      "name": "rules_glob",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.21
+    },
+    {
+      "name": "sd_drop",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.07
+    },
+    {
+      "name": "textfile_timer",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.32
+    }
+  ]
+}

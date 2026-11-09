@@ -1,0 +1,14 @@
+{
+    "job_name": "lark-nop-final2",
+    "n_concurrent_trials": 1,
+    "agents": [
+        {
+            "name": "nop"
+        }
+    ],
+    "tasks": [
+        {
+            "path": "third-attempt/lark-earley"
+        }
+    ]
+}

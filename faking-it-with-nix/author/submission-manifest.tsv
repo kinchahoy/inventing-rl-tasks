@@ -1,0 +1,100 @@
+# dest (inside the zip)	source (relative to rl-env-explore/)	label (goes into the archive/ index)
+# Top level is the brief's layout: samples/ jobs/ archive/ report/. archive/ is presented as BONUS material:
+# each archive/<set>/ is a self-contained mini-pack laid out like the core one (<task>/ dirs + jobs/<job>/<trial>/).
+# Task directory names are unchanged so each job's config still matches its task.
+# Lines whose source does not exist yet are reported as PENDING and skipped.
+#
+# ---- CORE: samples/ = retained pack (Nix reconstruction, Haiku 5.5 pass@3 = 0) ----
+samples/node17-reconstruction-hard	faking-it-with-nix/node17-reconstruction-hard	core
+samples/node31-reconstruction-hard	faking-it-with-nix/node31-reconstruction-hard	core
+samples/node37-reconstruction-hard	faking-it-with-nix/node37-reconstruction-hard	core (if final k=3 holds pass@3 = 0)
+#
+# ---- CORE: jobs/ = the three brief-mandated runs per retained task, exactly as Harbor wrote them ----
+jobs/node17-reconstruction-hard-oracle	faking-it-with-nix/final/jobs/node17-reconstruction-hard-oracle	verifier v2
+jobs/node17-reconstruction-hard-nop	faking-it-with-nix/final/jobs/node17-reconstruction-hard-nop	verifier v2
+jobs/node17-reconstruction-hard-haiku-k3	faking-it-with-nix/final/jobs/node17-reconstruction-hard-haiku-k3	verifier v2
+jobs/node31-reconstruction-hard-oracle	faking-it-with-nix/final/jobs/node31-reconstruction-hard-oracle
+jobs/node31-reconstruction-hard-nop	faking-it-with-nix/final/jobs/node31-reconstruction-hard-nop
+jobs/node31-reconstruction-hard-haiku-k3	faking-it-with-nix/final/jobs/node31-reconstruction-hard-haiku-k3
+jobs/node37-reconstruction-hard-oracle	faking-it-with-nix/final/jobs/node37-reconstruction-hard-oracle
+jobs/node37-reconstruction-hard-nop	faking-it-with-nix/final/jobs/node37-reconstruction-hard-nop
+jobs/node37-reconstruction-hard-haiku-k3	faking-it-with-nix/final/jobs/node37-reconstruction-hard-haiku-k3
+#
+# ---- BONUS 1: a solved Nix task (same format, smaller surface: shows the space is solvable) ----
+archive/bonus-1-nix-solved-example/node23-reconstruction-hard	faking-it-with-nix/node23-reconstruction-hard	Nix · DNS host · Haiku solved 1 of 3 (0.77, 0.96, 1.0)
+archive/bonus-1-nix-solved-example/jobs/node23-reconstruction-hard-oracle	faking-it-with-nix/final/jobs/node23-reconstruction-hard-oracle	oracle 1.0
+archive/bonus-1-nix-solved-example/jobs/node23-reconstruction-hard-nop	faking-it-with-nix/final/jobs/node23-reconstruction-hard-nop	nop 0.0
+archive/bonus-1-nix-solved-example/jobs/node23-reconstruction-hard-haiku-k3	faking-it-with-nix/final/jobs/node23-reconstruction-hard-haiku-k3	brief's k=3 command
+#
+# ---- BONUS 2: second pack with headroom, different sub-domain (Python free-threading performance) ----
+archive/bonus-2-python-free-threading/sympy-state-space	python-shenanigans/series/third-attempt/sympy-state-space	Python · SymPy speedup · Haiku 0/3
+archive/bonus-2-python-free-threading/lark-earley	python-shenanigans/series/third-attempt/lark-earley	Python · Lark speedup · Haiku 0/3 valid
+archive/bonus-2-python-free-threading/jobs/sympy-oracle-final2	python-shenanigans/jobs/mi60/sympy-oracle-final2	oracle 1.0
+archive/bonus-2-python-free-threading/jobs/sympy-nop-final2	python-shenanigans/jobs/mi60/sympy-nop-final2	nop 0.0
+archive/bonus-2-python-free-threading/jobs/sympy-state-space-haiku-k3	python-shenanigans/jobs/mi60/sympy-state-space-haiku-k3	Haiku k=3: 0, 0, 0
+archive/bonus-2-python-free-threading/jobs/lark-oracle-final2	python-shenanigans/jobs/mi60/lark-oracle-final2	oracle 1.0
+archive/bonus-2-python-free-threading/jobs/lark-nop-final2	python-shenanigans/jobs/mi60/lark-nop-final2	nop 0.0
+archive/bonus-2-python-free-threading/jobs/lark-earley-haiku-k3	python-shenanigans/jobs/mi60/lark-earley-haiku-k3	Haiku k=3: 0, harness failure (excluded), 0
+archive/bonus-2-python-free-threading/jobs/lark-earley-haiku-k3-replacement	python-shenanigans/jobs/mi60/lark-earley-haiku-k3-replacement	replacement for the harness failure: 0
+#
+# ---- BONUS 3: explored, no headroom (Lean -> Isabelle proof translation) ----
+archive/bonus-3-lean-isabelle-explored/haiku-hard-cauchy	lean-to-isabelle/haiku-hard-cauchy	Lean→Isabelle · Haiku 1/3
+archive/bonus-3-lean-isabelle-explored/sonnet-hard-candidate-shor-general	lean-to-isabelle/sonnet-hard-candidate-shor-general	Lean→Isabelle · Haiku 2/3
+archive/bonus-3-lean-isabelle-explored/sonnet-hard-candidate-shor-general-paper	lean-to-isabelle/sonnet-hard-candidate-shor-general-paper	Lean→Isabelle (paper reference) · Haiku 1/3
+archive/bonus-3-lean-isabelle-explored/jobs/lean-oracle-final	lean-to-isabelle/jobs/lean-oracle-final	oracle (Cauchy, Shor-general)
+archive/bonus-3-lean-isabelle-explored/jobs/lean-nop-final	lean-to-isabelle/jobs/lean-nop-final	nop
+archive/bonus-3-lean-isabelle-explored/jobs/lean-paper-oracle	lean-to-isabelle/jobs/lean-paper-oracle	oracle (paper variant)
+archive/bonus-3-lean-isabelle-explored/jobs/lean-paper-nop	lean-to-isabelle/jobs/lean-paper-nop	nop (paper variant)
+archive/bonus-3-lean-isabelle-explored/jobs/lean-haiku-k3	lean-to-isabelle/jobs/lean-haiku-k3	Haiku k=3 at the OLD caps 750/900 (tasks here now carry 600/700): Cauchy 1/3, Shor 2/3, Shor-paper 1/3
+archive/bonus-3-lean-isabelle-explored/jobs/lean-cap600-700-r1	lean-to-isabelle/jobs/mi60-lean/lean-cap600-700-r1	Haiku at the current caps 600/700, one round only (round 2 lost to a host crash): 0/3
+#
+# ---- BONUS 4: Nix research trail (easy control, ablations, superseded runs, model comparisons) ----
+archive/bonus-4-nix-research/node41-reconstruction-easy	faking-it-with-nix/node41-reconstruction-easy	Nix · easy control (Haiku 0.94)
+archive/bonus-4-nix-research/ablation-node31-process-nudge	faking-it-with-nix/ablations/node31-process-nudge/node31-reconstruction-hard	ablation · "compare systematically and fix every difference"
+archive/bonus-4-nix-research/ablation-node31-downscope	faking-it-with-nix/ablations/node31-downscope/node31-reconstruction-hard	ablation · base-OS tuning declared out of scope
+archive/bonus-4-nix-research/ablation-node31-commands	faking-it-with-nix/ablations/node31-commands/node31-reconstruction-hard	ablation · commands wording (later adopted by all tasks)
+archive/bonus-4-nix-research/jobs/node41-haiku-30m	faking-it-with-nix/jobs/node41-haiku-30m	node41 · Haiku
+archive/bonus-4-nix-research/jobs/node41-pull-oracle	faking-it-with-nix/jobs/node41-pull-oracle	node41 · oracle from the published images
+archive/bonus-4-nix-research/jobs/node31-haiku-nudge-60m	faking-it-with-nix/jobs/node31-haiku-nudge-60m	ablation run · process nudge
+archive/bonus-4-nix-research/jobs/node31-haiku-downscope-30m	faking-it-with-nix/jobs/node31-haiku-downscope-30m	ablation run · downscope
+archive/bonus-4-nix-research/jobs/node31-haiku-commands-60m	faking-it-with-nix/jobs/node31-haiku-commands-60m	ablation run · commands wording
+archive/bonus-4-nix-research/jobs/node17-reconstruction-hard-oracle-v1	faking-it-with-nix/final/superseded/node17-v1-boot-race/node17-reconstruction-hard-oracle	node17 superseded · verifier v1 (lenient readiness)
+archive/bonus-4-nix-research/jobs/node17-reconstruction-hard-nop-v1	faking-it-with-nix/final/superseded/node17-v1-boot-race/node17-reconstruction-hard-nop	node17 superseded · verifier v1
+archive/bonus-4-nix-research/jobs/node17-reconstruction-hard-haiku-k3-v1	faking-it-with-nix/final/superseded/node17-v1-boot-race/node17-reconstruction-hard-haiku-k3	node17 superseded · v1 0.71, 0.66, 0.51
+archive/bonus-4-nix-research/regrades/node17-v1-trials-under-v2	faking-it-with-nix/final/regrade-v2	v1 submissions re-graded with v2: 0.71, 0.43, 0.51 (author/regrade.sh; not Harbor output)
+archive/bonus-4-nix-research/jobs/node17-haiku-120m	faking-it-with-nix/jobs/node17-haiku-120m	120-min budget (more time does not help) · earlier verifier revision
+archive/bonus-4-nix-research/jobs/node17-sonnet-or-30m	faking-it-with-nix/jobs/node17-sonnet-or-30m	Sonnet 5.5 · earlier verifier revision
+archive/bonus-4-nix-research/jobs/node31-sonnet-or-60m	faking-it-with-nix/jobs/node31-sonnet-or-60m	Sonnet 5.5 · earlier verifier revision
+archive/bonus-4-nix-research/jobs/node31-sonnet-or-60m-r2	faking-it-with-nix/jobs/node31-sonnet-or-60m-r2	Sonnet 5.5 · earlier verifier revision
+archive/bonus-4-nix-research/source	faking-it-with-nix/author	how the images were built: Chef recipes, Nix pins, Dockerfiles, scripts, notes (author/real/ excluded)
+archive/bonus-4-nix-research/ablation-node17-no-clock	faking-it-with-nix/ablations/node17-no-clock/node17-reconstruction-hard	ablation · "You have 60 minutes." removed (Harbor still stops at 60)
+archive/bonus-4-nix-research/ablation-node31-no-clock	faking-it-with-nix/ablations/node31-no-clock/node31-reconstruction-hard	ablation · "You have 60 minutes." removed
+archive/bonus-4-nix-research/jobs/node17-haiku-no-clock-60m	faking-it-with-nix/jobs/node17-haiku-no-clock-60m	no-clock ablation run · node17
+archive/bonus-4-nix-research/jobs/node31-haiku-no-clock-60m	faking-it-with-nix/jobs/node31-haiku-no-clock-60m	no-clock ablation run · node31
+#
+# ---- archive/evidence/: the files the report links to (flat, short paths) ----
+archive/evidence/model-summary.md	faking-it-with-nix/author/report-figures/model-summary.md	evidence · Scores per task × model; hard checks run by run (start here)
+archive/evidence/final-scores.md	faking-it-with-nix/author/final-scores.md	evidence · Scoring ledger: every run, incl. superseded v1, re-grades, ablations, side runs
+archive/evidence/core-run-stats.md	faking-it-with-nix/author/core-run-stats.md	evidence · Per-trial steps, LLM/tool calls, builds, tokens, minutes, cost
+archive/evidence/missed-items.md	faking-it-with-nix/author/missed-items.md	evidence · Every missed check: why fair, failure mode, one-command discovery step, who missed it
+archive/evidence/missed-items.csv	faking-it-with-nix/author/report-figures/missed-items.csv	evidence · Same as CSV
+archive/evidence/miss-map.md	faking-it-with-nix/author/report-figures/miss-map.md	evidence · All 80 core checks grouped by who solves them
+archive/evidence/miss-map.csv	faking-it-with-nix/author/report-figures/miss-map.csv	evidence · Same as CSV
+archive/evidence/check-results-haiku.csv	faking-it-with-nix/author/report-figures/check-results-haiku.csv	evidence · Every check × final Haiku trial (P/F)
+archive/evidence/check-regimes.md	faking-it-with-nix/author/report-figures/check-regimes.md	evidence · Three headroom regimes behind pass@3 = 0
+archive/evidence/check-regimes.csv	faking-it-with-nix/author/report-figures/check-regimes.csv	evidence · Same as CSV
+archive/evidence/opus-vs-haiku-node17.csv	faking-it-with-nix/author/report-figures/opus-vs-haiku-node17.csv	evidence · node17 check by check: Opus vs Haiku vs Sonnet
+archive/evidence/trajectory-review.md	faking-it-with-nix/author/trajectory-review.md	evidence · Per-trial failure analysis of the final runs
+archive/evidence/verifier-fixes-all-attacks.md	faking-it-with-nix/author/verifier-fixes-all-attacks.md	evidence · Every verifier fix across the three efforts, why, and what caught it
+archive/evidence/problem-map.csv	faking-it-with-nix/author/report-figures/problem-map.csv	evidence · Problems hit: verifier / task framing / difficulty surprises / infra
+archive/evidence/complexify.md	faking-it-with-nix/author/complexify.md	evidence · The complexifier library and design rule
+archive/evidence/methods.md	faking-it-with-nix/author/methods.md	evidence · Verification methods and rules (deny+allow, probe daemons, controls)
+archive/evidence/pipeline-map.md	faking-it-with-nix/author/report-figures/pipeline-map.md	evidence · How boxes were found/filtered/complexified; how to find many more
+archive/evidence/new-box-recipe.md	faking-it-with-nix/author/report-figures/new-box-recipe.md	evidence · Mechanical recipe for a new box (script / Haiku / human per step)
+archive/evidence/proxy-vs-grader.md	faking-it-with-nix/author/report-figures/proxy-vs-grader.md	evidence · Why agents stop on green (cross-effort)
+archive/evidence/provenance/node17.md	faking-it-with-nix/author/tasks/node17-reconstruction-hard/provenance.md	evidence · node17: upstream source, commit, what was kept / simplified / renamed
+archive/evidence/provenance/node23.md	faking-it-with-nix/author/tasks/node23-reconstruction-hard/provenance.md	evidence · node23: upstream source, commit, what was kept / simplified / renamed
+archive/evidence/provenance/node31.md	faking-it-with-nix/author/tasks/node31-reconstruction-hard/provenance.md	evidence · node31: upstream source, commit, what was kept / simplified / renamed
+archive/evidence/provenance/node37.md	faking-it-with-nix/author/tasks/node37-reconstruction-hard/provenance.md	evidence · node37: upstream source, commit, what was kept / simplified / renamed
+archive/evidence/provenance/node41.md	faking-it-with-nix/author/tasks/node41-reconstruction-easy/provenance.md	evidence · node41: upstream source, commit, what was kept / simplified / renamed
+archive/evidence/README.md	faking-it-with-nix/author/evidence-README.md	evidence · index

@@ -1,0 +1,10 @@
+#!/bin/bash
+# Private SSH key and forwarded ports are fixture credentials, not host access.
+set -euo pipefail
+PORT=${GUEST_SSH_PORT:-2222}
+# One shared connection per port; keepalives drop a stale master within ~6 s of a reboot.
+exec ssh -i /opt/contract/id_ed25519 -p "$PORT" \
+    -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+    -o LogLevel=ERROR -o ConnectTimeout=3 \
+    -o ControlMaster=auto -o "ControlPath=/tmp/guest-ssh-%p" -o ControlPersist=120 \
+    -o ServerAliveInterval=2 -o ServerAliveCountMax=3 root@127.0.0.1 "$@"

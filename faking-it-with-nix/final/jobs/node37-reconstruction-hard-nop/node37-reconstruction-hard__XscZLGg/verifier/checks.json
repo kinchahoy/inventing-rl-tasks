@@ -1,0 +1,135 @@
+{
+  "reward": 0.0,
+  "seconds": {
+    "build": 233.48,
+    "boot": 18.14
+  },
+  "checks": [
+    {
+      "name": "host_identity",
+      "passed": false,
+      "detail": "nixos",
+      "origin": "recipe",
+      "seconds": 0.2
+    },
+    {
+      "name": "accounts",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'getent passwd ember; getent group ember accel i2c; id -nG ember; getent passwd probe' exited 2:\nid: \u2018ember\u2019: no such user\n",
+      "origin": "recipe",
+      "seconds": 0.09
+    },
+    {
+      "name": "kernel_cmdline",
+      "passed": false,
+      "detail": "intel_iommu=on missing from ['root=fstab', 'loglevel=4', 'net.ifnames=0', 'lsm=landlock,yama,bpf', 'init=/nix/store/l54mjqphcrkp1nxwb4zhajs6cpqvwm35-nixos-system-nixos-26.05pre-git/init', 'regInfo=/nix/store/1b5rw9agx94iyi7arxyzh7ny1nwszwv8-closure-info/registration', 'console=tty0', 'console=ttyS0,115200n8']",
+      "origin": "recipe",
+      "seconds": 0.05
+    },
+    {
+      "name": "module_policy",
+      "passed": false,
+      "detail": "iTCO_wdt option missing",
+      "origin": "recipe",
+      "seconds": 0.28
+    },
+    {
+      "name": "lockup_sysctl",
+      "passed": false,
+      "detail": "{'hardlockup_panic': '0', 'panic': '0', 'softlockup_panic': '0', 'hung_task_timeout_secs': '120', 'hung_task_all_cpu_backtrace': '0', 'hung_task_panic': '0'}",
+      "origin": "recipe",
+      "seconds": 0.1
+    },
+    {
+      "name": "sleep_policy",
+      "passed": false,
+      "detail": "['linked', 'linked', 'linked', 'linked']",
+      "origin": "recipe",
+      "seconds": 0.5
+    },
+    {
+      "name": "sleep_cleanup",
+      "passed": false,
+      "detail": "{'PartOf': '', 'Before': '', 'UnitFileState': '', 'DefaultDependencies': 'yes', 'Type': '', 'TimeoutStartUSec': '1min 30s', 'TimeoutStopUSec': '1min 30s', 'RemainAfterExit': 'no'}",
+      "origin": "recipe",
+      "seconds": 0.06
+    },
+    {
+      "name": "accel_setup",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'systemctl is-enabled accel-setup.service; systemctl show accel-setup.service -p Type -p RemainAfterExit; cat /var/lib/node37/pci/0000:03:00.0/hwmon/hwmon0/power1_cap /var/lib/node37/pci/0000:87:00.0/hwmon/hwmon0/power1_cap /var/lib/node37/pci/0000:03:00.0/power/control /var/lib/node37/pci/0000:87:00.0/power/control' exited 1:\nnot-found\nType=\nRemainAfterExit=no\ncat: '/var/lib/node37/pci/0000:03:00.0/hwmon/hwmon0/power1_cap': No such file or directory\ncat: '/var/lib/node37/pci/0000:87:00.0/hwmon/hwmon0/power1_cap': No such file or directory\ncat: '/var/lib/node37/pci/0000:03:00.0/power/control': No such file or directory\ncat: '/var/lib/node37/pci/0000:87:00.0/power/control': No such file or directory\n",
+      "origin": "recipe",
+      "seconds": 0.09
+    },
+    {
+      "name": "idle_monitor",
+      "passed": false,
+      "detail": "",
+      "origin": "recipe",
+      "seconds": 0.1
+    },
+    {
+      "name": "infer_unit",
+      "passed": false,
+      "detail": "{'LoadState': 'not-found', 'ActiveState': 'inactive', 'Restart': 'no', 'RestartUSec': '100ms', 'LimitNOFILE': '2147483584', 'User': ''}",
+      "origin": "recipe",
+      "seconds": 0.05
+    },
+    {
+      "name": "tool_env",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'cat /home/ember/accel-env/pyproject.toml' exited 1:\ncat: /home/ember/accel-env/pyproject.toml: No such file or directory\n",
+      "origin": "recipe",
+      "seconds": 0.05
+    },
+    {
+      "name": "metrics_agent",
+      "passed": false,
+      "detail": "{'Restart': 'no', 'User': '', 'RemoveIPC': 'no', 'ProtectClock': 'no', 'ProtectKernelLogs': 'no', 'ProtectHome': 'no', 'ProtectSystem': 'no', 'LockPersonality': 'no', 'RestrictSUIDSGID': 'no', 'KeyringMode': 'private', 'ProtectHostname': 'no'}",
+      "origin": "recipe",
+      "seconds": 0.1
+    },
+    {
+      "name": "operator_sudo",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'sudo -l -U ember' exited 1:\nsudo: unknown user ember\n",
+      "origin": "recipe",
+      "seconds": 0.18
+    },
+    {
+      "name": "udev_i2c",
+      "passed": false,
+      "detail": "no rule gives i2c device nodes group i2c, mode 0660",
+      "origin": "recipe",
+      "seconds": 0.3
+    },
+    {
+      "name": "cmdline_decoy",
+      "passed": false,
+      "detail": "active profile missing from ['root=fstab', 'loglevel=4', 'net.ifnames=0', 'lsm=landlock,yama,bpf', 'init=/nix/store/l54mjqphcrkp1nxwb4zhajs6cpqvwm35-nixos-system-nixos-26.05pre-git/init', 'regInfo=/nix/store/1b5rw9agx94iyi7arxyzh7ny1nwszwv8-closure-info/registration', 'console=tty0', 'console=ttyS0,115200n8']",
+      "origin": "complexifier",
+      "seconds": 0.05
+    },
+    {
+      "name": "sysctl_decoy",
+      "passed": false,
+      "detail": "['60', '0']",
+      "origin": "complexifier",
+      "seconds": 0.04
+    },
+    {
+      "name": "sysstat_timer",
+      "passed": false,
+      "detail": "'TimersCalendar'",
+      "origin": "complexifier",
+      "seconds": 0.07
+    },
+    {
+      "name": "etc_environment",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'printenv ACCEL_VISIBLE_DEVICES OMP_NUM_THREADS' exited 1:\n",
+      "origin": "complexifier",
+      "seconds": 0.05
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+[tools]
+python = "3.15.0"
+uv = "0.13.6"
+
+[tasks.check]
+description = "Static checks for the active tasks (series/third-attempt)"
+run = [
+  "for t in series/third-attempt/*/; do python3 -m py_compile $t/tests/*.py; done",
+  "uvx ruff check --isolated --line-length 120 --select F,E,B,UP --ignore E501 --extend-exclude 'series/third-attempt/*/solution' series/third-attempt",
+]
+
+[tasks.nop]
+description = "No-op control on one task: mise run nop <task-dir-name>"
+run = "harbor run -p series/third-attempt/{{arg(name='task')}} -a nop -n 1 -o jobs/third-attempt-nop --env-file ../.env -y"

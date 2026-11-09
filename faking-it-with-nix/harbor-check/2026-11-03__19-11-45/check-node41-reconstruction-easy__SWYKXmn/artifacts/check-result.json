@@ -1,0 +1,46 @@
+{
+  "behavior_in_task_description": {
+    "outcome": "fail",
+    "explanation": "instruction.md says the reference's configuration is the specification and asks the agent to discover what to replicate. The tests check many concrete values that the instruction never states: share names fast/docs/vault/bulk, the visitor/quill/rowan/sage UIDs and GIDs (1000-1004), the shared group, timezone America/Los_Angeles, hostname node41, the 10-minute automount idle timeout, the 30s mount timeout, the veto-files pattern /vault/, the 0660/2770 masks, the fruit options, and the mount options. These are only implied by the reference machine, not described in instruction.md."
+  },
+  "behavior_in_tests": {
+    "outcome": "pass",
+    "explanation": "The instruction asks for paths, names, identities, unit behavior, defaults, and a working drop-in replacement. verify.py covers these: host identity, accounts and groups, share directories, Samba global and per-share settings, share listing and access control, write ownership and modes, the vetoed nested vault, the USB btrfs array mount and automount, smbd/nmbd listeners, the ip_forward sysctl, and the powertop unit. The stated behavior is tested."
+  },
+  "informative_test_structure": {
+    "outcome": "pass",
+    "explanation": "verify.py has a module docstring, named checks in a RECIPE_CHECKS list, one branch per named check, helper functions with clear names, and per-check require() messages. Some leftovers are present: an empty COMPLEXIFIER_CHECKS list, CONFIRM markers, and a docstring that calls the file a first draft. The overall organization is still clear and maintainable."
+  },
+  "anti_cheating_measures": {
+    "outcome": "pass",
+    "explanation": "The environment compose file only adds /dev/kvm and contains no answers. The verifier's expected values, the builder key, and the test password live under tests/ and are not in the agent's environment. The reference machine is intentionally inspectable because the task says its configuration is the spec, and the instruction forbids copying the reference OS or fetching remote answers. Nothing in the setup obviously hands over the solution."
+  },
+  "structured_data_schema": {
+    "outcome": "not_applicable",
+    "explanation": "The deliverable is a NixOS module evaluated by Nix, not a JSON, CSV, API, or database output with a defined schema. The task does not require any structured output format."
+  },
+  "pinned_dependencies": {
+    "outcome": "pass",
+    "explanation": "The nixpkgs version is pinned to /opt/nixpkgs at the revision recorded in /opt/contract/flake.lock, and the Nix version is fixed at 2.35.4. The Docker images in task.toml and tests/docker-compose.yaml are pinned by sha256 digest. The verifier uses only the Python standard library."
+  },
+  "typos": {
+    "outcome": "pass",
+    "explanation": "I checked filenames, paths, Samba option names, unit names, and command names across instruction.md, verify.py, replica.nix, solve.sh, and the compose files. The spellings are consistent and correct (for example, 'fruit:time machine', 'delete veto files', 'force directory mode', 'mnt-pool.automount'). No typos found."
+  },
+  "tests_or_solution_in_image": {
+    "outcome": "pass",
+    "explanation": "The agent image is defined only by the digest in task.toml, and the compose file adds no COPY of tests/ or solution/. The solution is in solution/ and the test code is in tests/, both of which are referenced only as verifier-side inputs. The builder_key is only mounted in the verifier compose project. No evidence that tests or the solution are baked into the runtime image."
+  },
+  "test_deps_in_image": {
+    "outcome": "pass",
+    "explanation": "The test script runs python3 /tests/verify.py, which uses only standard-library modules (json, os, re, secrets, shlex, subprocess, sys, tempfile, time, pathlib). No test-only packages are installed in the image, and the verifier-side image is separate from the agent image."
+  },
+  "hardcoded_solution": {
+    "outcome": "pass",
+    "explanation": "solve.sh does not print an answer. It copies a prewritten replica.nix into /app/submission. The module is the deliverable itself, and this kind of configuration task has no separate computation to demonstrate. The copy is still a static answer, so it is a weak demonstration of the reasoning steps, but it is not an echo or cat of an answer."
+  },
+  "file_reference_mentioned": {
+    "outcome": "pass",
+    "explanation": "instruction.md explicitly says to submit /app/submission/replica.nix, and the harness and verifier use /app/submission as the artifact. The filenames the verifier needs are stated."
+  }
+}

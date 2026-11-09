@@ -1,0 +1,106 @@
+{
+  "reward": 0.9375,
+  "seconds": {
+    "build": 134.4,
+    "boot": 17.91
+  },
+  "checks": [
+    {
+      "name": "array_automount",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.3
+    },
+    {
+      "name": "host_identity",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.14
+    },
+    {
+      "name": "accounts",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.3
+    },
+    {
+      "name": "share_dirs",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.12
+    },
+    {
+      "name": "smb_global",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.14
+    },
+    {
+      "name": "smb_shares",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.13
+    },
+    {
+      "name": "share_list",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 1.58
+    },
+    {
+      "name": "share_write_ownership",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.52
+    },
+    {
+      "name": "new_dir_modes",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.28
+    },
+    {
+      "name": "share_access",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.72
+    },
+    {
+      "name": "veto_nested",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.9
+    },
+    {
+      "name": "array_mount",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.18
+    },
+    {
+      "name": "array_share",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.77
+    },
+    {
+      "name": "smb_listeners",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.18
+    },
+    {
+      "name": "forwarding_sysctl",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.04
+    },
+    {
+      "name": "power_unit",
+      "passed": false,
+      "detail": "{'Type': '', 'RemainAfterExit': 'no'}",
+      "origin": "recipe",
+      "seconds": 0.05
+    }
+  ]
+}

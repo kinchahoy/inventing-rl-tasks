@@ -1,0 +1,157 @@
+{
+  "reward": 1.0,
+  "correctness": {
+    "passed": true,
+    "cases": 29,
+    "failures": []
+  },
+  "performance": {
+    "passed": true,
+    "rows": [
+      {
+        "operation": "end_to_end:parse",
+        "metrics": {
+          "serial_regression": 0.4578160116647994,
+          "2": {
+            "overall_speedup": 2.5847218190487213,
+            "scaling": 1.1825178165064814,
+            "step_speedup": 1.1825178165064814
+          },
+          "4": {
+            "overall_speedup": 2.9749652086602327,
+            "scaling": 1.359469192842249,
+            "step_speedup": 1.1334019081142865
+          }
+        },
+        "gates": {
+          "serial": true,
+          "2": true,
+          "4": true
+        },
+        "original_samples": [
+          0.1617441919806879,
+          0.16098499100189656,
+          0.16163033799966797
+        ],
+        "encode_gil": [
+          0.001950920996023342,
+          0.0019763149903155863,
+          0.001985292008612305
+        ],
+        "original_effective": [
+          0.15979327098466456,
+          0.15900867601158097,
+          0.15964504599105567
+        ],
+        "encode_ft": [
+          0.002651307004271075,
+          0.002687228989088908,
+          0.002635254990309477
+        ],
+        "submitted_samples": {
+          "gil": [
+            0.06039141700603068
+          ],
+          "ft_1": [
+            0.07580722501734272,
+            0.07562645099824294,
+            0.07526625200989656
+          ],
+          "ft_2": [
+            0.0632529070135206,
+            0.06436851699254476,
+            0.064400140021462
+          ],
+          "ft_4": [
+            0.05636395901092328,
+            0.05710860199178569,
+            0.056061251991195604
+          ]
+        },
+        "submitted_effective": {
+          "ft_1": [
+            0.07315591801307164,
+            0.07293922200915404,
+            0.07263099701958708
+          ],
+          "ft_2": [
+            0.06060160000924952,
+            0.06168128800345585,
+            0.06176488503115252
+          ],
+          "ft_4": [
+            0.053712652006652206,
+            0.05442137300269678,
+            0.05342599700088613
+          ]
+        }
+      }
+    ],
+    "verifier_errors": [],
+    "reference_ft_1_samples": [
+      [
+        0.21957691400893964,
+        0.2214819280197844,
+        0.2195320029859431
+      ]
+    ]
+  },
+  "diagnostics": {
+    "extra_threads_after_call": [
+      {
+        "mode": "ft_2",
+        "case": "end_to_end:parse",
+        "extra_threads": 1
+      },
+      {
+        "mode": "ft_2",
+        "case": "end_to_end:parse",
+        "extra_threads": 1
+      },
+      {
+        "mode": "ft_2",
+        "case": "end_to_end:parse",
+        "extra_threads": 1
+      },
+      {
+        "mode": "ft_4",
+        "case": "end_to_end:parse",
+        "extra_threads": 3
+      },
+      {
+        "mode": "ft_4",
+        "case": "end_to_end:parse",
+        "extra_threads": 3
+      },
+      {
+        "mode": "ft_4",
+        "case": "end_to_end:parse",
+        "extra_threads": 3
+      }
+    ]
+  },
+  "seed": 7695864590127804964,
+  "config": {
+    "package": "lark",
+    "dependencies": [],
+    "python_version": [
+      3,
+      15,
+      2
+    ],
+    "cpu_allocations": [
+      1,
+      2,
+      4
+    ],
+    "repetitions": 3,
+    "maximum_serial_regression": 1.05,
+    "startup_timeout_seconds": 20,
+    "call_timeout_seconds": 10,
+    "operations": [
+      "end_to_end:parse"
+    ],
+    "minimum_step_speedup": 1.1,
+    "minimum_step_speedup_constituent": 1.05
+  }
+}

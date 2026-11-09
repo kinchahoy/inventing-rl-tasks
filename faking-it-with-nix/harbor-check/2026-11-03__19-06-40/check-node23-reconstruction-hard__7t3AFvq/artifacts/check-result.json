@@ -1,0 +1,46 @@
+{
+  "behavior_in_task_description": {
+    "outcome": "fail",
+    "explanation": "instruction.md says the reference's configuration and behavior are the specification, so the agent must discover it. Tests verify many specifics that are never stated: the birch/cedar UIDs 1301/1302 and their groups and shells; the exact sudoers rules (birch: rec_control wipe-cache and get, cedar: get only); the listener ports 5301, 8082 and 8083 and their bind addresses; the API key 'lab-api-key' and the 401/403 behavior without credentials; the 1800s negative-cache cap; the 3000-3600 positive TTL cap; the zone contents (app1/app2/ns1, the blocked sinkhole, the TXT 'big' records, the SRV record); the i23.test auth zone; the extra hosts file entries; the dnsdist ACL and CHAOS/ANY refusal; the NSD AXFR allowance for 198.51.100.7; and the sysctl and LimitNOFILE values. None of these appear in the instruction."
+  },
+  "behavior_in_tests": {
+    "outcome": "pass",
+    "explanation": "The instruction's stated requirements (hostname and identity, the operator/client accounts, the forwarded DNS and DoT ports, TLS trust, the recursor and forwarding behavior, root SSH access, and the submission file) each have a corresponding check in verify.py. The checks do not test the instruction's vague 'commands people are likely to use' beyond what is listed, but nothing the instruction explicitly requires is left untested."
+  },
+  "informative_test_structure": {
+    "outcome": "pass",
+    "explanation": "verify.py is organized as one named elif branch per check, with RECIPE_CHECKS and COMPLEXIFIER_CHECKS lists, a module docstring pointing to the methods, and inline comments explaining the non-obvious expectations. Some embedded Python snippets are dense one-liners and a few 'CONFIRM' comments remain, but the structure is clear and each check's purpose is identifiable."
+  },
+  "anti_cheating_measures": {
+    "outcome": "pass",
+    "explanation": "tests/ and solution/ are not referenced by the environment compose file, and the verifier runs in a separate environment. The environment does not embed the answer key. The reference is available to the agent by design, and the instruction explicitly forbids copying or embedding the reference OS or fetching remote answers. The verifier's per-trial builder key is a published fixture used only inside the verifier compose project."
+  },
+  "structured_data_schema": {
+    "outcome": "not_applicable",
+    "explanation": "The deliverable is a NixOS module written in the Nix language, not a structured data output such as JSON, CSV, or an API with a required schema. The DNS wire format and the JSON stats are read by the verifier, not produced by the agent."
+  },
+  "pinned_dependencies": {
+    "outcome": "pass",
+    "explanation": "Both Docker images in task.toml and tests/docker-compose.yaml are pinned by sha256 digest. nixpkgs is pinned to the revision in /opt/contract/flake.lock. The verifier's dependencies are stdlib Python only."
+  },
+  "typos": {
+    "outcome": "pass",
+    "explanation": "I found no typos that would break a path, command, or variable name. The paths /etc/node23/server.{crt,key}, /opt/contract/ca.crt, /usr/bin/rec_control, and the forwarded ports are used consistently between instruction.md and verify.py, and the zone names (a23, i23, n23) are used deliberately."
+  },
+  "tests_or_solution_in_image": {
+    "outcome": "pass",
+    "explanation": "environment/docker-compose.yaml only maps /dev/kvm and does not copy tests/ or solution/ into the runtime image. The solution is copied into /app/submission only by solve.sh at oracle time."
+  },
+  "test_deps_in_image": {
+    "outcome": "pass",
+    "explanation": "The verifier's needs (Python 3 standard library, ssh/curl/ss inside the guest, and the builder) are provided by the verifier image and the compose project. The environment compose file adds no test-only packages."
+  },
+  "hardcoded_solution": {
+    "outcome": "fail",
+    "explanation": "solve.sh does not derive the configuration. It runs 'cp -a /solution/submission/. /app/submission/', which drops the complete pre-written replica.nix, complexify.nix, and final configuration into place without demonstrating any investigation of the reference or any build or check step."
+  },
+  "file_reference_mentioned": {
+    "outcome": "pass",
+    "explanation": "instruction.md explicitly names the required output, /app/submission/replica.nix, and states that local supporting files go in the same submission directory. The verifier only transfers /app/submission, which matches."
+  }
+}

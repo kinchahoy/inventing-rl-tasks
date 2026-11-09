@@ -1,0 +1,13 @@
+{
+  "reward": 0.0,
+  "seconds": {
+    "build": 227.49
+  },
+  "checks": [
+    {
+      "name": "boot",
+      "passed": false,
+      "detail": "Guest did not reach multi-user.target with DNS answering within 180 seconds"
+    }
+  ]
+}

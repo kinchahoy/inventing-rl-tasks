@@ -1,0 +1,6 @@
+.cache/
+__pycache__/
+.ruff_cache/
+osm-chef-planet-archive-easy/environment/reference.qcow2*
+osm-chef-planet-archive-easy/environment/public/
+osm-chef-planet-archive-easy/environment/runtime/

@@ -1,0 +1,17 @@
+{
+  "reward": 0.0,
+  "checks": {
+    "theory_header": true,
+    "imports_allowed": true,
+    "imports": "Quantum_Basics",
+    "no_forbidden_tokens": false,
+    "forbidden_found": "sorry",
+    "theorems_present": true,
+    "theorems_missing": "",
+    "line_count": "398",
+    "within_line_limit": true,
+    "structured_isar_proof": true,
+    "isabelle_build_and_check": false,
+    "build_log": "Running Verify ...\nVerify FAILED (see also \"isabelle build_log -H Error Verify\")\n*** Cheating requires quick_and_dirty mode!\n*** At command \"sorry\" (line 396 of \"/tmp/tmpuwoelzx7/Shor_General.thy\")\n*** Cheating requires quick_and_dirty mode!\n*** At command \"sorry\" (line 17 of \"/tmp/tmpuwoelzx7/Shor_General.thy\")\n*** Cheating requires quick_and_dirty mode!\n*** At command \"sorry\" (line 9 of \"/tmp/tmpuwoelzx7/Shor_General.thy\")\nUnfinished session(s): Verify\n0:00:15 elapsed time, 0:00:03 cpu time, factor 0.22\n"
+  }
+}

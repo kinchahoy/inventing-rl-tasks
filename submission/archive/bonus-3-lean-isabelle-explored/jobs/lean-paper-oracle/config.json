@@ -1,0 +1,8 @@
+{
+    "job_name": "lean-paper-oracle",
+    "tasks": [
+        {
+            "path": "lean-to-isabelle/sonnet-hard-candidate-shor-general-paper"
+        }
+    ]
+}

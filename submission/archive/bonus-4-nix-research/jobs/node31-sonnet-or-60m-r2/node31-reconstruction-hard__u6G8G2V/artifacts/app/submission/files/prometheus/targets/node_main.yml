@@ -1,0 +1,4 @@
+- targets: ['127.0.0.1:9100']
+  labels: {cluster: lab, role: self}
+- targets: ['127.0.0.1:9101']
+  labels: {cluster: lab, role: spare}

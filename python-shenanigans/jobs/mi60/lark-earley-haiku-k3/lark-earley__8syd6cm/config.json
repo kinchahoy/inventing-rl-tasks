@@ -1,0 +1,15 @@
+{
+    "task": {
+        "path": "third-attempt/lark-earley"
+    },
+    "trial_name": "lark-earley__8syd6cm",
+    "trials_dir": "jobs/lark-earley-haiku-k3",
+    "agent": {
+        "name": "claude-code",
+        "model_name": "claude-haiku-5-5",
+        "kwargs": {
+            "reasoning_effort": "high"
+        }
+    },
+    "job_id": "fcf58515-1bb0-4f13-91b0-be4b522e1927"
+}

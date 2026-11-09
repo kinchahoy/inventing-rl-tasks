@@ -1,0 +1,7 @@
+$ORIGIN 2.0.192.in-addr.arpa.
+$TTL 300
+@ IN SOA ns1.a23.test. hostmaster.a23.test. ( 2026110301 3600 600 86400 300 )
+@ IN NS ns1.a23.test.
+10 IN PTR ns1.a23.test.
+11 IN PTR app1.a23.test.
+12 IN PTR app2.a23.test.

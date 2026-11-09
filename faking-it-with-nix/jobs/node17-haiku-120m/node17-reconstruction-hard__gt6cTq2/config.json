@@ -1,0 +1,16 @@
+{
+    "task": {
+        "path": "node17-reconstruction-hard"
+    },
+    "trial_name": "node17-reconstruction-hard__gt6cTq2",
+    "trials_dir": "jobs/node17-haiku-120m",
+    "agent_timeout_multiplier": 2.0,
+    "agent": {
+        "name": "claude-code",
+        "model_name": "anthropic/claude-haiku-5-5",
+        "kwargs": {
+            "reasoning_effort": "high"
+        }
+    },
+    "job_id": "8dd397e4-bc5c-426b-a500-1b96911f91d4"
+}

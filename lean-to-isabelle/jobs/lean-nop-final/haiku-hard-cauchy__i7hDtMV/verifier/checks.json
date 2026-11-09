@@ -1,0 +1,17 @@
+{
+  "reward": 0.0,
+  "checks": {
+    "theory_header": true,
+    "imports_allowed": true,
+    "imports": "Group_Axioms",
+    "no_forbidden_tokens": false,
+    "forbidden_found": "sorry",
+    "theorems_present": true,
+    "theorems_missing": "",
+    "line_count": "10",
+    "within_line_limit": true,
+    "structured_isar_proof": false,
+    "isabelle_build_and_check": false,
+    "build_log": "Running Verify ...\nVerify FAILED (see also \"isabelle build_log -H Error Verify\")\n*** Cheating requires quick_and_dirty mode!\n*** At command \"sorry\" (line 8 of \"/tmp/tmptu_q49_l/Cauchy.thy\")\nUnfinished session(s): Verify\n0:00:06 elapsed time\n"
+  }
+}

@@ -1,0 +1,19 @@
+{
+    "job_name": "node17-sonnet-or-30m",
+    "agent_timeout_multiplier": 0.5,
+    "agents": [
+        {
+            "name": "claude-code",
+            "model_name": "openrouter/anthropic/claude-sonnet-5.5",
+            "base_url": "https://openrouter.ai/api",
+            "kwargs": {
+                "reasoning_effort": "high"
+            }
+        }
+    ],
+    "tasks": [
+        {
+            "path": "/tmp/tmp.0NL0VONyFC/node17-reconstruction-hard"
+        }
+    ]
+}

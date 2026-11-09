@@ -1,0 +1,12 @@
+Skipping image OS validation for hb__a9b8259dbb425da66da00a58446388f6: docker inspect returned 1
+Running command: apt-get update && apt-get install -y nodejs npm
+Command outputs captured
+Running command: set -euo pipefail; if command -v apk &> /dev/null; then  npm install -g @anthropic-ai/claude-code; else  curl -fsSL https://downloads.claude.ai/claude-code-releases/bootstrap.sh | bash -s --; fi && echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && export PATH="$HOME/.local/bin:$PATH" && claude --version
+Command outputs captured
+Running command: mkdir -p $CLAUDE_CONFIG_DIR/debug $CLAUDE_CONFIG_DIR/projects/-app $CLAUDE_CONFIG_DIR/shell-snapshots $CLAUDE_CONFIG_DIR/statsig $CLAUDE_CONFIG_DIR/todos $CLAUDE_CONFIG_DIR/skills && if [ -d ~/.claude/skills ]; then cp -r ~/.claude/skills/. $CLAUDE_CONFIG_DIR/skills/ 2>/dev/null || true; fi
+Command outputs captured
+Running command: export PATH="$HOME/.local/bin:$PATH"; claude_code_instruction_80c99374c64e48a59ed8c28cc5ec4603="$CLAUDE_CODE_INSTRUCTION_80C99374C64E48A59ED8C28CC5EC4603"; unset CLAUDE_CODE_INSTRUCTION_80C99374C64E48A59ED8C28CC5EC4603; printf "%s" "$claude_code_instruction_80c99374c64e48a59ed8c28cc5ec4603" | claude --verbose --output-format=stream-json --effort high --permission-mode=bypassPermissions --print 2>&1 | tee /logs/agent/claude-code.txt
+Command outputs captured
+Wrote Claude Code trajectory to jobs/sympy-state-space-haiku-k3/sympy-state-space__Qz6iFMK/agent/trajectory.json
+Collecting main service artifacts
+Skipping image OS validation for hb__a9b8259dbb425da66da00a58446388f6: docker inspect returned 1

@@ -1,0 +1,17 @@
+{
+    "job_name": "node31-sonnet-or-60m",
+    "agents": [
+        {
+            "name": "claude-code",
+            "model_name": "openrouter/anthropic/claude-sonnet-5.5",
+            "kwargs": {
+                "reasoning_effort": "high"
+            }
+        }
+    ],
+    "tasks": [
+        {
+            "path": "node31-reconstruction-hard"
+        }
+    ]
+}

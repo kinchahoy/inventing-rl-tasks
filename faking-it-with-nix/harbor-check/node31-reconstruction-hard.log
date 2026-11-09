@@ -1,0 +1,11 @@
+
+🔎 Checking task quality...
+  1/1 Mean: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:02:25 0:00:00❌ node31-reconstruction-hard: Check trial failed with DownloadVerifierDirError:
+Failed to download verifier directory from environment
+Trial artifacts: 
+harbor-check/2026-11-03__21-58-17/check-node31-reconstruction-hard__wBb7GAc
+
+Report: harbor-check/2026-11-03__21-58-17/check_report.json
+Inspect results by running `harbor view harbor-check`
+In the viewer, open a trial's Artifacts tab to read its check-result.json, and 
+use ← / → to switch between tasks.

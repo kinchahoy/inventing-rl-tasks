@@ -1,0 +1,17 @@
+{
+  "reward": 0.0,
+  "checks": {
+    "theory_header": true,
+    "imports_allowed": true,
+    "imports": "Group_Axioms",
+    "no_forbidden_tokens": true,
+    "forbidden_found": "",
+    "theorems_present": true,
+    "theorems_missing": "",
+    "line_count": "594",
+    "within_line_limit": true,
+    "structured_isar_proof": true,
+    "isabelle_build_and_check": false,
+    "build_log": "Running Verify ...\n/tmp/isabelle-/bash_script8531479665978051407: line 1:   201 Killed                  \"$POLYML_EXE\" -q --minheap 500 --gcthreads 2 --exportstats --eval \\(PolyML.SaveState.loadHierarchy\\ \\[\\\"/home/isabelle/Isabelle/heaps/polyml-5.9.1_x86_64_32-linux/Pure\\\",\\ \\\"/home/isabelle/Isabelle/heaps/polyml-5.9.1_x86_64_32-linux/HOL\\\"\\]\\;\\ PolyML.print_depth\\ 0\\) --eval Options.load_default\\ \\(\\) --eval Resources.init_session_env\\ \\(\\) --eval Command_Line.tool\\ \\(fn\\ \\(\\)\\ \\=\\>\\ \\(Isabelle_Process.init_build\\ \\(\\)\\)\\)\\;\nVerify FAILED (see also \"isabelle build_log -H Error Verify\")\n\nUnfinished session(s): Verify\n0:02:48 elapsed time, 0:02:51 cpu time, factor 1.02\n"
+  }
+}

@@ -1,0 +1,17 @@
+{
+    "job_name": "node41-haiku-30m",
+    "agents": [
+        {
+            "name": "claude-code",
+            "model_name": "anthropic/claude-haiku-5-5",
+            "kwargs": {
+                "reasoning_effort": "high"
+            }
+        }
+    ],
+    "tasks": [
+        {
+            "path": "node41-reconstruction-easy"
+        }
+    ]
+}

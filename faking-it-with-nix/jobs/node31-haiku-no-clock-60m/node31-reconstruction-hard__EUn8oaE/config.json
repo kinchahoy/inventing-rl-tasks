@@ -1,0 +1,15 @@
+{
+    "task": {
+        "path": "ablations/node31-no-clock/node31-reconstruction-hard"
+    },
+    "trial_name": "node31-reconstruction-hard__EUn8oaE",
+    "trials_dir": "jobs/node31-haiku-no-clock-60m",
+    "agent": {
+        "name": "claude-code",
+        "model_name": "claude-haiku-5-5",
+        "kwargs": {
+            "reasoning_effort": "high"
+        }
+    },
+    "job_id": "a103dca0-1dda-4ff5-977d-82ae5845fba6"
+}

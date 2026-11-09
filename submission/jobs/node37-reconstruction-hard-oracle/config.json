@@ -1,0 +1,9 @@
+{
+    "job_name": "node37-reconstruction-hard-oracle",
+    "jobs_dir": "final/jobs",
+    "tasks": [
+        {
+            "path": "node37-reconstruction-hard"
+        }
+    ]
+}

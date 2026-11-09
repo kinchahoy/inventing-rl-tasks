@@ -1,0 +1,2 @@
+- targets: ['https://127.0.0.1/']
+  labels: {cluster: lab}

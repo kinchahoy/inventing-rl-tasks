@@ -1,0 +1,217 @@
+{
+  "reward": 0.8823529411764706,
+  "seconds": {
+    "build": 129.35,
+    "boot": 23.01
+  },
+  "checks": [
+    {
+      "name": "host_resolution",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.29
+    },
+    {
+      "name": "accounts",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.15
+    },
+    {
+      "name": "filesystem_ownership",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.12
+    },
+    {
+      "name": "private_isolation",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.57
+    },
+    {
+      "name": "sudo_log_policy",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 1.08
+    },
+    {
+      "name": "slice_limits",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'python3 -c '\"'\"'import os,pwd,subprocess; uid=pwd.getpwnam('\"'\"'\"'\"'\"'\"'\"'\"'amber'\"'\"'\"'\"'\"'\"'\"'\"').pw_uid; unit=f'\"'\"'\"'\"'\"'\"'\"'\"'user-{uid}.slice'\"'\"'\"'\"'\"'\"'\"'\"'; subprocess.run(['\"'\"'\"'\"'\"'\"'\"'\"'systemctl'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'start'\"'\"'\"'\"'\"'\"'\"'\"',unit],check=True); total=os.sysconf('\"'\"'\"'\"'\"'\"'\"'\"'SC_PHYS_PAGES'\"'\"'\"'\"'\"'\"'\"'\"')*os.sysconf('\"'\"'\"'\"'\"'\"'\"'\"'SC_PAGE_SIZE'\"'\"'\"'\"'\"'\"'\"'\"');\nfor prop,ratio in [('\"'\"'\"'\"'\"'\"'\"'\"'MemoryHigh'\"'\"'\"'\"'\"'\"'\"'\"',.8),('\"'\"'\"'\"'\"'\"'\"'\"'MemoryMax'\"'\"'\"'\"'\"'\"'\"'\"',.9)]:\n value=int(subprocess.check_output(['\"'\"'\"'\"'\"'\"'\"'\"'systemctl'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'show'\"'\"'\"'\"'\"'\"'\"'\"',unit,'\"'\"'\"'\"'\"'\"'\"'\"'--property='\"'\"'\"'\"'\"'\"'\"'\"'+prop,'\"'\"'\"'\"'\"'\"'\"'\"'--value'\"'\"'\"'\"'\"'\"'\"'\"'])); assert abs(value/total-ratio)<.01,(prop,value,total)'\"'\"'' exited 1:\nTraceback (most recent call last):\n  File \"<string>\", line 3, in <module>\n    value=int(subprocess.check_output(['systemctl','show',unit,'--property='+prop,'--value'])); assert abs(value/total-ratio)<.01,(prop,value,total)\nValueError: invalid literal for int() with base 10: b'infinity\\n'\n",
+      "origin": "recipe",
+      "seconds": 0.41
+    },
+    {
+      "name": "postgres_peer",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.3
+    },
+    {
+      "name": "postgres_password",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.53
+    },
+    {
+      "name": "postgres_isolation",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.65
+    },
+    {
+      "name": "postgis",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'runuser -u amber -- sh -c '\"'\"'psql -X -d amber -tAc \"SELECT ST_Distance(ST_Point(0,0),ST_Point(3,4))\"'\"'\"'' exited 1:\nERROR:  function st_point(integer, integer) does not exist\nLINE 1: SELECT ST_Distance(ST_Point(0,0),ST_Point(3,4))\n                           ^\nHINT:  No function matches the given name and argument types. You might need to add explicit type casts.\n",
+      "origin": "recipe",
+      "seconds": 0.17
+    },
+    {
+      "name": "mysql_root_socket",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.1
+    },
+    {
+      "name": "mysql_password",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.36
+    },
+    {
+      "name": "mysql_isolation",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.37
+    },
+    {
+      "name": "cache_protocol",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.21
+    },
+    {
+      "name": "loopback_services",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.23
+    },
+    {
+      "name": "server_tuning",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.39
+    },
+    {
+      "name": "userdir_redirect",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.04
+    },
+    {
+      "name": "tls_aliases",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.06
+    },
+    {
+      "name": "http_redirects",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.04
+    },
+    {
+      "name": "static_range",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.16
+    },
+    {
+      "name": "php_identity",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.31
+    },
+    {
+      "name": "php_environment",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.26
+    },
+    {
+      "name": "php_open_basedir",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.31
+    },
+    {
+      "name": "php_pool_limits",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.3
+    },
+    {
+      "name": "php_postgres",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.28
+    },
+    {
+      "name": "php_mysql",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.28
+    },
+    {
+      "name": "cgi_identity",
+      "passed": false,
+      "detail": "(200, b'www-data\\n')",
+      "origin": "recipe",
+      "seconds": 0.22
+    },
+    {
+      "name": "wsgi_identity",
+      "passed": false,
+      "detail": "(503, b'<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">\\n<html><head>\\n<title>503 Service Unavailable</title>\\n</head><body>\\n<h1>Service Unavailable</h1>\\n<p>The server is temporarily unable to service your\\nrequest due to maintenance downtime or capacity\\nproblems. Please try again later.</p>\\n<hr>\\n<address>Apache/2.4.69 (Unix) Server at amber.node.test Port 443</address>\\n</body></html>\\n')",
+      "origin": "recipe",
+      "seconds": 0.13
+    },
+    {
+      "name": "proxy_header",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.13
+    },
+    {
+      "name": "htaccess_and_symlinks",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.54
+    },
+    {
+      "name": "persistent_storage",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.57
+    },
+    {
+      "name": "sudo_decoy",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 3.13
+    },
+    {
+      "name": "login_limits",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.3
+    },
+    {
+      "name": "log_rotation",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.44
+    }
+  ]
+}

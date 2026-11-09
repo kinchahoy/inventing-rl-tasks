@@ -1,0 +1,43 @@
+#!/bin/bash
+# Run the Haiku k=3 headroom trials for the python tasks on mi60 (quiet, timing-sensitive): strictly sequential,
+# one trial at a time, detached on mi60 so a dropped connection here cannot kill the runs.
+#
+#   tools/mi60-headroom [task ...]        default: sympy-state-space lark-earley
+#
+# Copies the gateway .env to mi60 as a 0600 file; the remote runner deletes it when it finishes (or fails).
+# Polls until done, then copies jobs back to python-shenanigans/jobs/mi60/. Remote log: ~/rl-timing/headroom.log
+set -euo pipefail
+
+ROOT=$(dirname "$(realpath "$0")")/..
+SSH=(ssh -o ControlPath=none raistlin@mi60)
+RSYNC_E="ssh -o ControlPath=none"
+TASKS=("$@")
+[ ${#TASKS[@]} -gt 0 ] || TASKS=(sympy-state-space lark-earley)
+
+"${SSH[@]}" true || { echo "cannot reach mi60" >&2; exit 1; }
+if "${SSH[@]}" 'pgrep -f "rl-timing/.harbor-venv/bin/harbor run" >/dev/null'; then
+    echo "a harbor run is already active on mi60; not starting another" >&2; exit 1
+fi
+for t in "${TASKS[@]}"; do
+    rsync -a --delete --exclude jobs --exclude __pycache__ -e "$RSYNC_E" \
+        "$ROOT/python-shenanigans/series/third-attempt/$t/" "raistlin@mi60:rl-timing/third-attempt/$t/"
+done
+"${SSH[@]}" 'umask 077 && cat > ~/rl-timing/.env' < "$ROOT/.env"
+
+"${SSH[@]}" "cat > ~/rl-timing/headroom-run.sh" <<EOF
+#!/bin/bash
+cd ~/rl-timing && . .harbor-venv/bin/activate
+trap 'rm -f ~/rl-timing/.env; echo "ALL_DONE \$(date +%T)"' EXIT
+for t in ${TASKS[*]}; do
+    echo "== \$t start \$(date +%T) load: \$(cut -d' ' -f1-3 /proc/loadavg)"
+    harbor run -p third-attempt/\$t -a claude-code -m claude-haiku-5-5 --ak reasoning_effort=high -k 3 -n 1 \\
+        --env-file .env -y --job-name \$t-haiku-k3 < /dev/null 2>&1 | tail -15
+    echo "== \$t end \$(date +%T)"
+done
+EOF
+"${SSH[@]}" 'chmod +x ~/rl-timing/headroom-run.sh && setsid nohup ~/rl-timing/headroom-run.sh > ~/rl-timing/headroom.log 2>&1 < /dev/null & echo started'
+
+until "${SSH[@]}" 'grep -q ALL_DONE ~/rl-timing/headroom.log' 2>/dev/null; do sleep 120; done
+"${SSH[@]}" 'cat ~/rl-timing/headroom.log'
+rsync -a -e "$RSYNC_E" raistlin@mi60:rl-timing/jobs/ "$ROOT/python-shenanigans/jobs/mi60/"
+echo "jobs copied to python-shenanigans/jobs/mi60/" >&2

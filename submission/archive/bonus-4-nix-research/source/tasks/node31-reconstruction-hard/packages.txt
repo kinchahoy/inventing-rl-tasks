@@ -1,0 +1,9 @@
+prometheus
+prometheus-alertmanager
+prometheus-node-exporter
+prometheus-blackbox-exporter
+nginx-light
+apache2-utils
+python3
+curl
+openssl

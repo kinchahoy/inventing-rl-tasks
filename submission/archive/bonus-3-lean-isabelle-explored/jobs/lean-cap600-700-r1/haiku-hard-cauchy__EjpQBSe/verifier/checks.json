@@ -1,0 +1,17 @@
+{
+  "reward": 0.0,
+  "checks": {
+    "theory_header": true,
+    "imports_allowed": true,
+    "imports": "Group_Axioms",
+    "no_forbidden_tokens": false,
+    "forbidden_found": "sorry",
+    "theorems_present": false,
+    "theorems_missing": "cauchy",
+    "line_count": "625",
+    "within_line_limit": false,
+    "structured_isar_proof": false,
+    "isabelle_build_and_check": false,
+    "build_log": "Running Verify ...\n*** Timeout\nVerify FAILED (see also \"isabelle build_log -H Error Verify\")\n\nUnfinished session(s): Verify\n0:08:18 elapsed time\n"
+  }
+}

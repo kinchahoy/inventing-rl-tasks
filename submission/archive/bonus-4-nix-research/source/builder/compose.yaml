@@ -1,0 +1,30 @@
+# One persistent sandboxed builder and store shared by every replica task.
+services:
+  builder:
+    image: replica-builder:v1
+    container_name: replica-builder
+    restart: unless-stopped
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - seccomp=unconfined
+      - apparmor=unconfined
+    volumes:
+      - nix-store:/nix
+    networks:
+      build:
+        aliases:
+          - replica-builder
+    healthcheck:
+      test: ["CMD-SHELL", "test -S /nix/var/nix/daemon-socket/socket && kill -0 $$(cat /run/sshd/replica.pid)"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+volumes:
+  nix-store:
+    external: true
+    name: replica-nix-store-v1
+networks:
+  build:
+    external: true
+    name: replica-build

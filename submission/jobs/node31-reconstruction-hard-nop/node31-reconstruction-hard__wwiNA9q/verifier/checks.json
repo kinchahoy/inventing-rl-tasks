@@ -1,0 +1,13 @@
+{
+  "reward": 0.0,
+  "seconds": {
+    "build": 221.52
+  },
+  "checks": [
+    {
+      "name": "boot",
+      "passed": false,
+      "detail": "Guest did not reach multi-user.target with the web face up within 240 seconds"
+    }
+  ]
+}

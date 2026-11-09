@@ -1,0 +1,16 @@
+{
+    "task": {
+        "path": "lean-to-isabelle/sonnet-hard-candidate-shor-general-paper",
+        "source": "lean-to-isabelle"
+    },
+    "trial_name": "sonnet-hard-candidate-shor-gener__b4kFBek",
+    "trials_dir": "jobs/lean-haiku-k3",
+    "agent": {
+        "name": "claude-code",
+        "model_name": "claude-haiku-5-5",
+        "kwargs": {
+            "reasoning_effort": "high"
+        }
+    },
+    "job_id": "65b634fa-8b8f-430e-b96b-3fefd3b098dc"
+}

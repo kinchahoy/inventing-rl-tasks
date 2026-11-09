@@ -1,0 +1,10 @@
+{
+  "results": [
+    {
+      "checks": {},
+      "cost_usd": null,
+      "task_name": "node23-reconstruction-hard",
+      "error": "Check trial failed with DownloadVerifierDirError: Failed to download verifier directory from environment\nTrial artifacts: harbor-check/2026-11-03__19-06-40/check-node23-reconstruction-hard__7t3AFvq"
+    }
+  ]
+}

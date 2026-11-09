@@ -1,0 +1,9 @@
+exim4-daemon-light
+exim4-config
+dovecot-core
+dovecot-imapd
+python3
+curl
+sudo
+logrotate
+openssl

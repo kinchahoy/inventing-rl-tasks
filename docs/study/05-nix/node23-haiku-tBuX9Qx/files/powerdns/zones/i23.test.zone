@@ -1,0 +1,6 @@
+$ORIGIN i23.test.
+$TTL 60
+@ IN SOA ns.i23.test. hostmaster.i23.test. 1 3600 600 86400 60
+@ IN NS ns.i23.test.
+ns IN A 10.9.0.1
+host1 IN A 10.9.0.5

@@ -1,0 +1,1 @@
+ARGS="--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/var/lib/prometheus/metrics2 --web.listen-address=127.0.0.1:9090 --web.external-url=https://node31.n31.test/prometheus/ --web.route-prefix=/ --storage.tsdb.retention.time=730h --query.timeout=90s"

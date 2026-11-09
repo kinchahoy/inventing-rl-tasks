@@ -1,0 +1,15 @@
+{
+    "task": {
+        "path": "node17-reconstruction-hard"
+    },
+    "trial_name": "node17-reconstruction-hard__abX3r9G",
+    "trials_dir": "final/jobs/node17-reconstruction-hard-haiku-k3",
+    "agent": {
+        "name": "claude-code",
+        "model_name": "claude-haiku-5-5",
+        "kwargs": {
+            "reasoning_effort": "high"
+        }
+    },
+    "job_id": "3c5ca325-f8e0-4c46-9808-f83a0c14e403"
+}

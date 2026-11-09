@@ -1,0 +1,8 @@
+pdns-recursor
+dnsdist
+nsd
+python3
+curl
+sudo
+logrotate
+openssl

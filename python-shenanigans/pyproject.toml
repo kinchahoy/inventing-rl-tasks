@@ -1,0 +1,41 @@
+[project]
+name = "python-parallel-harbor"
+version = "0.1.0"
+requires-python = ">=3.15"
+dependencies = ["networkx==3.4.2", "sympy==1.14.0", "mpmath==1.3.0"]
+
+[dependency-groups]
+dev = ["ruff==0.14.3", "ty==0.0.96", "pytest==9.2.0"]
+
+[tool.uv]
+package = false
+
+[tool.ty.src]
+include = ["series/third-attempt"]
+exclude = ["author/**/reference-source"]
+
+[tool.pytest.ini_options]
+testpaths = ["series/third-attempt"]
+
+[tool.ruff]
+extend-exclude = ["old", "series", "author/**/reference-source"] # Parked work, generated tasks and upstream snapshots.
+# Device-wide ruff baseline: bugs, modern syntax and simpler idioms, without style the formatter already owns.
+# Used directly for scripts and projects without ruff settings; projects copy it under [tool.ruff] (see SKILL.md).
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+    "F", "E4", "E7", "E9", "B", "I", "UP", "SIM", "C4", "RUF", "PTH", "PERF", "PIE", "RET", "FURB",
+    "ASYNC", "FAST", "BLE", "PLE", "PLW", "ANN",
+]
+ignore = [
+    "ANN202",  # Private and nested functions; on FastAPI routes a return annotation becomes the response_model.
+    "ANN401",  # Some values (database rows, model payloads) are genuinely Any.
+    "RET504",  # Naming a value before returning it is often clearer.
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["ANN"]
+
+[tool.ruff.lint.flake8-annotations]
+mypy-init-return = true

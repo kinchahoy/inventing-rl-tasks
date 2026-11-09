@@ -1,0 +1,21 @@
+#!/bin/bash
+# Install the official, version-pinned binary release without touching the host.
+set -euo pipefail
+export NIX_REMOTE=local
+VERSION=2.35.4
+RELEASE=https://releases.nixos.org/nix/nix-$VERSION/nix-$VERSION-x86_64-linux.tar.xz
+curl -fL --retry 0 "$RELEASE" -o /tmp/nix-release.tar.xz
+curl -fL --retry 0 "$RELEASE.sha256" -o /tmp/nix-release.sha256
+CHECKSUM=$(awk 'NR==1 {print $1}' /tmp/nix-release.sha256)
+[[ "$CHECKSUM" =~ ^[a-f0-9]{64}$ ]]
+printf '%s  /tmp/nix-release.tar.xz\n' "$CHECKSUM" | sha256sum -c -
+mkdir /tmp/nix-release
+tar -xJf /tmp/nix-release.tar.xz --strip-components=1 -C /tmp/nix-release
+cp -a --no-clobber /tmp/nix-release/store/. /nix/store/
+NIX_PACKAGE=$(find /tmp/nix-release/store -mindepth 1 -maxdepth 1 -type d -name "*-nix-$VERSION")
+test -n "$NIX_PACKAGE"
+NIX_STORE_PACKAGE=/nix/store/$(basename "$NIX_PACKAGE")
+"$NIX_STORE_PACKAGE/bin/nix-store" --load-db < /tmp/nix-release/.reginfo
+ln -sfn "$NIX_STORE_PACKAGE" /opt/nix-current
+printf 'version=%s\narchive_sha256=%s\n' "$VERSION" "$CHECKSUM" > /opt/nix-release.txt
+rm -rf /tmp/nix-release /tmp/nix-release.tar.xz /tmp/nix-release.sha256

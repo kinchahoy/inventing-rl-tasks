@@ -1,0 +1,171 @@
+{
+  "reward": 1.0,
+  "seconds": {
+    "build": 245.14,
+    "boot": 18.12
+  },
+  "checks": [
+    {
+      "name": "host_identity",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.09
+    },
+    {
+      "name": "accounts",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.13
+    },
+    {
+      "name": "listeners",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.17
+    },
+    {
+      "name": "tls_and_redirect",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.01
+    },
+    {
+      "name": "proxy_auth",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.05
+    },
+    {
+      "name": "proxy_apis",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.06
+    },
+    {
+      "name": "prom_flags",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.18
+    },
+    {
+      "name": "prom_targets",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 6.31
+    },
+    {
+      "name": "prom_rules",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.08
+    },
+    {
+      "name": "recording_rules",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 2.47
+    },
+    {
+      "name": "alert_pipeline",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 14.64
+    },
+    {
+      "name": "sink_service",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.2
+    },
+    {
+      "name": "am_routing",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 12.43
+    },
+    {
+      "name": "am_grouping",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 11.34
+    },
+    {
+      "name": "am_inhibit",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 11.49
+    },
+    {
+      "name": "am_silence",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 11.52
+    },
+    {
+      "name": "am_resolved",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 18.86
+    },
+    {
+      "name": "amtool_operator",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.44
+    },
+    {
+      "name": "operator_tools",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 1.93
+    },
+    {
+      "name": "blackbox_modules",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.36
+    },
+    {
+      "name": "probe_series",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.08
+    },
+    {
+      "name": "node_collectors",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.09
+    },
+    {
+      "name": "persistent_storage",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.29
+    },
+    {
+      "name": "rules_glob",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.21
+    },
+    {
+      "name": "sd_drop",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.06
+    },
+    {
+      "name": "textfile_timer",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.29
+    },
+    {
+      "name": "icmp_probe",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.14
+    }
+  ]
+}

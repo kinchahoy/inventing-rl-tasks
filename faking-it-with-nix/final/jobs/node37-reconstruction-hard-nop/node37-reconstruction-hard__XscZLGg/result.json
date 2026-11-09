@@ -1,0 +1,120 @@
+{
+    "id": "32ded38a-c6a7-4ce5-85d8-832dab713d79",
+    "task_name": "node37-reconstruction-hard",
+    "trial_name": "node37-reconstruction-hard__XscZLGg",
+    "trial_uri": "file:///home/raist/code/workshop/rl-env-explore/faking-it-with-nix/final/jobs/node37-reconstruction-hard-nop/node37-reconstruction-hard__XscZLGg",
+    "task_id": {
+        "path": "node37-reconstruction-hard"
+    },
+    "source": null,
+    "task_checksum": "675f0ef414778b1a96ff06b3eaf42bfff7f62cc671bc237adfa9ba8ba6e09c5b",
+    "config": {
+        "task": {
+            "path": "node37-reconstruction-hard",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "node37-reconstruction-hard__XscZLGg",
+        "trials_dir": "final/jobs/node37-reconstruction-hard-nop",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "nop",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "feb679a6-e8e7-48d7-b687-120895113140",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "nop",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.0
+        }
+    },
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-04T07:53:50.082928Z",
+    "finished_at": "2026-11-04T07:58:38.986004Z",
+    "environment_setup": {
+        "started_at": "2026-11-04T07:53:50.102144Z",
+        "finished_at": "2026-11-04T07:53:52.536796Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-04T07:53:52.536837Z",
+        "finished_at": "2026-11-04T07:53:52.536882Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-04T07:53:52.536944Z",
+        "finished_at": "2026-11-04T07:53:52.537293Z"
+    },
+    "verifier": {
+        "started_at": "2026-11-04T07:54:03.976930Z",
+        "finished_at": "2026-11-04T07:58:38.985952Z"
+    },
+    "step_results": null
+}

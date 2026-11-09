@@ -1,0 +1,5 @@
+groups:
+  - name: old_recording
+    rules:
+      - record: old:up:sum
+        expr: sum(up)

@@ -1,0 +1,105 @@
+{
+  "reward": 1.0,
+  "seconds": {
+    "build": 240.87,
+    "boot": 18.18
+  },
+  "checks": [
+    {
+      "name": "array_automount",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.37
+    },
+    {
+      "name": "host_identity",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.2
+    },
+    {
+      "name": "accounts",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.43
+    },
+    {
+      "name": "share_dirs",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.17
+    },
+    {
+      "name": "smb_global",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.17
+    },
+    {
+      "name": "smb_shares",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.17
+    },
+    {
+      "name": "share_list",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 2.41
+    },
+    {
+      "name": "share_write_ownership",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.72
+    },
+    {
+      "name": "new_dir_modes",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.42
+    },
+    {
+      "name": "share_access",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 1.29
+    },
+    {
+      "name": "veto_nested",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 1.62
+    },
+    {
+      "name": "array_mount",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.23
+    },
+    {
+      "name": "array_share",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.98
+    },
+    {
+      "name": "smb_listeners",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.22
+    },
+    {
+      "name": "forwarding_sysctl",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.04
+    },
+    {
+      "name": "power_unit",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.21
+    }
+  ]
+}

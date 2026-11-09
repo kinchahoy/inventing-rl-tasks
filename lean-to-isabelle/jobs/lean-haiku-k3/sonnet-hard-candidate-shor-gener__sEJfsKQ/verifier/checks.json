@@ -1,0 +1,17 @@
+{
+  "reward": 0.0,
+  "checks": {
+    "theory_header": true,
+    "imports_allowed": true,
+    "imports": "Quantum_Basics",
+    "no_forbidden_tokens": false,
+    "forbidden_found": "sorry",
+    "theorems_present": true,
+    "theorems_missing": "",
+    "line_count": "491",
+    "within_line_limit": true,
+    "structured_isar_proof": true,
+    "isabelle_build_and_check": false,
+    "build_log": "Running Verify ...\nVerify FAILED (see also \"isabelle build_log -H Error Verify\")\n*** Failed to finish proof (line 384 of \"/tmp/tmpk9qtz334/Shor_General.thy\"):\n*** goal (1 subgoal):\n***  1. \u00a62 * (int j * int r) - 2 * (int c * int N)\u00a6 =\n***     2 *\n***     \u00a6int j * int r -\n***      int c *\n***      int N\u00a6\n*** At command \"by\" (line 384 of \"/tmp/tmpk9qtz334/Shor_General.thy\")\n*** Failed to apply initial proof method (line 415 of \"/tmp/tmpk9qtz334/Shor_General.thy\"):\n*** using this:\n***     int N * \u00a6int c' - int c\u00a6\n***     \u2264 \u00a6int j * int r - int c * int N\u00a6 + \u00a6int j * int r - int c' * int N\u00a6\n***     2 * \u00a6int j * int r - int c * int N\u00a6 \u2264 int r\n***     2 * \u00a6int j * int r - int c' * int N\u00a6 \u2264 int r\n*** goal (1 subgoal):\n***  1. int N * \u00a6int c' - int c\u00a6\n***     \u2264 int r\n*** At command \"by\" (line 415 of \"/tmp/tmpk9qtz334/Shor_General.thy\")\n*** Failed to apply terminal proof method (line 334 of \"/tmp/tmpk9qtz334/Shor_General.thy\"):\n*** goal:\n*** No subgoals!\n*** At command \"by\" (line 334 of \"/tmp/tmpk9qtz334/Shor_General.thy\")\n*** Cheating requires quick_and_dirty mode!\n*** At command \"sorry\" (line 428 of \"/tmp/tmpk9qtz334/Shor_General.thy\")\nUnfinished session(s): Verify\n0:03:07 elapsed time, 0:03:07 cpu time, factor 1.00\n"
+  }
+}

@@ -1,0 +1,346 @@
+TOTAL 658
+TOTAL 658
+7c7
+< arith/1/1: OK 5086efd4eab2bf4166016884471a7076 416
+---
+> arith/1/1: OK 1ab15a1a62ed35ee0eb53950a0a787df 416
+10c10
+< arith/1/4: OK 1943f253809027857c614a120375fb80 414
+---
+> arith/1/4: OK 8f71a3f23472f362b421cfd7f5541e02 406
+17c17
+< arith/3/1: OK e914c1d444bc886da10076826f274cf2 404
+---
+> arith/3/1: OK 697cf19f65fd6f835a6a64827f6225e0 428
+20c20
+< arith/3/4: OK 88a8f69fa0945df084716bbc85b6de7e 410
+---
+> arith/3/4: OK 990434ce17aff17a5db12d0634f0f785 402
+27c27
+< arith/5/1: OK e914c1d444bc886da10076826f274cf2 404
+---
+> arith/5/1: OK 5556096c0b13994280e33d47f1aa239f 416
+30c30
+< arith/5/4: OK 82803d4f87c76490e3b5ccb8395c7dca 418
+---
+> arith/5/4: OK dc6727e930f11ccfd2bd3fe724a18a64 414
+37c37
+< arith/7/1: OK 2e2ff16b26cfc44ca735018c5c6b5dcf 35923
+---
+> arith/7/1: OK 7e6516b69b3db2d28a6c8eaa4cc8db61 35923
+40c40
+< arith/7/4: OK 0f975efa1909c519d77a043d7fd40327 35987
+---
+> arith/7/4: OK f3857f70835d415b78c8ebdc25fa9005 35987
+46,47c46,47
+< arith/9/0: OK bf9228e75ccaa7921a3e67aae167f485 1080
+< arith/9/1: OK b861bda87114f1b5b19ceb0df9bf55ae 35923
+---
+> arith/9/0: OK 3fa86c95c5ed4d6733bb75f04578e366 1080
+> arith/9/1: OK 7ce4fcf4b057d952861f41e1da013e56 35923
+50c50
+< arith/9/4: OK 5d87029cf6b74c402d26de5855bedf5a 35987
+---
+> arith/9/4: OK 78f586c286a46bbf1d1b196d289725f3 35987
+56,57c56,57
+< arith/11/0: OK bf9228e75ccaa7921a3e67aae167f485 1080
+< arith/11/1: OK 5b8bd1c85f7688e0b9bfce4016cb3565 35923
+---
+> arith/11/0: OK 3fa86c95c5ed4d6733bb75f04578e366 1080
+> arith/11/1: OK 80a29a736f3c042a0187d2b5804e4d7c 35923
+60c60
+< arith/11/4: OK f548cc8ee895b70f8f148711d837e360 35987
+---
+> arith/11/4: OK 3bc58d7c0857365ebf7b62a35b256996 35987
+117c117
+< prio/4/2: EXC UnexpectedCharacters "No terminal matches 'z' in the current parser context, at line 1 col 2\n\nxz\n ^\nExpected one of: \n\t* Y\n\t* X\n\nPrevious tokens: Token('X', 'x')\n"
+---
+> prio/4/2: EXC UnexpectedCharacters "No terminal matches 'z' in the current parser context, at line 1 col 2\n\nxz\n ^\nExpected one of: \n\t* X\n\t* Y\n\nPrevious tokens: Token('X', 'x')\n"
+123c123
+< prio/5/2: EXC UnexpectedCharacters "No terminal matches 'z' in the current parser context, at line 1 col 2\n\nxz\n ^\nExpected one of: \n\t* Y\n\t* X\n\nPrevious tokens: Token('X', 'x')\n"
+---
+> prio/5/2: EXC UnexpectedCharacters "No terminal matches 'z' in the current parser context, at line 1 col 2\n\nxz\n ^\nExpected one of: \n\t* X\n\t* Y\n\nPrevious tokens: Token('X', 'x')\n"
+153c153
+< prio/10/2: EXC UnexpectedCharacters "No terminal matches 'z' in the current parser context, at line 1 col 2\n\nxz\n ^\nExpected one of: \n\t* Y\n\t* X\n\nPrevious tokens: Token('X', 'x')\n"
+---
+> prio/10/2: EXC UnexpectedCharacters "No terminal matches 'z' in the current parser context, at line 1 col 2\n\nxz\n ^\nExpected one of: \n\t* X\n\t* Y\n\nPrevious tokens: Token('X', 'x')\n"
+159c159
+< prio/11/2: EXC UnexpectedCharacters "No terminal matches 'z' in the current parser context, at line 1 col 2\n\nxz\n ^\nExpected one of: \n\t* Y\n\t* X\n\nPrevious tokens: Token('X', 'x')\n"
+---
+> prio/11/2: EXC UnexpectedCharacters "No terminal matches 'z' in the current parser context, at line 1 col 2\n\nxz\n ^\nExpected one of: \n\t* X\n\t* Y\n\nPrevious tokens: Token('X', 'x')\n"
+189c189
+< prio/16/2: EXC UnexpectedCharacters "No terminal matches 'z' in the current parser context, at line 1 col 2\n\nxz\n ^\nExpected one of: \n\t* Y\n\t* X\n\nPrevious tokens: Token('X', 'x')\n"
+---
+> prio/16/2: EXC UnexpectedCharacters "No terminal matches 'z' in the current parser context, at line 1 col 2\n\nxz\n ^\nExpected one of: \n\t* X\n\t* Y\n\nPrevious tokens: Token('X', 'x')\n"
+195c195
+< prio/17/2: EXC UnexpectedCharacters "No terminal matches 'z' in the current parser context, at line 1 col 2\n\nxz\n ^\nExpected one of: \n\t* Y\n\t* X\n\nPrevious tokens: Token('X', 'x')\n"
+---
+> prio/17/2: EXC UnexpectedCharacters "No terminal matches 'z' in the current parser context, at line 1 col 2\n\nxz\n ^\nExpected one of: \n\t* X\n\t* Y\n\nPrevious tokens: Token('X', 'x')\n"
+202c202
+< stmt/0/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+---
+> stmt/0/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+206,207c206,207
+< stmt/1/2: OK f2b316d7d81db7257426ae011b0adbe6 766
+< stmt/1/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+---
+> stmt/1/2: OK e70ed5fa71d7e835939c2e40f27afa33 760
+> stmt/1/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+212c212
+< stmt/2/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+---
+> stmt/2/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+216,217c216,217
+< stmt/3/2: OK c5593c48fe1b2975abb6682391f81e84 790
+< stmt/3/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+---
+> stmt/3/2: OK a4736cb4b0bee1bae7c541fdbc362302 766
+> stmt/3/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+222c222
+< stmt/4/3: EXC UnexpectedToken "Unexpected token Token('SEMICOLON', ';') at line 1, column 5.\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+---
+> stmt/4/3: EXC UnexpectedToken "Unexpected token Token('SEMICOLON', ';') at line 1, column 5.\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+226,228c226,228
+< stmt/5/2: OK 38cfbde517f0ee16776a4eabd30bdcd8 772
+< stmt/5/3: EXC UnexpectedToken "Unexpected token Token('SEMICOLON', ';') at line 1, column 5.\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+< stmt/5/4: EXC UnexpectedEOF 'Unexpected end-of-input. Expected one of: \n\t* OP\n\t* SEMICOLON\n\t* OP\n'
+---
+> stmt/5/2: OK f2b316d7d81db7257426ae011b0adbe6 766
+> stmt/5/3: EXC UnexpectedToken "Unexpected token Token('SEMICOLON', ';') at line 1, column 5.\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+> stmt/5/4: EXC UnexpectedEOF 'Unexpected end-of-input. Expected one of: \n\t* SEMICOLON\n\t* OP\n\t* OP\n'
+232c232
+< stmt/6/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+---
+> stmt/6/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+236,237c236,237
+< stmt/7/2: OK 1559712b858b61a2ba3c54669ecf13da 58029
+< stmt/7/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+---
+> stmt/7/2: OK 1152fa48b70e3246ddfbbdc6788f2fa8 58029
+> stmt/7/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+242c242
+< stmt/8/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+---
+> stmt/8/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+246,247c246,247
+< stmt/9/2: OK cff20aa509795b5f1ef96128b32d8979 58029
+< stmt/9/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+---
+> stmt/9/2: OK 4c10cbb4225c7c80257b676d1799ba11 58029
+> stmt/9/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+252c252
+< stmt/10/3: EXC UnexpectedToken "Unexpected token Token('SEMICOLON', ';') at line 1, column 5.\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+---
+> stmt/10/3: EXC UnexpectedToken "Unexpected token Token('SEMICOLON', ';') at line 1, column 5.\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+256,258c256,258
+< stmt/11/2: OK 849797ecb972b3c33288548ceba07c11 58029
+< stmt/11/3: EXC UnexpectedToken "Unexpected token Token('SEMICOLON', ';') at line 1, column 5.\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+< stmt/11/4: EXC UnexpectedEOF 'Unexpected end-of-input. Expected one of: \n\t* OP\n\t* SEMICOLON\n\t* OP\n'
+---
+> stmt/11/2: OK e5ba766be13cfb72c2571dc3a2704b7d 58029
+> stmt/11/3: EXC UnexpectedToken "Unexpected token Token('SEMICOLON', ';') at line 1, column 5.\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+> stmt/11/4: EXC UnexpectedEOF 'Unexpected end-of-input. Expected one of: \n\t* SEMICOLON\n\t* OP\n\t* OP\n'
+262c262
+< stmt/12/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+---
+> stmt/12/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+267c267
+< stmt/13/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+---
+> stmt/13/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+272c272
+< stmt/14/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+---
+> stmt/14/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+277c277
+< stmt/15/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+---
+> stmt/15/3: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 5\n\na = ;\n    ^\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+282c282
+< stmt/16/3: EXC UnexpectedToken "Unexpected token Token('SEMICOLON', ';') at line 1, column 5.\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+---
+> stmt/16/3: EXC UnexpectedToken "Unexpected token Token('SEMICOLON', ';') at line 1, column 5.\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+287,288c287,288
+< stmt/17/3: EXC UnexpectedToken "Unexpected token Token('SEMICOLON', ';') at line 1, column 5.\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+< stmt/17/4: EXC UnexpectedEOF 'Unexpected end-of-input. Expected one of: \n\t* OP\n\t* SEMICOLON\n\t* OP\n'
+---
+> stmt/17/3: EXC UnexpectedToken "Unexpected token Token('SEMICOLON', ';') at line 1, column 5.\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+> stmt/17/4: EXC UnexpectedEOF 'Unexpected end-of-input. Expected one of: \n\t* SEMICOLON\n\t* OP\n\t* OP\n'
+293,294c293,294
+< empty/0/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+< empty/0/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+---
+> empty/0/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+> empty/0/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+299,300c299,300
+< empty/1/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+< empty/1/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+---
+> empty/1/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+> empty/1/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+305,306c305,306
+< empty/2/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+< empty/2/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+---
+> empty/2/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+> empty/2/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+311,312c311,312
+< empty/3/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+< empty/3/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+---
+> empty/3/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+> empty/3/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+317,318c317,318
+< empty/4/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* A\n\t* END\n\t* B\n\nPrevious tokens: Token('B', 'b')\n"
+< empty/4/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+---
+> empty/4/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* END\n\t* B\n\t* A\n\nPrevious tokens: Token('B', 'b')\n"
+> empty/4/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+323,324c323,324
+< empty/5/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* A\n\t* END\n\t* B\n\nPrevious tokens: Token('B', 'b')\n"
+< empty/5/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+---
+> empty/5/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* END\n\t* B\n\t* A\n\nPrevious tokens: Token('B', 'b')\n"
+> empty/5/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+329,330c329,330
+< empty/6/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+< empty/6/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+---
+> empty/6/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+> empty/6/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+333c333
+< empty/7/2: OK e53713f231a94c9049465ef4f386071f 2797
+---
+> empty/7/2: OK 7fa4dcf56bdf34c84b51a5d6f39e55aa 2797
+335,336c335,336
+< empty/7/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+< empty/7/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+---
+> empty/7/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+> empty/7/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+341,342c341,342
+< empty/8/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+< empty/8/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+---
+> empty/8/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+> empty/8/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+345c345
+< empty/9/2: OK 7fa4dcf56bdf34c84b51a5d6f39e55aa 2797
+---
+> empty/9/2: OK e53713f231a94c9049465ef4f386071f 2797
+347,348c347,348
+< empty/9/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+< empty/9/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+---
+> empty/9/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+> empty/9/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+353,354c353,354
+< empty/10/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* A\n\t* END\n\t* B\n\nPrevious tokens: Token('B', 'b')\n"
+< empty/10/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+---
+> empty/10/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* END\n\t* B\n\t* A\n\nPrevious tokens: Token('B', 'b')\n"
+> empty/10/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+359,360c359,360
+< empty/11/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* A\n\t* END\n\t* B\n\nPrevious tokens: Token('B', 'b')\n"
+< empty/11/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+---
+> empty/11/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* END\n\t* B\n\t* A\n\nPrevious tokens: Token('B', 'b')\n"
+> empty/11/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+365,366c365,366
+< empty/12/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+< empty/12/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+---
+> empty/12/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+> empty/12/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+371,372c371,372
+< empty/13/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+< empty/13/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+---
+> empty/13/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+> empty/13/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+377,378c377,378
+< empty/14/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+< empty/14/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+---
+> empty/14/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+> empty/14/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+383,384c383,384
+< empty/15/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+< empty/15/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+---
+> empty/15/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+> empty/15/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+389,390c389,390
+< empty/16/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* A\n\t* END\n\t* B\n\nPrevious tokens: Token('B', 'b')\n"
+< empty/16/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+---
+> empty/16/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* END\n\t* B\n\t* A\n\nPrevious tokens: Token('B', 'b')\n"
+> empty/16/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+395,396c395,396
+< empty/17/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* A\n\t* END\n\t* B\n\nPrevious tokens: Token('B', 'b')\n"
+< empty/17/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* A\n\t* END\n\t* B\n"
+---
+> empty/17/4: EXC UnexpectedCharacters "No terminal matches ' ' in the current parser context, at line 1 col 3\n\nab end\n  ^\nExpected one of: \n\t* END\n\t* B\n\t* A\n\nPrevious tokens: Token('B', 'b')\n"
+> empty/17/5: EXC UnexpectedCharacters "No terminal matches 'x' in the current parser context, at line 1 col 1\n\nx\n^\nExpected one of: \n\t* END\n\t* B\n\t* A\n"
+468,470c468,470
+< termprio/4/1: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naab\n  ^\nExpected one of: \n\t* A\n\t* B\n\nPrevious tokens: Token('A', 'aa')\n"
+< termprio/4/2: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naaba\n  ^\nExpected one of: \n\t* A\n\t* B\n\nPrevious tokens: Token('A', 'aa')\n"
+< termprio/4/3: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 2\n\nab\n ^\nExpected one of: \n\t* A\n\t* B\n\nPrevious tokens: Token('A', 'a')\n"
+---
+> termprio/4/1: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naab\n  ^\nExpected one of: \n\t* B\n\t* A\n\nPrevious tokens: Token('A', 'aa')\n"
+> termprio/4/2: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naaba\n  ^\nExpected one of: \n\t* B\n\t* A\n\nPrevious tokens: Token('A', 'aa')\n"
+> termprio/4/3: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 2\n\nab\n ^\nExpected one of: \n\t* B\n\t* A\n\nPrevious tokens: Token('A', 'a')\n"
+472,474c472,474
+< termprio/5/1: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naab\n  ^\nExpected one of: \n\t* A\n\t* B\n\nPrevious tokens: Token('A', 'aa')\n"
+< termprio/5/2: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naaba\n  ^\nExpected one of: \n\t* A\n\t* B\n\nPrevious tokens: Token('A', 'aa')\n"
+< termprio/5/3: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 2\n\nab\n ^\nExpected one of: \n\t* A\n\t* B\n\nPrevious tokens: Token('A', 'a')\n"
+---
+> termprio/5/1: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naab\n  ^\nExpected one of: \n\t* B\n\t* A\n\nPrevious tokens: Token('A', 'aa')\n"
+> termprio/5/2: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naaba\n  ^\nExpected one of: \n\t* B\n\t* A\n\nPrevious tokens: Token('A', 'aa')\n"
+> termprio/5/3: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 2\n\nab\n ^\nExpected one of: \n\t* B\n\t* A\n\nPrevious tokens: Token('A', 'a')\n"
+492,494c492,494
+< termprio/10/1: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naab\n  ^\nExpected one of: \n\t* A\n\t* B\n\nPrevious tokens: Token('A', 'aa')\n"
+< termprio/10/2: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naaba\n  ^\nExpected one of: \n\t* A\n\t* B\n\nPrevious tokens: Token('A', 'aa')\n"
+< termprio/10/3: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 2\n\nab\n ^\nExpected one of: \n\t* A\n\t* B\n\nPrevious tokens: Token('A', 'a')\n"
+---
+> termprio/10/1: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naab\n  ^\nExpected one of: \n\t* B\n\t* A\n\nPrevious tokens: Token('A', 'aa')\n"
+> termprio/10/2: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naaba\n  ^\nExpected one of: \n\t* B\n\t* A\n\nPrevious tokens: Token('A', 'aa')\n"
+> termprio/10/3: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 2\n\nab\n ^\nExpected one of: \n\t* B\n\t* A\n\nPrevious tokens: Token('A', 'a')\n"
+496,498c496,498
+< termprio/11/1: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naab\n  ^\nExpected one of: \n\t* A\n\t* B\n\nPrevious tokens: Token('A', 'aa')\n"
+< termprio/11/2: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naaba\n  ^\nExpected one of: \n\t* A\n\t* B\n\nPrevious tokens: Token('A', 'aa')\n"
+< termprio/11/3: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 2\n\nab\n ^\nExpected one of: \n\t* A\n\t* B\n\nPrevious tokens: Token('A', 'a')\n"
+---
+> termprio/11/1: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naab\n  ^\nExpected one of: \n\t* B\n\t* A\n\nPrevious tokens: Token('A', 'aa')\n"
+> termprio/11/2: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naaba\n  ^\nExpected one of: \n\t* B\n\t* A\n\nPrevious tokens: Token('A', 'aa')\n"
+> termprio/11/3: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 2\n\nab\n ^\nExpected one of: \n\t* B\n\t* A\n\nPrevious tokens: Token('A', 'a')\n"
+516,518c516,518
+< termprio/16/1: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naab\n  ^\nExpected one of: \n\t* A\n\t* B\n\nPrevious tokens: Token('A', 'aa')\n"
+< termprio/16/2: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naaba\n  ^\nExpected one of: \n\t* A\n\t* B\n\nPrevious tokens: Token('A', 'aa')\n"
+< termprio/16/3: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 2\n\nab\n ^\nExpected one of: \n\t* A\n\t* B\n\nPrevious tokens: Token('A', 'a')\n"
+---
+> termprio/16/1: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naab\n  ^\nExpected one of: \n\t* B\n\t* A\n\nPrevious tokens: Token('A', 'aa')\n"
+> termprio/16/2: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naaba\n  ^\nExpected one of: \n\t* B\n\t* A\n\nPrevious tokens: Token('A', 'aa')\n"
+> termprio/16/3: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 2\n\nab\n ^\nExpected one of: \n\t* B\n\t* A\n\nPrevious tokens: Token('A', 'a')\n"
+520,522c520,522
+< termprio/17/1: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naab\n  ^\nExpected one of: \n\t* A\n\t* B\n\nPrevious tokens: Token('A', 'aa')\n"
+< termprio/17/2: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naaba\n  ^\nExpected one of: \n\t* A\n\t* B\n\nPrevious tokens: Token('A', 'aa')\n"
+< termprio/17/3: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 2\n\nab\n ^\nExpected one of: \n\t* A\n\t* B\n\nPrevious tokens: Token('A', 'a')\n"
+---
+> termprio/17/1: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naab\n  ^\nExpected one of: \n\t* B\n\t* A\n\nPrevious tokens: Token('A', 'aa')\n"
+> termprio/17/2: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 3\n\naaba\n  ^\nExpected one of: \n\t* B\n\t* A\n\nPrevious tokens: Token('A', 'aa')\n"
+> termprio/17/3: EXC UnexpectedCharacters "No terminal matches 'b' in the current parser context, at line 1 col 2\n\nab\n ^\nExpected one of: \n\t* B\n\t* A\n\nPrevious tokens: Token('A', 'a')\n"
+655c655
+< bad1: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 9\n\na = 1 + ;\n        ^\nExpected one of: \n\t* WORD\n\t* LPAR\n\t* NUMBER\n"
+---
+> bad1: EXC UnexpectedCharacters "No terminal matches ';' in the current parser context, at line 1 col 9\n\na = 1 + ;\n        ^\nExpected one of: \n\t* NUMBER\n\t* LPAR\n\t* WORD\n"
+658c658
+< bad4: EXC UnexpectedCharacters "No terminal matches '$' in the current parser context, at line 1 col 3\n\n1+$\n  ^\nExpected one of: \n\t* STAR\n\t* PLUS\n\t* NUMBER\n\nPrevious tokens: Token('PLUS', '+')\n"
+---
+> bad4: EXC UnexpectedCharacters "No terminal matches '$' in the current parser context, at line 1 col 3\n\n1+$\n  ^\nExpected one of: \n\t* PLUS\n\t* NUMBER\n\t* STAR\n\nPrevious tokens: Token('PLUS', '+')\n"
+262
+arith/0/0: OK 9f6be5ae455e11b06a45c7b12cd6c6ba 227
+arith/0/1: OK 381006ba0c4a8c22eb30ffeeeca37b32 412
+arith/0/2: EXC UnexpectedEOF 'Unexpected end-of-input. Expected one of: \n\t* NUMBER\n'
+arith/0/3: EXC UnexpectedEOF 'Unexpected end-of-input. Expected one of: \n\t* NUMBER\n'
+arith/0/4: OK 1b7c13ea45dfb870902ff100feb69edf 426

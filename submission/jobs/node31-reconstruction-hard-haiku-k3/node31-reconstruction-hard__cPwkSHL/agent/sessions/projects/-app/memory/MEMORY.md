@@ -1,0 +1,1 @@
+- [node31 NixOS replica](node31-nixos-replica.md) — status, nixpkgs realization limits, nginx/sshd gotchas

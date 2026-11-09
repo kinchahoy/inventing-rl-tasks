@@ -1,0 +1,17 @@
+{
+    "job_name": "node17-haiku-no-clock-60m",
+    "agents": [
+        {
+            "name": "claude-code",
+            "model_name": "claude-haiku-5-5",
+            "kwargs": {
+                "reasoning_effort": "high"
+            }
+        }
+    ],
+    "tasks": [
+        {
+            "path": "ablations/node17-no-clock/node17-reconstruction-hard"
+        }
+    ]
+}

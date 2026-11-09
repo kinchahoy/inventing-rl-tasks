@@ -1,0 +1,4 @@
+services:
+  main:
+    devices:
+      - /dev/kvm:/dev/kvm

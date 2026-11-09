@@ -1,0 +1,46 @@
+{
+  "behavior_in_task_description": {
+    "outcome": "fail",
+    "explanation": "instruction.md delegates the specification to the live reference ('Its configuration and behavior are the specification'), but the verifier checks many specifics that appear nowhere in the instruction: tenant UIDs/GIDs (1101/1000, 1102/1001), the DB role/database/MySQL names and '<user>-pass' credentials, PHP-FPM pool tuning (pm.max_children=10, request_terminate_timeout 180s, open_basedir), memcached 32 MB/UDP off, ProxyTimeout 90, the 80%/90% user-slice memory limits, the public_html/private/cgi-bin/wsgi-bin layout and per-user token files, the sudo log-read grant, the login nproc/nofile limits, and the logrotate policy (14 rotations, root:adm 0640). None of these are stated in instruction.md."
+  },
+  "behavior_in_tests": {
+    "outcome": "pass",
+    "explanation": "The instruction's graded areas (hostname, accounts, host resolution, TLS/HTTP redirects and aliases, SQL and cache services, PHP/CGI/WSGI execution identity, isolation, service ports, and the 'commands people are likely to use') are each covered by a named check in verify.py. The instruction's own exclusions (kernel/version strings, package names, stock utilities) are not tested. Nothing the instruction explicitly describes is left untested."
+  },
+  "informative_test_structure": {
+    "outcome": "pass",
+    "explanation": "verify.py is organized as one named check function per behavior, dispatched by name, with explicit RECIPE_CHECKS and COMPLEXIFIER_CHECKS lists, section comments, and a clear reference/candidate runner. Some embedded one-liner Python payloads (server_tuning, slice_limits, persistent_storage) are dense and hard to read, but the overall structure is clear and maintainable."
+  },
+  "anti_cheating_measures": {
+    "outcome": "pass",
+    "explanation": "The tests/ and solution/ directories are not copied into the image, and the verifier's expected values are not in the agent's environment. The reference VM is intentionally available to the agent as the spec to inspect, and the instruction explicitly forbids copying or embedding it, contacting the reference at verification time, or fetching remote answers. The reference qcow2 being present in the image is a possible shortcut, but it is the intended reconstruction input and is governed by the stated rules."
+  },
+  "structured_data_schema": {
+    "outcome": "not_applicable",
+    "explanation": "The task asks for a Nix module plus supporting config files, not a structured data output such as JSON, CSV, or a database schema. The verifier's checks.json/reward.txt outputs are internal to the verifier, not agent-facing."
+  },
+  "pinned_dependencies": {
+    "outcome": "pass",
+    "explanation": "task.toml pins both the environment and verifier Docker images by sha256 digest, and the compose builder image is pinned by digest. The Nix toolchain is pinned to the nixpkgs 26.05 revision in /opt/contract/flake.lock. verify.py uses only the Python standard library."
+  },
+  "typos": {
+    "outcome": "fail",
+    "explanation": "The environment file is named 'Dockerfile.sync-conflict-20261103-015947-ZDDW5QT', a sync-conflict artifact name rather than a valid Dockerfile name. A default docker build would not find it, so this filename can cause failures. The other filenames, paths, directives, and commands checked (for example ProxyFCGIBackendType, DUMP_INCLUDES, /opt/contract/build-replica) appear correct."
+  },
+  "tests_or_solution_in_image": {
+    "outcome": "pass",
+    "explanation": "The environment Dockerfile copies only runtime, public, and the reference image/manifest into the image, and copies only the minimal flake/replica.nix into /app/submission. It does not copy tests/ or solution/."
+  },
+  "test_deps_in_image": {
+    "outcome": "pass",
+    "explanation": "The image build installs no packages. Test-side tooling (curl, psql, mysql, ss, and the Python verifier) runs from the separate verifier environment and tests/test.sh, not from the agent image build."
+  },
+  "hardcoded_solution": {
+    "outcome": "fail",
+    "explanation": "solve.sh only copies pre-written final files (complexify.nix, main.conf, replica.nix, tenant.conf) from /solution/submission into /app/submission. It performs no derivation of the configuration from the reference and does not demonstrate any investigation steps, so the final answer is supplied directly."
+  },
+  "file_reference_mentioned": {
+    "outcome": "pass",
+    "explanation": "instruction.md explicitly names /app/submission/replica.nix as the required deliverable, and the verifier builds from /app/submission and the /app/replica-vm run script as documented in the instruction's tool section. The supporting files are imported by replica.nix and are not separately checked by name."
+  }
+}

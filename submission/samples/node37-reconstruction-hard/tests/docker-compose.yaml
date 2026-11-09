@@ -1,0 +1,23 @@
+# Verifier plus a per-trial sandboxed Nix builder. The builder lives only in this compose project;
+# its SSH keys are published fixtures (see author/fixtures/builder/README.md).
+services:
+  main:
+    devices:
+      - /dev/kvm:/dev/kvm
+    environment:
+      REPLICA_REMOTE_BUILDER: "ssh-ng://buildclient@builder x86_64-linux /tests/builder_key 2 1 - - c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUlpb1FzeG1jQkl1dWpvbWgwUnhmanZJUy90TTRJcWFEQ1FLYkRjRnlkUEYgcmVwbGljYS1maXh0dXJlLWhvc3QK"
+    depends_on:
+      builder:
+        condition: service_healthy
+  builder:
+    image: beginagain/node37-reconstruction-hard-builder@sha256:fd2ebc2bfc35eb1955a54a69f8528f8b21f010da29a41638c6468924b0ea87f9
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - seccomp=unconfined
+      - apparmor=unconfined
+    healthcheck:
+      test: ["CMD-SHELL", "test -S /nix/var/nix/daemon-socket/socket && kill -0 $$(cat /run/sshd/replica.pid)"]
+      interval: 2s
+      timeout: 2s
+      retries: 60

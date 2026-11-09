@@ -1,0 +1,16 @@
+{
+    "task": {
+        "path": "node31-reconstruction-hard"
+    },
+    "trial_name": "node31-reconstruction-hard__u6G8G2V",
+    "trials_dir": "jobs/node31-sonnet-or-60m-r2",
+    "agent": {
+        "name": "claude-code",
+        "model_name": "openrouter/anthropic/claude-sonnet-5.5",
+        "base_url": "https://openrouter.ai/api",
+        "kwargs": {
+            "reasoning_effort": "high"
+        }
+    },
+    "job_id": "758ba057-d369-4463-b4a7-6c4ba3939feb"
+}

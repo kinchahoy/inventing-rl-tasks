@@ -1,0 +1,68 @@
+[23:48] node37-reconstruction-hard: -a oracle --job-name node37-reconstruction-hard-oracle
+  1/1 Mean: 1.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:05:28 0:00:00
+adhoc • oracle
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┓
+┃ Trials ┃ Exceptions ┃  Mean ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━┩
+│      1 │          0 │ 1.000 │
+└────────┴────────────┴───────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 1.0    │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 5m 28s
+Results written to final/jobs/node37-reconstruction-hard-oracle/result.json
+Inspect results by running `harbor view final/jobs`
+Share results by running `harbor upload 
+final/jobs/node37-reconstruction-hard-oracle`
+
+[23:53] node37-reconstruction-hard: -a nop --job-name node37-reconstruction-hard-nop
+  1/1 Mean: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:04:48 0:00:00
+adhoc • nop
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┓
+┃ Trials ┃ Exceptions ┃  Mean ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━┩
+│      1 │          0 │ 0.000 │
+└────────┴────────────┴───────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 0.0    │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 4m 48s
+Results written to final/jobs/node37-reconstruction-hard-nop/result.json
+Inspect results by running `harbor view final/jobs`
+Share results by running `harbor upload 
+final/jobs/node37-reconstruction-hard-nop`
+
+[23:58] node37-reconstruction-hard: -a claude-code -m claude-haiku-5-5 --ak reasoning_effort=high -k 3 -n 3 --env-file ../.env --job-name node37-reconstruction-hard-haiku-k3
+  3/3 Mean: 0.907 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:27:04 0:00:00
+adhoc • claude-code • claude-haiku-5-5
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┓
+┃ Trials ┃ Exceptions ┃  Mean ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━┩
+│      3 │          0 │ 0.907 │
+└────────┴────────────┴───────┘
+
+┏━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Reward             ┃ Count ┃
+┡━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ 0.8888888888888888 │     2 │
+│ 0.9444444444444444 │     1 │
+└────────────────────┴───────┘
+
+Job Info
+Total runtime: 27m 4s
+Results written to final/jobs/node37-reconstruction-hard-haiku-k3/result.json
+Inspect results by running `harbor view final/jobs`
+Share results by running `harbor upload 
+final/jobs/node37-reconstruction-hard-haiku-k3`
+
+[00:25] node37-reconstruction-hard: done

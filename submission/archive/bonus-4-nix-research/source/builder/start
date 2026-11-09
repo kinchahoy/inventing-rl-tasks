@@ -1,0 +1,19 @@
+#!/bin/bash
+set -euo pipefail
+mkdir -p /run/sshd /nix/var/nix/daemon-socket
+chown root:nixbld /nix/store
+chmod 1775 /nix/store
+# A smoke derivation must not see this file through its build sandbox.
+printf 'outside the build sandbox\n' > /builder-outside-marker
+env -u NIX_REMOTE /opt/nix-current/bin/nix-daemon &
+DAEMON_PID=$!
+trap 'kill "$DAEMON_PID" 2>/dev/null || true' EXIT
+for i in $(seq 1 100); do
+    if [ -S /nix/var/nix/daemon-socket/socket ]; then
+        exec /usr/sbin/sshd -D -e -f /etc/ssh/replica_sshd_config
+    fi
+    kill -0 "$DAEMON_PID"
+    sleep 0.1
+done
+echo 'Nix daemon socket did not become ready.' >&2
+exit 1

@@ -1,0 +1,26 @@
+[<%= @user %>]
+user = <%= @user %>
+group = <%= @user %>
+listen = /run/php/php-<%= @user %>-fpm.sock
+listen.owner = www-data
+listen.group = www-data
+listen.mode = 0660
+pm = dynamic
+pm.max_children = 10
+pm.start_servers = 2
+pm.min_spare_servers = 1
+pm.max_spare_servers = 3
+pm.max_requests = 10000
+request_terminate_timeout = 180
+clear_env = yes
+env[HOME] = /home/<%= @user %>
+env[PATH] = /usr/local/bin:/usr/bin:/bin
+env[TMP] = /tmp
+env[TMPDIR] = /tmp
+env[NODE_LABEL] = <%= @user %>
+php_value[max_execution_time] = 120
+php_value[memory_limit] = 128M
+php_value[post_max_size] = <%= @limit %>M
+php_value[upload_max_filesize] = <%= @limit %>M
+php_admin_value[open_basedir] = /home/<%= @user %>/:/tmp/:/usr/share/php/
+php_flag[display_errors] = off

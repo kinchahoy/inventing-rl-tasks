@@ -1,0 +1,4 @@
+Skipping image OS validation for hb__fdfba29cf9cd81a81d27f6ef0493e98c: docker inspect returned 1
+Running command: apt-get update && apt-get install -y nodejs npm
+Trial lark-earley__fXVi2NM failed: Agent setup timed out after 360.0 seconds
+Collecting main service artifacts

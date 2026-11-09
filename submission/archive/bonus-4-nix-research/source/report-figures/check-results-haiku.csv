@@ -1,0 +1,107 @@
+task,check,origin,haiku_runs,haiku_passed,haiku_trials,per_trial
+node17,host_resolution,recipe,final (v2),3,3,P P P
+node17,accounts,recipe,final (v2),3,3,P P P
+node17,filesystem_ownership,recipe,final (v2),3,3,P P P
+node17,private_isolation,recipe,final (v2),3,3,P P P
+node17,sudo_log_policy,recipe,final (v2),3,3,P P P
+node17,slice_limits,recipe,final (v2),0,3,F F F
+node17,postgres_peer,recipe,final (v2),3,3,P P P
+node17,postgres_password,recipe,final (v2),3,3,P P P
+node17,postgres_isolation,recipe,final (v2),0,3,F F F
+node17,postgis,recipe,final (v2),3,3,P P P
+node17,mysql_root_socket,recipe,final (v2),3,3,P P P
+node17,mysql_password,recipe,final (v2),3,3,P P P
+node17,mysql_isolation,recipe,final (v2),3,3,P P P
+node17,cache_protocol,recipe,final (v2),3,3,P P P
+node17,loopback_services,recipe,final (v2),2,3,P F P
+node17,server_tuning,recipe,final (v2),3,3,P P P
+node17,userdir_redirect,recipe,final (v2),3,3,P P P
+node17,tls_aliases,recipe,final (v2),3,3,P P P
+node17,http_redirects,recipe,final (v2),3,3,P P P
+node17,static_range,recipe,final (v2),3,3,P P P
+node17,php_identity,recipe,final (v2),2,3,F P P
+node17,php_environment,recipe,final (v2),2,3,F P P
+node17,php_open_basedir,recipe,final (v2),2,3,F P P
+node17,php_pool_limits,recipe,final (v2),2,3,F P P
+node17,php_postgres,recipe,final (v2),2,3,F P P
+node17,php_mysql,recipe,final (v2),2,3,F P P
+node17,cgi_identity,recipe,final (v2),0,3,F F F
+node17,wsgi_identity,recipe,final (v2),2,3,F P P
+node17,proxy_header,recipe,final (v2),2,3,F P P
+node17,htaccess_and_symlinks,recipe,final (v2),3,3,P P P
+node17,persistent_storage,recipe,final (v2),3,3,P P P
+node17,sudo_decoy,complexifier,final (v2),2,3,P F P
+node17,login_limits,complexifier,final (v2),0,3,F F F
+node17,log_rotation,complexifier,final (v2),0,3,F F F
+node17,db_role_limits,complexifier,final (v2),0,3,F F F
+node31,host_identity,recipe,final,3,3,P P P
+node31,accounts,recipe,final,3,3,P P P
+node31,listeners,recipe,final,3,3,P P P
+node31,tls_and_redirect,recipe,final,3,3,P P P
+node31,proxy_auth,recipe,final,3,3,P P P
+node31,proxy_apis,recipe,final,3,3,P P P
+node31,prom_flags,recipe,final,3,3,P P P
+node31,prom_targets,recipe,final,3,3,P P P
+node31,prom_rules,recipe,final,3,3,P P P
+node31,recording_rules,recipe,final,3,3,P P P
+node31,alert_pipeline,recipe,final,3,3,P P P
+node31,sink_service,recipe,final,3,3,P P P
+node31,am_routing,recipe,final,3,3,P P P
+node31,am_grouping,recipe,final,3,3,P P P
+node31,am_inhibit,recipe,final,3,3,P P P
+node31,am_silence,recipe,final,3,3,P P P
+node31,am_resolved,recipe,final,3,3,P P P
+node31,amtool_operator,recipe,final,2,3,F P P
+node31,operator_tools,recipe,final,0,3,F F F
+node31,blackbox_modules,recipe,final,3,3,P P P
+node31,probe_series,recipe,final,3,3,P P P
+node31,node_collectors,recipe,final,3,3,P P P
+node31,persistent_storage,recipe,final,3,3,P P P
+node31,rules_glob,complexifier,final,3,3,P P P
+node31,sd_drop,complexifier,final,3,3,P P P
+node31,textfile_timer,complexifier,final,3,3,P P P
+node31,icmp_probe,complexifier,final,3,3,P P P
+node37,host_identity,recipe,final,3,3,P P P
+node37,accounts,recipe,final,3,3,P P P
+node37,kernel_cmdline,recipe,final,3,3,P P P
+node37,module_policy,recipe,final,3,3,P P P
+node37,lockup_sysctl,recipe,final,3,3,P P P
+node37,sleep_policy,recipe,final,2,3,P P F
+node37,sleep_cleanup,recipe,final,3,3,P P P
+node37,accel_setup,recipe,final,3,3,P P P
+node37,idle_monitor,recipe,final,3,3,P P P
+node37,infer_unit,recipe,final,3,3,P P P
+node37,tool_env,recipe,final,1,3,F P F
+node37,metrics_agent,recipe,final,3,3,P P P
+node37,operator_sudo,recipe,final,3,3,P P P
+node37,udev_i2c,recipe,final,2,3,P F P
+node37,cmdline_decoy,complexifier,final,3,3,P P P
+node37,sysctl_decoy,complexifier,final,3,3,P P P
+node37,sysstat_timer,complexifier,final,3,3,P P P
+node37,etc_environment,complexifier,final,2,3,F P P
+node23,host_identity,recipe,final (bonus),2,3,F P P
+node23,accounts,recipe,final (bonus),3,3,P P P
+node23,sudo_policy,recipe,final (bonus),2,3,F P P
+node23,listeners,recipe,final (bonus),2,3,F P P
+node23,forwarded_answers,recipe,final (bonus),3,3,P P P
+node23,record_types,recipe,final (bonus),3,3,P P P
+node23,nxdomain_negative,recipe,final (bonus),3,3,P P P
+node23,internal_auth_zone,recipe,final (bonus),3,3,P P P
+node23,extra_hosts,recipe,final (bonus),3,3,P P P
+node23,any_chaos_refused,recipe,final (bonus),3,3,P P P
+node23,sinkhole,recipe,final (bonus),3,3,P P P
+node23,tcp_truncation,recipe,final (bonus),3,3,P P P
+node23,dot_service,recipe,final (bonus),3,3,P P P
+node23,acl_inside,recipe,final (bonus),3,3,P P P
+node23,recursor_version_string,recipe,final (bonus),3,3,P P P
+node23,positive_ttl_cap,recipe,final (bonus),3,3,P P P
+node23,wildcard_and_cname,recipe,final (bonus),3,3,P P P
+node23,dnsdist_cache,recipe,final (bonus),3,3,P P P
+node23,monitoring_api,recipe,final (bonus),2,3,F P P
+node23,nsd_identity_xfr,recipe,final (bonus),3,3,P P P
+node23,zone_content,recipe,final (bonus),3,3,P P P
+node23,persistent_storage,recipe,final (bonus),3,3,P P P
+node23,negative_ttl_override,complexifier,final (bonus),3,3,P P P
+node23,local_resolver,complexifier,final (bonus),2,3,F P P
+node23,socket_tuning,complexifier,final (bonus),1,3,F F P
+node23,nsd_secondary,complexifier,final (bonus),3,3,P P P

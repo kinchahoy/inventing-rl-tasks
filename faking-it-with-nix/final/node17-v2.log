@@ -1,0 +1,14 @@
+[23:50] publish node17 (v2 verifier)
+14:docker_image = "beginagain/node17-reconstruction-hard-verifier@sha256:f33b778d254a08eb333cf929dd2fdeb42cb5962bde5fad0448591a6c19826159"
+19:docker_image = "beginagain/node17-reconstruction-hard@sha256:0d3d908f99d50d8a5b125f49655a3ced0e20f4387d81b27c3d4a2e3575b3180a"
+Published layout for node17-reconstruction-hard (push: --push).
+[23:50] reference check
+    "seconds": 0.12
+  }
+]
+[23:50] regrade 6WDtNr9
+node17-reconstruction-hard node17-reconstruction-hard__6WDtNr9: reward 0.7142857142857143
+[23:55] regrade aVqPFzU
+node17-reconstruction-hard node17-reconstruction-hard__aVqPFzU: reward 0.42857142857142855
+[00:01] regrade msYkvbq
+node17-reconstruction-hard node17-reconstruction-hard__msYkvbq: reward 0.5142857142857142

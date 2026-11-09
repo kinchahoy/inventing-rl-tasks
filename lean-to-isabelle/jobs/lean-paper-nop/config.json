@@ -1,0 +1,13 @@
+{
+    "job_name": "lean-paper-nop",
+    "agents": [
+        {
+            "name": "nop"
+        }
+    ],
+    "tasks": [
+        {
+            "path": "lean-to-isabelle/sonnet-hard-candidate-shor-general-paper"
+        }
+    ]
+}

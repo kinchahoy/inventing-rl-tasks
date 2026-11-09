@@ -1,0 +1,15 @@
+{
+    "task": {
+        "path": "third-attempt/sympy-state-space"
+    },
+    "trial_name": "sympy-state-space__FKbSGLy",
+    "trials_dir": "jobs/sympy-state-space-haiku-k3",
+    "agent": {
+        "name": "claude-code",
+        "model_name": "claude-haiku-5-5",
+        "kwargs": {
+            "reasoning_effort": "high"
+        }
+    },
+    "job_id": "d6007be0-dfe6-48ac-8500-5b80bd46d92f"
+}

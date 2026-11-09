@@ -1,0 +1,18 @@
+{
+    "job_name": "node17-haiku-120m",
+    "agent_timeout_multiplier": 2.0,
+    "agents": [
+        {
+            "name": "claude-code",
+            "model_name": "anthropic/claude-haiku-5-5",
+            "kwargs": {
+                "reasoning_effort": "high"
+            }
+        }
+    ],
+    "tasks": [
+        {
+            "path": "node17-reconstruction-hard"
+        }
+    ]
+}

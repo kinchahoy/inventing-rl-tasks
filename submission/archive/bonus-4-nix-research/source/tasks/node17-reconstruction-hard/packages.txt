@@ -1,0 +1,16 @@
+apache2
+apache2-suexec-pristine
+libapache2-mod-wsgi-py3
+php8.1-fpm
+php8.1-cli
+php8.1-pgsql
+php8.1-mysql
+php8.1-mbstring
+postgresql-14
+postgresql-14-postgis-3
+mariadb-server
+memcached
+python3
+curl
+sudo
+acl

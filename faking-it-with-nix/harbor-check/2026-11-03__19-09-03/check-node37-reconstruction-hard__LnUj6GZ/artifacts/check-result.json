@@ -1,0 +1,46 @@
+{
+  "behavior_in_task_description": {
+    "outcome": "fail",
+    "explanation": "instruction.md only describes the goal in general terms ('everything that affects how this machine is used', 'the reference is the specification'). The tests check many specifics that appear nowhere in the instruction: the host name and timezone, uid/gid values (1000, 992), the PCI addresses and power caps (210000000 / 170000000 uW), the kernel cmdline tokens, the modprobe rules, the sysctl values, IdleActionSec=4h, the metrics-agent port 45876 and its hardening properties, the metrics-agent-update timer schedule, the infer-server environment file, the sysstat 1-minute collection schedule, and the /etc/environment variables. None of these are stated in instruction.md, so an agent cannot know what the tests require without reverse-engineering the reference."
+  },
+  "behavior_in_tests": {
+    "outcome": "pass",
+    "explanation": "Every behavior the instruction names (host identity, accounts and sudo, boot parameters, module policy, sleep policy, the sleep cleanup unit, the idle monitor, the infer unit, the accelerator tool environment, the metrics agent, udev, and the complexifier decoys) has a corresponding named check in verify.py. The checks are run against the candidate VM, so the described operator-facing behavior is exercised."
+  },
+  "informative_test_structure": {
+    "outcome": "pass",
+    "explanation": "verify.py has a module docstring, one named check per area, an explicit RECIPE_CHECKS / COMPLEXIFIER_CHECKS grouping, and helper functions (require, poll, Guest.props) with clear names. Inline comments explain the non-obvious expectations, such as the sudo group default and the holder-process logic. The long if/elif dispatch is somewhat dense but each branch is labeled and easy to locate."
+  },
+  "anti_cheating_measures": {
+    "outcome": "pass",
+    "explanation": "The verifier, its expected values, and the solution are kept out of the agent environment; environment/docker-compose.yaml contains no answers. The instruction explicitly forbids copying the reference OS or fetching remote answers. The reference VM is present by design as the specification to inspect, and the task prohibits embedding it. The builder key in tests/ is a published fixture for the verifier's build sandbox and is not reachable from the agent's environment."
+  },
+  "structured_data_schema": {
+    "outcome": "not_applicable",
+    "explanation": "The deliverable is a NixOS module plus supporting scripts, not an API, JSON, CSV, or database output with a defined schema. The only structured output (checks.json) is written by the verifier, not by the agent."
+  },
+  "pinned_dependencies": {
+    "outcome": "pass",
+    "explanation": "The nixpkgs input is pinned to the revision in /opt/contract/flake.lock at /opt/nixpkgs, and the Docker images in task.toml and the compose files are pinned by sha256 digest. The accelerator Python dependencies in pyproject.toml carry explicit version floors (for example accel-sdk-devel>=7.14.0a20260523, torch>=2.12), which is the reference's own declared configuration."
+  },
+  "typos": {
+    "outcome": "pass",
+    "explanation": "Reviewed the filenames, unit names, paths, and identifiers across instruction.md, verify.py, replica.nix, complexify.nix, solve.sh, and the supporting scripts. Cross-references are consistent, for example accel-sleep-cleanup.service, idle-check.timer, /home/ember/accel-env/env/activate.sh, and /var/lib/node37/pci. No misspellings that would cause failures or confusion were found."
+  },
+  "tests_or_solution_in_image": {
+    "outcome": "pass",
+    "explanation": "The environment build context (environment/docker-compose.yaml and the image reference) does not copy tests/ or solution/ into the runtime image. solve.sh copies the solution into /app/submission only when the oracle is run, and the verifier runs in a separate environment."
+  },
+  "test_deps_in_image": {
+    "outcome": "pass",
+    "explanation": "verify.py uses only the Python standard library (subprocess, tomllib, json, re, and so on), and test.sh only invokes python3. No test-only packages are installed in the runtime image."
+  },
+  "hardcoded_solution": {
+    "outcome": "fail",
+    "explanation": "solve.sh does not derive the configuration. It runs mkdir and cp -a to copy the pre-written solution/submission tree (replica.nix, complexify.nix, and all support files) into /app/submission. The final answer is placed directly, with no steps that demonstrate how it would be reconstructed from the reference."
+  },
+  "file_reference_mentioned": {
+    "outcome": "pass",
+    "explanation": "instruction.md explicitly names the required output /app/submission/replica.nix and says the submission includes local supporting files. It also names the build and run paths (/app/replica-vm/bin/run-*-vm) that the verifier uses. The verifier reads only the submission and the built VM, and both are mentioned."
+  }
+}

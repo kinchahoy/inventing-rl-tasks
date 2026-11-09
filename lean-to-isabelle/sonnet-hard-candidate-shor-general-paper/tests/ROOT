@@ -1,0 +1,7 @@
+session Verify = HOL +
+  options [quick_and_dirty = false, skip_proofs = false, timeout = 480]
+  theories
+    Quantum_Basics
+    Canonical
+    Shor_General
+    Check

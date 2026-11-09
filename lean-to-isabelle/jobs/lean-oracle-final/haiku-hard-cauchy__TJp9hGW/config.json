@@ -1,0 +1,9 @@
+{
+    "task": {
+        "path": "lean-to-isabelle/haiku-hard-cauchy",
+        "source": "lean-to-isabelle"
+    },
+    "trial_name": "haiku-hard-cauchy__TJp9hGW",
+    "trials_dir": "jobs/lean-oracle-final",
+    "job_id": "78200380-6d36-41a0-be1c-5651b0e81a2a"
+}

@@ -1,0 +1,12 @@
+{
+    "task": {
+        "path": "lean-to-isabelle/sonnet-hard-candidate-shor-general",
+        "source": "lean-to-isabelle"
+    },
+    "trial_name": "sonnet-hard-candidate-shor-gener__zzYmo4Q",
+    "trials_dir": "jobs/lean-nop-final",
+    "agent": {
+        "name": "nop"
+    },
+    "job_id": "7551cf1f-c1a7-4ae5-8e7e-2d8f9cda502d"
+}

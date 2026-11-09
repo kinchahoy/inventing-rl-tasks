@@ -1,0 +1,11 @@
+{
+    "task": {
+        "path": "node37-reconstruction-hard"
+    },
+    "trial_name": "node37-reconstruction-hard__XscZLGg",
+    "trials_dir": "final/jobs/node37-reconstruction-hard-nop",
+    "agent": {
+        "name": "nop"
+    },
+    "job_id": "feb679a6-e8e7-48d7-b687-120895113140"
+}

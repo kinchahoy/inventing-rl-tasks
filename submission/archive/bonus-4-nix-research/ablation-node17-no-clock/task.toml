@@ -1,0 +1,26 @@
+version = "1.0"
+artifacts = ["/app/submission"]
+[metadata]
+author_name = "system-reconstruction"
+category = "system-administration"
+difficulty = "hard-candidate"
+tags = ["nixos", "linux", "multi-service", "vm"]
+[agent]
+timeout_sec = 3600.0
+[verifier]
+environment_mode = "separate"
+timeout_sec = 1800.0
+[verifier.environment]
+docker_image = "beginagain/node17-reconstruction-hard-verifier@sha256:f33b778d254a08eb333cf929dd2fdeb42cb5962bde5fad0448591a6c19826159"
+cpus = 4
+memory_mb = 10240
+storage_mb = 32768
+[environment]
+docker_image = "beginagain/node17-reconstruction-hard@sha256:0d3d908f99d50d8a5b125f49655a3ced0e20f4387d81b27c3d4a2e3575b3180a"
+cpus = 4
+memory_mb = 10240
+storage_mb = 32768
+[environment.env]
+# Route model calls through the take-home gateway (required by the brief).
+ANTHROPIC_BASE_URL = "https://take-home-automation.vercel.app"
+ANTHROPIC_API_BASE = "https://take-home-automation.vercel.app"

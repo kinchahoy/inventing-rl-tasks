@@ -1,0 +1,9 @@
+{
+    "job_name": "lean-oracle-final",
+    "n_concurrent_trials": 2,
+    "datasets": [
+        {
+            "path": "lean-to-isabelle"
+        }
+    ]
+}

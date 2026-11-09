@@ -1,0 +1,6 @@
+groups:
+  - name: staged_alerts
+    rules:
+      - alert: StagedNoisy
+        expr: vector(1)
+        labels: {severity: page, team: ops}

@@ -1,0 +1,42 @@
+WSGIDaemonProcess <%= @user %> user=<%= @user %> group=<%= @user %> processes=1 threads=4
+<VirtualHost *:443>
+    ServerName <%= @user %>.node.test
+    ServerAlias <%= @user %>.node.alt.test
+    SSLEngine on
+    SSLCertificateFile /etc/node/server.crt
+    SSLCertificateKeyFile /etc/node/server.key
+    DocumentRoot /home/<%= @user %>/public_html
+    ProxyTimeout 90
+    RequestHeader unset Proxy early
+    UseCanonicalName Off
+    WSGIProcessGroup <%= @user %>
+    CustomLog /var/log/web/<%= @user %>-access.log combined
+    ErrorLog /var/log/web/<%= @user %>-error.log
+    RewriteEngine on
+    RewriteCond /home/<%= @user %>/public_html%{REQUEST_FILENAME} -f
+    RewriteRule ^/cgi-bin/(.*)$ /~<%= @user %>/cgi-bin/$1 [PT,L]
+    <FilesMatch ".+\.ph(p|ps|p3|tml)$">
+        SetHandler "proxy:unix:/run/php/php-<%= @user %>-fpm.sock|fcgi://127.0.0.1"
+    </FilesMatch>
+</VirtualHost>
+<VirtualHost *:80>
+    ServerName <%= @user %>.node.test
+    ServerAlias <%= @user %>.node.alt.test
+    RedirectPermanent /.well-known/acme-challenge/ http://acme.node.test/.well-known/acme-challenge/
+    RedirectPermanent / https://<%= @user %>.node.test/
+</VirtualHost>
+<Directory /home/<%= @user %>/public_html>
+    AllowOverride AuthConfig FileInfo Indexes
+    Options SymLinksIfOwnerMatch Indexes Includes
+    Require all granted
+</Directory>
+<Directory /home/<%= @user %>/public_html/cgi-bin>
+    SetHandler cgi-script
+    Options ExecCGI SymLinksIfOwnerMatch
+    Require all granted
+</Directory>
+<Directory /home/<%= @user %>/public_html/wsgi-bin>
+    SetHandler wsgi-script
+    Options ExecCGI SymLinksIfOwnerMatch
+    Require all granted
+</Directory>

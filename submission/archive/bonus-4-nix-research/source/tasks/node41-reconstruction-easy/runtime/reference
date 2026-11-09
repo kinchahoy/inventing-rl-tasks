@@ -1,0 +1,42 @@
+#!/bin/bash
+set -euo pipefail
+STATE=${NODE_STATE:-/run/node-reference}
+mkdir -p "$STATE"
+case ${1:-start} in
+  start)
+    if [ -f "$STATE/qemu.pid" ] && kill -0 "$(cat "$STATE/qemu.pid")" 2>/dev/null; then
+        echo 'Reference already running.'
+        exit 0
+    fi
+    if [ ! -f "$STATE/disk.qcow2" ]; then
+        qemu-img create -f qcow2 -F qcow2 -b /opt/reference/base.qcow2 "$STATE/disk.qcow2"
+    fi
+    for d in a b; do
+        if [ ! -f "$STATE/usb-$d.img" ]; then cp --sparse=always "/opt/contract/usb-$d.img" "$STATE/usb-$d.img"; fi
+    done
+    qemu-system-x86_64 -accel "${NODE_ACCEL:-kvm}" -cpu "${NODE_CPU:-host}" \
+      -smp 2 -m 3072 -display none -serial "file:$STATE/serial.log" \
+      -drive "file=$STATE/disk.qcow2,if=virtio,format=qcow2" \
+      -device qemu-xhci -drive "if=none,id=usba,file=$STATE/usb-a.img,format=raw" -device usb-storage,drive=usba \
+      -drive "if=none,id=usbb,file=$STATE/usb-b.img,format=raw" -device usb-storage,drive=usbb \
+      -netdev user,id=net0,hostfwd=tcp:127.0.0.1:2222-:22 \
+      -device virtio-net-pci,netdev=net0 -pidfile "$STATE/qemu.pid" -daemonize
+    for i in $(seq 1 120); do
+        if /opt/runtime/guest true 2>/dev/null; then exit 0; fi
+        sleep 1
+    done
+    echo "Reference SSH did not become ready; see $STATE/serial.log" >&2
+    exit 1
+    ;;
+  stop)
+    /opt/runtime/guest 'systemctl poweroff' || true
+    for i in $(seq 1 60); do
+        if [ ! -f "$STATE/qemu.pid" ]; then exit 0; fi
+        if ! kill -0 "$(cat "$STATE/qemu.pid")" 2>/dev/null; then exit 0; fi
+        sleep 1
+    done
+    echo 'Reference did not stop within 60 seconds.' >&2
+    exit 1
+    ;;
+  *) echo 'Usage: reference start|stop' >&2; exit 2 ;;
+esac

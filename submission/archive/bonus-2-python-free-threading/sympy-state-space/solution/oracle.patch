@@ -1,0 +1,543 @@
+--- a/core/basic.py
++++ b/core/basic.py
+@@ -9,6 +9,7 @@
+ 
+ from .assumptions import _prepare_class_assumptions
+ from .cache import cacheit
++from ._parallel import state as _par_state, enter as _par_enter, leave as _par_leave
+ from .sympify import _sympify, sympify, SympifyError, _external_converter
+ from .sorting import ordered
+ from .kind import Kind, UndefinedKind
+@@ -1944,9 +1945,16 @@
+ 
+         """
+         if hints.get('deep', True):
+-            terms = [term.doit(**hints) if isinstance(term, Basic) else term
+-                                         for term in self.args]
+-            return self.func(*terms)
++            top = not _par_state.busy
++            if top:
++                _par_enter(self, hints)
++            try:
++                terms = [term.doit(**hints) if isinstance(term, Basic) else term
++                                             for term in self.args]
++                return self.func(*terms)
++            finally:
++                if top:
++                    _par_leave()
+         else:
+             return self
+ 
+--- a/core/operations.py
++++ b/core/operations.py
+@@ -10,6 +10,7 @@
+ from .sympify import _sympify as _sympify_, sympify
+ from .basic import Basic
+ from .cache import cacheit
++from ._parallel import state as _par_state, enter as _par_enter, leave as _par_leave
+ from .sorting import ordered
+ from .logic import fuzzy_and
+ from .parameters import global_parameters
+@@ -475,7 +476,15 @@
+ 
+     def doit(self, **hints):
+         if hints.get('deep', True):
+-            terms = [term.doit(**hints) for term in self.args]
++            top = not _par_state.busy
++            if top:
++                _par_enter(self, hints)
++            try:
++                terms = [term.doit(**hints) for term in self.args]
++                return self.func(*terms, evaluate=True)
++            finally:
++                if top:
++                    _par_leave()
+         else:
+             terms = self.args
+         return self.func(*terms, evaluate=True)
+--- a/core/_parallel.py
++++ b/core/_parallel.py
+@@ -0,0 +1,189 @@
++"""Internal helpers for within-call parallelism on free-threaded CPython.
++
++Threads are used only when all of the following hold: the interpreter runs
++without the GIL, more than one CPU is in the process affinity mask, the caller
++is not itself a pool worker, and the thread-local SymPy parameters have their
++defaults (worker threads start with the defaults).  Otherwise every helper runs
++serially in the calling thread and returns exactly what the plain loop would.
++
++``Basic.doit`` additionally keeps a per-call memo of ``Integral.doit`` results:
++equal integrals inside one ``doit`` call are evaluated once.
++"""
++
++from __future__ import annotations
++
++import os
++import sys
++import threading
++
++
++class _State(threading.local):
++    # Class attributes are the per-thread defaults.
++    busy = False  # inside a doit scope, or a pool worker: never start another one
++    memo = None  # Integral.doit results of the current doit scope
++
++
++state = _State()
++
++_FAILED = object()
++_pool = None
++_pool_lock = threading.Lock()
++
++
++def _cpus():
++    try:
++        return len(os.sched_getaffinity(0))
++    except AttributeError:
++        return os.cpu_count() or 1
++
++
++def _mark_worker():
++    state.busy = True
++
++
++def _get_pool():
++    global _pool
++    if _pool is None:
++        with _pool_lock:
++            if _pool is None:
++                from concurrent.futures import ThreadPoolExecutor
++
++                _pool = ThreadPoolExecutor(
++                    max_workers=_cpus(),
++                    thread_name_prefix="sympy-par",
++                    initializer=_mark_worker,
++                )
++    return _pool
++
++
++def parallel_ok():
++    """True if the calling thread may fan work out to the pool."""
++    if state.busy or getattr(sys, "_is_gil_enabled", lambda: True)():
++        return False
++    if _cpus() < 2:
++        return False
++    from sympy.core.parameters import global_parameters as gp
++
++    utilities = sys.modules.get("sympy.matrices.utilities")
++    return bool(gp.evaluate and gp.distribute and not gp.exp_is_pow
++                and (utilities is None or utilities._dotprodsimp_state.state is None))
++
++
++def pmap(func, items):
++    """``[func(item) for item in items]``, evaluated on the pool when allowed.
++
++    Results keep the input order; the first exception in input order is raised.
++    ``func`` must not rely on thread-local SymPy state.
++    """
++    items = list(items)
++    if len(items) < 2 or not parallel_ok():
++        return [func(item) for item in items]
++    pool = _get_pool()
++    futures = [pool.submit(func, item) for item in items]
++    try:
++        return [future.result() for future in futures]
++    except BaseException:
++        for future in futures:
++            future.cancel()
++        raise
++
++
++def hints_key(hints):
++    try:
++        key = tuple(sorted(hints.items()))
++        hash(key)
++    except TypeError:
++        return None
++    return key
++
++
++def _top_integrals(expr):
++    """Distinct outermost ``Integral`` nodes of ``expr`` in first-seen order."""
++    from sympy.core.basic import Basic
++    from sympy.integrals.integrals import Integral
++
++    found = {}
++    seen = set()
++    stack = [expr]
++    while stack:
++        node = stack.pop()
++        if not isinstance(node, Basic) or node in seen:
++            continue
++        seen.add(node)
++        if isinstance(node, Integral):
++            found.setdefault(node, None)
++        else:
++            stack.extend(reversed(node.args))
++    return list(found)
++
++
++def _size(node):
++    count = 0
++    stack = [node]
++    while stack:
++        item = stack.pop()
++        count += 1
++        stack.extend(getattr(item, "args", ()))
++    return count
++
++
++def _evaluate(job):
++    integral, hints = job
++    try:
++        return integral.doit(**hints)
++    except Exception:
++        # Recomputed (and raised) in order by the serial pass.
++        return _FAILED
++
++
++def _prefill(memos, exprs, hints, hk):
++    """Evaluate the distinct integrals of every expression on the pool into its memo."""
++    jobs = []
++    for memo, expr in zip(memos, exprs):
++        for integral in _top_integrals(expr):
++            jobs.append((_size(integral.function), memo, integral))
++    if len(jobs) < 2:
++        return
++    jobs.sort(key=lambda job: -job[0])  # longest first for a balanced schedule
++    results = pmap(_evaluate, [(integral, hints) for _, _, integral in jobs])
++    for (_, memo, integral), result in zip(jobs, results):
++        if result is not _FAILED:
++            memo[(integral, hk)] = result
++
++
++def enter(expr, hints):
++    """Open the doit scope of an outermost ``Basic.doit`` body: deduplicate (and parallelise) its integrals."""
++    hk = hints_key(hints)
++    memo = None if hk is None else {}
++    if memo is not None and "sympy.integrals.integrals" in sys.modules and parallel_ok():
++        _prefill([memo], [expr], hints, hk)
++    state.busy = True
++    state.memo = memo
++
++
++def leave():
++    state.busy = False
++    state.memo = None
++
++
++def doit_all(exprs, **hints):
++    """``[e.doit(**hints) for e in exprs]`` with all expressions' integrals evaluated in parallel.
++
++    Each expression keeps its own memo, as if ``doit`` had been called on it separately.
++    """
++    exprs = list(exprs)
++    hk = hints_key(hints)
++    if hk is None or not exprs or "sympy.integrals.integrals" not in sys.modules or not parallel_ok():
++        return [expr.doit(**hints) for expr in exprs]
++    memos = [{} for _ in exprs]
++    _prefill(memos, exprs, hints, hk)
++
++    def rebuild(job):
++        memo, expr = job
++        busy, state.busy, state.memo = state.busy, True, memo
++        try:
++            return expr.doit(**hints)
++        finally:
++            state.busy, state.memo = busy, None
++
++    return pmap(rebuild, list(zip(memos, exprs)))
+--- a/core/symbol.py
++++ b/core/symbol.py
+@@ -19,6 +19,7 @@
+ import string
+ import re as _re
+ import random
++import threading
+ from itertools import product
+ from typing import Any
+ 
+@@ -484,6 +485,7 @@
+     # small chance that `d2` will be equal to a previously-created Dummy.
+ 
+     _count = 0
++    _count_lock = threading.Lock()  # `_count` is read-modify-written by every Dummy()
+     _prng = random.Random()
+     _base_dummy_index = _prng.randint(10**6, 9*10**6)
+ 
+@@ -495,12 +497,13 @@
+         if dummy_index is not None:
+             assert name is not None, "If you specify a dummy_index, you must also provide a name"
+ 
+-        if name is None:
+-            name = "Dummy_" + str(Dummy._count)
+-
+         if dummy_index is None:
+-            dummy_index = Dummy._base_dummy_index + Dummy._count
+-            Dummy._count += 1
++            with Dummy._count_lock:
++                count = Dummy._count
++                Dummy._count = count + 1
++            dummy_index = Dummy._base_dummy_index + count
++            if name is None:
++                name = "Dummy_" + str(count)
+ 
+         cls._sanitize(assumptions, cls)
+         obj = Symbol.__xnew__(cls, name, **assumptions)
+--- a/integrals/heurisch.py
++++ b/integrals/heurisch.py
+@@ -1,5 +1,6 @@
+ from __future__ import annotations
+ 
++import threading
+ from collections import defaultdict
+ from functools import reduce
+ from itertools import permutations
+@@ -90,21 +91,19 @@
+ 
+ # name -> [] of symbols
+ _symbols_cache: dict[str, list[Dummy]] = {}
++_symbols_lock = threading.Lock()
+ 
+ 
+ # NB @cacheit is not convenient here
+ def _symbols(name, n):
+     """get vector of symbols local to this module"""
+-    try:
+-        lsyms = _symbols_cache[name]
+-    except KeyError:
+-        lsyms = []
+-        _symbols_cache[name] = lsyms
++    with _symbols_lock:
++        lsyms = _symbols_cache.setdefault(name, [])
+ 
+-    while len(lsyms) < n:
+-        lsyms.append( Dummy('%s%i' % (name, len(lsyms))) )
++        while len(lsyms) < n:
++            lsyms.append( Dummy('%s%i' % (name, len(lsyms))) )
+ 
+-    return lsyms[:n]
++        return lsyms[:n]
+ 
+ 
+ def heurisch_wrapper(f, x, rewrite=False, hints=None, mappings=None, retries=3,
+--- a/integrals/integrals.py
++++ b/integrals/integrals.py
+@@ -5,6 +5,7 @@
+ from sympy.core.basic import Basic
+ from sympy.core.containers import Tuple
+ from sympy.core.expr import Expr
++from sympy.core._parallel import state as _par_state, hints_key as _par_hints_key
+ from sympy.core.exprtools import factor_terms
+ from sympy.core.function import diff
+ from sympy.core.logic import fuzzy_bool
+@@ -401,6 +402,23 @@
+         sympy.integrals.rationaltools.ratint
+         as_sum : Approximate the integral using a sum
+         """
++        # Inside an outermost ``Basic.doit`` call, equal integrals are
++        # evaluated once (see sympy.core._parallel).
++        memo = _par_state.memo
++        if memo is None:
++            return self._doit(**hints)
++        hk = _par_hints_key(hints)
++        if hk is None:
++            return self._doit(**hints)
++        key = (self, hk)
++        try:
++            return memo[key]
++        except KeyError:
++            pass
++        result = memo[key] = self._doit(**hints)
++        return result
++
++    def _doit(self, **hints):
+         if not hints.get('integrals', True):
+             return self
+ 
+--- a/integrals/manualintegrate.py
++++ b/integrals/manualintegrate.py
+@@ -23,6 +23,7 @@
+ 
+ from __future__ import annotations
+ from typing import NamedTuple, Type, Callable, Sequence
++import threading
+ from abc import ABC, abstractmethod
+ from dataclasses import dataclass
+ from collections import defaultdict
+@@ -998,12 +999,16 @@
+ 
+ _special_function_patterns: list[tuple[Type, Expr, Callable | None, tuple]] = []
+ _wilds = []
++_patterns_ready = False
++_patterns_lock = threading.Lock()
+ _symbol = Dummy('x')
+ 
+ 
+-def special_function_rule(integral):
+-    integrand, symbol = integral
+-    if not _special_function_patterns:
++def _init_special_function_patterns():
++    global _patterns_ready
++    with _patterns_lock:
++        if _patterns_ready:
++            return
+         a = Wild('a', exclude=[_symbol], properties=[lambda x: not x.is_zero])
+         b = Wild('b', exclude=[_symbol])
+         c = Wild('c', exclude=[_symbol])
+@@ -1033,6 +1038,13 @@
+             (Pow, sqrt(a - d*sin(_symbol, evaluate=False)**2),
+                 lambda a, d: a != d, EllipticERule),
+         ))
++        _patterns_ready = True
++
++
++def special_function_rule(integral):
++    integrand, symbol = integral
++    if not _patterns_ready:
++        _init_special_function_patterns()
+     _integrand = integrand.subs(symbol, _symbol)
+     for type_, pattern, constraint, rule in _special_function_patterns:
+         if isinstance(_integrand, type_):
+@@ -1319,9 +1331,10 @@
+         # Set a limit on the number of times u can be used
+         if isinstance(u, (sin, cos, exp, sinh, cosh)):
+             cachekey = u.xreplace({symbol: _cache_dummy})
+-            if _parts_u_cache[cachekey] > 2:
++            parts_u_cache = _caches.parts_u_cache
++            if parts_u_cache[cachekey] > 2:
+                 return
+-            _parts_u_cache[cachekey] += 1
++            parts_u_cache[cachekey] += 1
+ 
+         # Try cyclic integration by parts a few times
+         for _ in range(4):
+@@ -1982,8 +1995,15 @@
+ # Cache is used to break cyclic integrals.
+ # Need to use the same dummy variable in cached expressions for them to match.
+ # Also record "u" of integration by parts, to avoid infinite repetition.
+-_integral_cache: dict[Expr, Expr | None] = {}
+-_parts_u_cache: dict[Expr, int] = defaultdict(int)
++# The caches are per thread: they record what the current thread is in the
++# middle of integrating, so sharing them would make concurrent integrations
++# see each other's in-progress entries and give up.
++class _ThreadCaches(threading.local):
++    def __init__(self):
++        self.integral_cache: dict[Expr, Expr | None] = {}
++        self.parts_u_cache: dict[Expr, int] = defaultdict(int)
++
++_caches = _ThreadCaches()
+ _cache_dummy = Dummy("z")
+ 
+ def integral_steps(integrand, symbol, **options):
+@@ -2032,6 +2052,7 @@
+ 
+     """
+     cachekey = integrand.xreplace({symbol: _cache_dummy})
++    _integral_cache = _caches.integral_cache
+     if cachekey in _integral_cache:
+         if _integral_cache[cachekey] is None:
+             # Stop this attempt, because it leads around in a loop
+@@ -2163,7 +2184,7 @@
+     """
+     result = integral_steps(f, var).eval()
+     # Clear the cache of u-parts
+-    _parts_u_cache.clear()
++    _caches.parts_u_cache.clear()
+     # If we got Piecewise with two parts, put generic first
+     if isinstance(result, Piecewise) and len(result.args) == 2:
+         cond = result.args[0][1]
+--- a/integrals/meijerint.py
++++ b/integrals/meijerint.py
+@@ -27,6 +27,7 @@
+ """
+ 
+ from __future__ import annotations
++import threading
+ import itertools
+ 
+ from sympy import SYMPY_DEBUG
+@@ -589,9 +590,11 @@
+     Return a dummy associated to name and token. Same effect as declaring
+     it globally.
+     """
+-    if not (name, token) in _dummies:
+-        _dummies[(name, token)] = Dummy(name, **kwargs)
+-    return _dummies[(name, token)]
++    key = (name, token)
++    d = _dummies.get(key)
++    if d is None:
++        d = _dummies.setdefault(key, Dummy(name, **kwargs))
++    return d
+ 
+ 
+ def _is_analytic(f, x):
+@@ -1463,6 +1466,7 @@
+ ####################################################################
+ 
+ _lookup_table = None
++_lookup_table_lock = threading.Lock()
+ 
+ 
+ @cacheit
+@@ -1481,8 +1485,11 @@
+ 
+     global _lookup_table
+     if not _lookup_table:
+-        _lookup_table = {}
+-        _create_lookup_table(_lookup_table)
++        with _lookup_table_lock:
++            if not _lookup_table:
++                table = {}
++                _create_lookup_table(table)
++                _lookup_table = table
+ 
+     if isinstance(f, meijerg):
+         coeff, m = factor(f.argument, x).as_coeff_mul(x)
+--- a/polys/matrices/ddm.py
++++ b/polys/matrices/ddm.py
+@@ -700,7 +700,12 @@
+         o2, n = b.shape
+         a._check(a, '*', b, o, o2)
+         c = a.zeros((m, n), a.domain)
+-        ddm_imatmul(c, a, b)
++        from sympy.core._parallel import pmap, parallel_ok
++        if m > 1 and m * o * n >= 64 and a.domain.is_EXRAW and parallel_ok():
++            # Rows of the product are independent: one pool task per row.
++            pmap(lambda i: ddm_imatmul(c[i:i + 1], a[i:i + 1], b), range(m))
++        else:
++            ddm_imatmul(c, a, b)
+         return c
+ 
+     def mul_elementwise(a, b):
+--- a/solvers/ode/systems.py
++++ b/solvers/ode/systems.py
+@@ -5,6 +5,7 @@
+ from sympy.core.relational import Eq, Equality
+ from sympy.core.sorting import default_sort_key, ordered
+ from sympy.core.symbol import Dummy, Symbol
++from sympy.core._parallel import pmap, doit_all
+ from sympy.core.function import (expand_mul, expand, Derivative,
+                                  AppliedUndef, Function, Subs)
+ from sympy.functions import (exp, im, cos, sin, re, Piecewise,
+@@ -990,13 +991,16 @@
+ 
+     gens = sol_vector.atoms(exp)
+ 
+-    if type != "type1":
+-        sol_vector = [expand_mul(s) for s in sol_vector]
++    def finish(s):
++        if type != "type1":
++            s = expand_mul(s)
++        return collect(s, ordered(gens), exact=True)
+ 
+-    sol_vector = [collect(s, ordered(gens), exact=True) for s in sol_vector]
++    # The entries are independent: expand and collect them on the worker pool.
++    sol_vector = pmap(finish, list(sol_vector))
+ 
+     if doit:
+-        sol_vector = [s.doit() for s in sol_vector]
++        sol_vector = doit_all(sol_vector)
+ 
+     return sol_vector
+ 

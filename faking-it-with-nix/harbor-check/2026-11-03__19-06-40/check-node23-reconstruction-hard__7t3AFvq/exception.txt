@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "/home/raist/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/verifier/verifier.py", line 290, in verify
+    await self.environment.download_dir(
+  File "/home/raist/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/environments/docker/docker.py", line 1308, in download_dir
+    await self._platform.download_dir(source_dir, target_dir)
+  File "/home/raist/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/environments/docker/docker_unix.py", line 304, in download_dir
+    await self._download_via_engine_cp(f"{source_dir}/.", target_dir, service)
+  File "/home/raist/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/environments/docker/docker_unix.py", line 253, in _download_via_engine_cp
+    await self._engine_cp(f"{container}:{container_path}", str(target_path))
+  File "/home/raist/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/environments/docker/docker_unix.py", line 244, in _engine_cp
+    raise RuntimeError(
+RuntimeError: Engine cp failed ('eaf355b27588:/logs/verifier/.' -> 'harbor-check/2026-11-03__19-06-40/check-node23-reconstruction-hard__7t3AFvq/verifier'): Error response from daemon: Could not find the file /logs/verifier/. in container eaf355b27588
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/raist/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py", line 609, in run
+    await self._run()
+  File "/home/raist/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/single_step.py", line 51, in _run
+    await self._run_verifier()
+  File "/home/raist/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/single_step.py", line 105, in _run_verifier
+    self.result.verifier_result = await self._run_shared_verifier(
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/raist/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py", line 1011, in _run_shared_verifier
+    return await self._verify_with_timeout(verifier, timeout_sec)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/raist/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py", line 974, in _verify_with_timeout
+    return await asyncio.wait_for(verifier.verify(), timeout=timeout_sec)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/raist/code/workshop/rl-env-explore/.python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/raist/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/verifier/verifier.py", line 295, in verify
+    raise DownloadVerifierDirError(
+harbor.verifier.verifier.DownloadVerifierDirError: Failed to download verifier directory from environment

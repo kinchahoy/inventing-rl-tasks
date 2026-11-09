@@ -1,0 +1,120 @@
+{
+    "id": "9ce728d5-05ac-4345-9e9c-bf101318fad7",
+    "task_name": "sonnet-hard-candidate-shor-general",
+    "trial_name": "sonnet-hard-candidate-shor-gener__zzYmo4Q",
+    "trial_uri": "file:///home/raist/code/workshop/rl-env-explore/jobs/lean-nop-final/sonnet-hard-candidate-shor-gener__zzYmo4Q",
+    "task_id": {
+        "path": "lean-to-isabelle/sonnet-hard-candidate-shor-general"
+    },
+    "source": "lean-to-isabelle",
+    "task_checksum": "357b9f6808820c56137c4b33f337b03ba50ef81b94a1ace3d6b57135e2e07566",
+    "config": {
+        "task": {
+            "path": "lean-to-isabelle/sonnet-hard-candidate-shor-general",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "lean-to-isabelle"
+        },
+        "trial_name": "sonnet-hard-candidate-shor-gener__zzYmo4Q",
+        "trials_dir": "jobs/lean-nop-final",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "nop",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "7551cf1f-c1a7-4ae5-8e7e-2d8f9cda502d",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "nop",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.0
+        }
+    },
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-04T00:15:30.267578Z",
+    "finished_at": "2026-11-04T00:16:09.545088Z",
+    "environment_setup": {
+        "started_at": "2026-11-04T00:15:30.322355Z",
+        "finished_at": "2026-11-04T00:15:34.408022Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-04T00:15:34.408044Z",
+        "finished_at": "2026-11-04T00:15:34.408076Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-04T00:15:34.408130Z",
+        "finished_at": "2026-11-04T00:15:34.408338Z"
+    },
+    "verifier": {
+        "started_at": "2026-11-04T00:15:46.425437Z",
+        "finished_at": "2026-11-04T00:16:09.545077Z"
+    },
+    "step_results": null
+}

@@ -1,0 +1,14 @@
+{
+    "job_name": "lean-nop-final",
+    "n_concurrent_trials": 2,
+    "agents": [
+        {
+            "name": "nop"
+        }
+    ],
+    "datasets": [
+        {
+            "path": "lean-to-isabelle"
+        }
+    ]
+}

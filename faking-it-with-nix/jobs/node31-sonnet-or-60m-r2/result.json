@@ -1,0 +1,39 @@
+{
+    "id": "758ba057-d369-4463-b4a7-6c4ba3939feb",
+    "started_at": "2026-11-03T14:59:40.257481",
+    "updated_at": "2026-11-03T15:19:16.135009",
+    "finished_at": "2026-11-03T15:19:16.135009",
+    "n_total_trials": 1,
+    "stats": {
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "claude-code__anthropic/claude-sonnet-5.5__adhoc": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 0.96
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "0.96": [
+                            "node31-reconstruction-hard__u6G8G2V"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        },
+        "n_input_tokens": 2755823,
+        "n_cache_tokens": 2666036,
+        "n_output_tokens": 33027,
+        "cost_usd": 0.8212951
+    }
+}

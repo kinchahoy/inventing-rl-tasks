@@ -1,0 +1,10 @@
+#!/bin/bash
+set -euo pipefail
+source /opt/contract/eval-options.sh
+OPTIONS=(--json --out-link /app/replica-vm)
+if [ "${REPLICA_DRY_RUN:-0}" = 1 ]; then OPTIONS+=(--dry-run); fi
+if [ -n "${REPLICA_REMOTE_BUILDER:-}" ]; then
+    OPTIONS+=(--max-jobs 0 --builders "$REPLICA_REMOTE_BUILDER" --option builders-use-substitutes true)
+fi
+printf 'Submission source: %s\n' "$(nix hash path "$SUBMISSION")" >&2
+exec nix build "${OPTIONS[@]}" "${EVAL_OPTIONS[@]}"

@@ -1,0 +1,9 @@
+groups:
+  - name: node_recording
+    rules:
+      - record: job:up:count
+        expr: count by (job) (up)
+        labels: {tier: lab}
+      - record: job:up:sum
+        expr: sum by (job) (up)
+        labels: {tier: lab}

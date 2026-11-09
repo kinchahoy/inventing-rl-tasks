@@ -1,0 +1,1 @@
+- [node31 NixOS replica](node31-nixos-replica.md) — task state and decisions for rebuilding the node31 Ubuntu monitoring box as NixOS module

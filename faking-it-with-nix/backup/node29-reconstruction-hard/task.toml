@@ -1,0 +1,24 @@
+version = "1.0"
+artifacts = ["/app/submission"]
+[metadata]
+author_name = "system-reconstruction"
+category = "system-administration"
+difficulty = "hard-candidate"
+tags = ["nixos", "linux", "multi-service", "vm"]
+difficulty_evidence = "Unvalidated first draft; backup task"
+[agent]
+timeout_sec = 3600.0
+[verifier]
+environment_mode = "separate"
+timeout_sec = 1800.0
+[verifier.environment]
+docker_image = "node29-reconstruction-hard-verifier:v1"
+cpus = 4
+memory_mb = 10240
+storage_mb = 32768
+[environment]
+# Prebuilt by `mise run prepare node29-reconstruction-hard` (docker-bake.hcl).
+docker_image = "node29-reconstruction-hard:v1"
+cpus = 4
+memory_mb = 10240
+storage_mb = 32768

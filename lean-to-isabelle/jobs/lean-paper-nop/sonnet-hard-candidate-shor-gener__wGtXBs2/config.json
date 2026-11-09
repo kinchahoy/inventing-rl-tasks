@@ -1,0 +1,11 @@
+{
+    "task": {
+        "path": "lean-to-isabelle/sonnet-hard-candidate-shor-general-paper"
+    },
+    "trial_name": "sonnet-hard-candidate-shor-gener__wGtXBs2",
+    "trials_dir": "jobs/lean-paper-nop",
+    "agent": {
+        "name": "nop"
+    },
+    "job_id": "2846d31c-353f-4c28-9445-5b72683d1957"
+}

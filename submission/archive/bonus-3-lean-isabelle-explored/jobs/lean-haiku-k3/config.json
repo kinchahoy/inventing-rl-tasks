@@ -1,0 +1,19 @@
+{
+    "job_name": "lean-haiku-k3",
+    "n_attempts": 3,
+    "n_concurrent_trials": 3,
+    "agents": [
+        {
+            "name": "claude-code",
+            "model_name": "claude-haiku-5-5",
+            "kwargs": {
+                "reasoning_effort": "high"
+            }
+        }
+    ],
+    "datasets": [
+        {
+            "path": "lean-to-isabelle"
+        }
+    ]
+}

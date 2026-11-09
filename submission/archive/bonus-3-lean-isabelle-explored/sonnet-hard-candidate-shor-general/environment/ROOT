@@ -1,0 +1,5 @@
+session Submission = HOL +
+  options [quick_and_dirty = false]
+  theories
+    Quantum_Basics
+    Shor_General

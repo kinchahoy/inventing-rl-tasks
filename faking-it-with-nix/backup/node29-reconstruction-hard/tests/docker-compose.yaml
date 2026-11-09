@@ -1,0 +1,11 @@
+services:
+  main:
+    devices:
+      - /dev/kvm:/dev/kvm
+    networks:
+      - default
+      - replica-build
+networks:
+  replica-build:
+    external: true
+    name: replica-build

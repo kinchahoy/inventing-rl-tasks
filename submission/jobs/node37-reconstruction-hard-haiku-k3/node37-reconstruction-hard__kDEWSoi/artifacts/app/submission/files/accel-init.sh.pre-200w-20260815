@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# previous caps (200 W / 170 W), superseded
+exit 1

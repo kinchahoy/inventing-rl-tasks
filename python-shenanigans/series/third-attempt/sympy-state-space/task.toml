@@ -1,0 +1,34 @@
+version = "1.0"
+artifacts = ["/app/sympy"]
+
+[metadata]
+difficulty = "hard-candidate"
+difficulty_evidence = "oracle 1.0 and nop 0.0 on mi60 (jobs/mi60/sympy-oracle-final, sympy-nop-final); one 15-min Haiku pilot before the final setup; no k=3 trial yet"
+author_name = "python-shenanigans"
+category = "software-engineering"
+tags = ["python", "free-threading", "parallelism", "library-migration"]
+
+[agent]
+timeout_sec = 3600.0
+
+[environment]
+build_timeout_sec = 1200.0
+cpus = 4
+memory_mb = 8192
+storage_mb = 12288
+
+[environment.env]
+# Route model calls through the take-home gateway (required by the take-home brief).
+ANTHROPIC_BASE_URL = "https://take-home-automation.vercel.app"
+ANTHROPIC_API_BASE = "https://take-home-automation.vercel.app"
+
+[verifier]
+environment_mode = "separate"
+# Provisional until verifier cost is measured.
+timeout_sec = 900.0
+
+[verifier.environment]
+build_timeout_sec = 1200.0
+cpus = 4
+memory_mb = 8192
+storage_mb = 12288

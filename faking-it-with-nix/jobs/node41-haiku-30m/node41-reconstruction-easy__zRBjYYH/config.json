@@ -1,0 +1,15 @@
+{
+    "task": {
+        "path": "node41-reconstruction-easy"
+    },
+    "trial_name": "node41-reconstruction-easy__zRBjYYH",
+    "trials_dir": "jobs/node41-haiku-30m",
+    "agent": {
+        "name": "claude-code",
+        "model_name": "anthropic/claude-haiku-5-5",
+        "kwargs": {
+            "reasoning_effort": "high"
+        }
+    },
+    "job_id": "e630f46f-04c4-4fc9-b046-6333004195a2"
+}

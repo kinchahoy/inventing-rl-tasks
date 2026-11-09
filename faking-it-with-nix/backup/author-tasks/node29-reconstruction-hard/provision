@@ -1,0 +1,76 @@
+#!/bin/bash
+# Ubuntu 22.04 + CINC reference. Interface: see author/tasks/README.md.
+set -euo pipefail
+: "${RECIPE:?}" "${OUT:?}"
+WORK=$OUT/work
+CREDS=$OUT/creds
+mkdir -p "$WORK" "$CREDS" "$OUT/reference"
+if [ ! -f "$CREDS/id_ed25519" ]; then
+    ssh-keygen -q -t ed25519 -N '' -f "$CREDS/id_ed25519"
+fi
+if [ ! -f "$CREDS/server.crt" ]; then
+    openssl req -x509 -newkey rsa:2048 -nodes -days 3650 -subj '/CN=Local Lab CA' -keyout "$WORK/ca.key" -out "$CREDS/ca.crt" 2>/dev/null
+    openssl req -newkey rsa:2048 -nodes -subj '/CN=node29.n29.test' -keyout "$CREDS/server.key" -out "$WORK/server.csr" 2>/dev/null
+    printf 'subjectAltName=DNS:node29.n29.test,DNS:n29.test,DNS:imap.n29.test,DNS:smtp.n29.test\nextendedKeyUsage=serverAuth\n' > "$WORK/server.ext"
+    openssl x509 -req -in "$WORK/server.csr" -CA "$CREDS/ca.crt" -CAkey "$WORK/ca.key" -CAcreateserial -CAserial "$WORK/ca.srl" -days 3650 -extfile "$WORK/server.ext" -out "$CREDS/server.crt" 2>/dev/null
+fi
+# The existing, hashed Jammy download is shared with the easy task.
+if [ ! -f /work/.cache/jammy.img ]; then
+    curl -fL --retry 0 https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img -o /work/.cache/jammy.img.part
+    mv /work/.cache/jammy.img.part /work/.cache/jammy.img
+fi
+python3 "$RECIPE/make-seed.py" "$WORK/user-data" "$CREDS"
+printf 'instance-id: node29-build\nlocal-hostname: node29\n' > "$WORK/meta-data"
+# Everything the guest receives: cloud-init data and the base image.
+DIGEST=$(cat "$WORK/user-data" "$WORK/meta-data" <(sha256sum < /work/.cache/jammy.img) | sha256sum | cut -d' ' -f1)
+if [ -f "$OUT/reference/base.qcow2" ] && [ "$(cat "$WORK/input-digest" 2>/dev/null || true)" = "$DIGEST" ]; then
+    echo 'Reference inputs unchanged; reusing frozen disk.'
+    exit 0
+fi
+cloud-localds "$WORK/seed.iso" "$WORK/user-data" "$WORK/meta-data"
+if [ "${RESUME:-0}" != 1 ]; then
+    cp --reflink=auto /work/.cache/jammy.img "$WORK/building.qcow2"
+    qemu-img resize "$WORK/building.qcow2" 12G
+fi
+qemu-system-x86_64 -accel kvm -cpu host -smp 2 -m 3072 -display none -serial "file:$WORK/serial.log" \
+    -drive "file=$WORK/building.qcow2,if=virtio,format=qcow2" -drive "file=$WORK/seed.iso,if=virtio,format=raw,readonly=on" \
+    -netdev user,id=n,hostfwd=tcp:127.0.0.1:2222-:22 -device virtio-net-pci,netdev=n -pidfile "$WORK/qemu.pid" -daemonize
+cleanup() { if [ -f "$WORK/qemu.pid" ]; then kill "$(cat "$WORK/qemu.pid")" 2>/dev/null || true; fi; }
+trap cleanup EXIT
+SSH=(ssh -i "$CREDS/id_ed25519" -p 2222 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -o ConnectTimeout=3 root@127.0.0.1)
+if [ "${RESUME:-0}" = 1 ]; then
+    for i in $(seq 1 120); do
+        if "${SSH[@]}" true 2>/dev/null; then break; fi
+        sleep 1
+    done
+    "${SSH[@]}" 'cloud-init status --wait' || true
+    "${SSH[@]}" 'cat > /tmp/archive-seed.json' < "$WORK/user-data"
+    "${SSH[@]}" python3 - < /work/author/apply-seed.py
+    if ! "${SSH[@]}" bash /usr/local/sbin/setup-host; then
+        "${SSH[@]}" cat /var/log/host-setup.log
+        exit 1
+    fi
+fi
+end=$((SECONDS + 1800))
+while ! "${SSH[@]}" test -f /var/lib/host-ready 2>/dev/null; do
+    if [ "$SECONDS" -ge "$end" ]; then echo 'Provisioning exceeded 30 minutes; disk and log preserved.' >&2; exit 1; fi
+    if "${SSH[@]}" test -f /var/lib/host-failed 2>/dev/null; then "${SSH[@]}" cat /var/log/host-setup.log; exit 1; fi
+    sleep 5
+done
+"${SSH[@]}" cat /var/log/host-setup.log > "$WORK/convergence.log"
+"${SSH[@]}" 'dpkg-query -W' > "$WORK/packages.txt"
+# Remove bootstrap inputs, serialized cloud-init data and build logs from the
+# published guest. Operational configuration remains fully inspectable.
+"${SSH[@]}" 'rm -rf /opt/setup /var/lib/cloud/instances /var/lib/cloud/instance /var/cache/cinc.deb /tmp/archive-seed.json; rm -f /usr/local/sbin/setup-host /var/log/host-setup.log /var/log/cloud-init*.log; sync; systemctl poweroff' || true
+for i in $(seq 1 60); do [ ! -f "$WORK/qemu.pid" ] && break; sleep 1; done
+if [ -f "$WORK/qemu.pid" ]; then echo 'Guest did not shut down; refusing to freeze.' >&2; exit 1; fi
+trap - EXIT
+qemu-img convert -O qcow2 -c "$WORK/building.qcow2" "$OUT/reference/base.qcow2.tmp"
+mv "$OUT/reference/base.qcow2.tmp" "$OUT/reference/base.qcow2"
+printf '%s' "$DIGEST" > "$WORK/input-digest"
+python3 - "$OUT/reference/base.qcow2" "$DIGEST" "$RECIPE/reference-manifest.json" <<'PY'
+import hashlib, json, pathlib, sys
+p = pathlib.Path(sys.argv[1])
+# Public manifest deliberately excludes source identity. Full provenance is author-side.
+pathlib.Path(sys.argv[3]).write_text(json.dumps({'host': 'node29', 'inputs_sha256': sys.argv[2], 'image_sha256': hashlib.file_digest(p.open('rb'), 'sha256').hexdigest()}, indent=2) + '\n')
+PY

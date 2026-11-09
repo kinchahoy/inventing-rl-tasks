@@ -1,0 +1,16 @@
+{
+    "task": {
+        "path": "lean/haiku-hard-cauchy",
+        "source": "lean"
+    },
+    "trial_name": "haiku-hard-cauchy__EjpQBSe",
+    "trials_dir": "jobs/lean-cap600-700-r1",
+    "agent": {
+        "name": "claude-code",
+        "model_name": "claude-haiku-5-5",
+        "kwargs": {
+            "reasoning_effort": "high"
+        }
+    },
+    "job_id": "9f46c7cd-597d-47da-8c90-3335ed3ac997"
+}

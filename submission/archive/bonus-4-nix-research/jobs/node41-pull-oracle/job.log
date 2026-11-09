@@ -1,0 +1,4 @@
+Agent 'oracle' does not declare an options_model; leftover kwargs are ignored
+Skipping image OS validation for ghcr.io/kinchahoy/node41-reconstruction-easy@sha256:5e2ec224a37c183ec0f9b6f1bb0ca6bc16f70a0ecaeab6160f4497327bc081b9: docker inspect returned 1
+Collecting main service artifacts
+Skipping image OS validation for ghcr.io/kinchahoy/node41-reconstruction-easy-verifier@sha256:0b2b50beefb9aa76c661acdd118612f4d6f22d3bec8550331bab7f5fddcf8d51: docker inspect returned 1

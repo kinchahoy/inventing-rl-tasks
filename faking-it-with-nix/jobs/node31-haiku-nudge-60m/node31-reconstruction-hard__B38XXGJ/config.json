@@ -1,0 +1,16 @@
+{
+    "task": {
+        "path": "/tmp/tmp.IlBd13XgAa/node31-reconstruction-hard"
+    },
+    "trial_name": "node31-reconstruction-hard__B38XXGJ",
+    "trials_dir": "jobs/node31-haiku-nudge-60m",
+    "agent_timeout_multiplier": 1.0,
+    "agent": {
+        "name": "claude-code",
+        "model_name": "anthropic/claude-haiku-5-5",
+        "kwargs": {
+            "reasoning_effort": "high"
+        }
+    },
+    "job_id": "12d99845-e533-4fcf-b9f9-8f7077dc9dac"
+}

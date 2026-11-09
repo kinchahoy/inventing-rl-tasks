@@ -1,0 +1,28 @@
+{
+  "firstStartTime": "2026-11-04T05:59:53.206Z",
+  "firstStartVersion": "2.1.318",
+  "machineID": "3dc35517b92264542c292c8f09c5d3c240b851045cd5d8e1d5571736a5df81c5",
+  "opusProMigrationComplete": true,
+  "sonnet1m45MigrationComplete": true,
+  "seenNotifications": {},
+  "hasResetAutoModeOptInForDefaultOffer": true,
+  "migrationVersion": 14,
+  "userID": "bd69531ebd80b72ca891525b27b9d95b97df2e65af22d9e6145041c4b7a7657f",
+  "pluginUsage": {
+    "cc-plugin-agents-md@builtin": {
+      "usageCount": 0,
+      "lastUsedAt": 1793771993310,
+      "lastUsedNumStartups": 0
+    },
+    "cc-plugin-privacy@builtin": {
+      "usageCount": 0,
+      "lastUsedAt": 1793771993310,
+      "lastUsedNumStartups": 0
+    },
+    "cc-plugin-plugin-authoring@builtin": {
+      "usageCount": 0,
+      "lastUsedAt": 1793771993310,
+      "lastUsedNumStartups": 0
+    }
+  }
+}

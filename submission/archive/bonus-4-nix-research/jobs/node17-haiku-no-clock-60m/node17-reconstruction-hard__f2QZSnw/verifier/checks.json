@@ -1,0 +1,222 @@
+{
+  "reward": 0.9142857142857143,
+  "seconds": {
+    "build": 243.34,
+    "boot": 17.9
+  },
+  "checks": [
+    {
+      "name": "host_resolution",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.15
+    },
+    {
+      "name": "accounts",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.09
+    },
+    {
+      "name": "filesystem_ownership",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.09
+    },
+    {
+      "name": "private_isolation",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.36
+    },
+    {
+      "name": "sudo_log_policy",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.72
+    },
+    {
+      "name": "slice_limits",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'python3 -c '\"'\"'import os,pwd,subprocess; uid=pwd.getpwnam('\"'\"'\"'\"'\"'\"'\"'\"'amber'\"'\"'\"'\"'\"'\"'\"'\"').pw_uid; unit=f'\"'\"'\"'\"'\"'\"'\"'\"'user-{uid}.slice'\"'\"'\"'\"'\"'\"'\"'\"'; subprocess.run(['\"'\"'\"'\"'\"'\"'\"'\"'systemctl'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'start'\"'\"'\"'\"'\"'\"'\"'\"',unit],check=True); total=os.sysconf('\"'\"'\"'\"'\"'\"'\"'\"'SC_PHYS_PAGES'\"'\"'\"'\"'\"'\"'\"'\"')*os.sysconf('\"'\"'\"'\"'\"'\"'\"'\"'SC_PAGE_SIZE'\"'\"'\"'\"'\"'\"'\"'\"');\nfor prop,ratio in [('\"'\"'\"'\"'\"'\"'\"'\"'MemoryHigh'\"'\"'\"'\"'\"'\"'\"'\"',.8),('\"'\"'\"'\"'\"'\"'\"'\"'MemoryMax'\"'\"'\"'\"'\"'\"'\"'\"',.9)]:\n value=int(subprocess.check_output(['\"'\"'\"'\"'\"'\"'\"'\"'systemctl'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'show'\"'\"'\"'\"'\"'\"'\"'\"',unit,'\"'\"'\"'\"'\"'\"'\"'\"'--property='\"'\"'\"'\"'\"'\"'\"'\"'+prop,'\"'\"'\"'\"'\"'\"'\"'\"'--value'\"'\"'\"'\"'\"'\"'\"'\"'])); assert abs(value/total-ratio)<.01,(prop,value,total)'\"'\"'' exited 1:\nTraceback (most recent call last):\n  File \"<string>\", line 3, in <module>\n    value=int(subprocess.check_output(['systemctl','show',unit,'--property='+prop,'--value'])); assert abs(value/total-ratio)<.01,(prop,value,total)\nValueError: invalid literal for int() with base 10: b'infinity\\n'\n",
+      "origin": "recipe",
+      "seconds": 0.22
+    },
+    {
+      "name": "postgres_peer",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.2
+    },
+    {
+      "name": "postgres_password",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.35
+    },
+    {
+      "name": "postgres_isolation",
+      "passed": false,
+      "detail": "cross-database connect",
+      "origin": "recipe",
+      "seconds": 0.2
+    },
+    {
+      "name": "postgis",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.26
+    },
+    {
+      "name": "mysql_root_socket",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.07
+    },
+    {
+      "name": "mysql_password",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.25
+    },
+    {
+      "name": "mysql_isolation",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.25
+    },
+    {
+      "name": "cache_protocol",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.13
+    },
+    {
+      "name": "loopback_services",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.15
+    },
+    {
+      "name": "server_tuning",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.25
+    },
+    {
+      "name": "userdir_redirect",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.03
+    },
+    {
+      "name": "tls_aliases",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.05
+    },
+    {
+      "name": "http_redirects",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.03
+    },
+    {
+      "name": "static_range",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.1
+    },
+    {
+      "name": "php_identity",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.2
+    },
+    {
+      "name": "php_environment",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.18
+    },
+    {
+      "name": "php_open_basedir",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.19
+    },
+    {
+      "name": "php_pool_limits",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.19
+    },
+    {
+      "name": "php_postgres",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.22
+    },
+    {
+      "name": "php_mysql",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.19
+    },
+    {
+      "name": "cgi_identity",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.39
+    },
+    {
+      "name": "wsgi_identity",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.3
+    },
+    {
+      "name": "proxy_header",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.1
+    },
+    {
+      "name": "htaccess_and_symlinks",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.35
+    },
+    {
+      "name": "persistent_storage",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.32
+    },
+    {
+      "name": "sudo_decoy",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.06
+    },
+    {
+      "name": "login_limits",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.18
+    },
+    {
+      "name": "log_rotation",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.26
+    },
+    {
+      "name": "db_role_limits",
+      "passed": false,
+      "detail": "('amber', b'0')",
+      "origin": "complexifier",
+      "seconds": 0.19
+    }
+  ]
+}

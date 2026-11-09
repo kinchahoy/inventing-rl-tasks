@@ -1,0 +1,172 @@
+{
+  "reward": 0.9629629629629629,
+  "seconds": {
+    "build": 252.3,
+    "boot": 18.07
+  },
+  "checks": [
+    {
+      "name": "host_identity",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.09
+    },
+    {
+      "name": "accounts",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.1
+    },
+    {
+      "name": "listeners",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.18
+    },
+    {
+      "name": "tls_and_redirect",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.02
+    },
+    {
+      "name": "proxy_auth",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.05
+    },
+    {
+      "name": "proxy_apis",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.05
+    },
+    {
+      "name": "prom_flags",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.18
+    },
+    {
+      "name": "prom_targets",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 4.22
+    },
+    {
+      "name": "prom_rules",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.07
+    },
+    {
+      "name": "recording_rules",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 2.45
+    },
+    {
+      "name": "alert_pipeline",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 10.51
+    },
+    {
+      "name": "sink_service",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.21
+    },
+    {
+      "name": "am_routing",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 12.68
+    },
+    {
+      "name": "am_grouping",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 11.37
+    },
+    {
+      "name": "am_inhibit",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 11.46
+    },
+    {
+      "name": "am_silence",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 11.47
+    },
+    {
+      "name": "am_resolved",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 18.84
+    },
+    {
+      "name": "amtool_operator",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.43
+    },
+    {
+      "name": "operator_tools",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'runuser -l reed -c '\"'\"'htpasswd -nbB pine x; htpasswd -nbm pine x'\"'\"'' exited 127:\n-bash: line 1: htpasswd: command not found\n-bash: line 1: htpasswd: command not found\n",
+      "origin": "recipe",
+      "seconds": 0.95
+    },
+    {
+      "name": "blackbox_modules",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.35
+    },
+    {
+      "name": "probe_series",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.08
+    },
+    {
+      "name": "node_collectors",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.09
+    },
+    {
+      "name": "persistent_storage",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.3
+    },
+    {
+      "name": "rules_glob",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.2
+    },
+    {
+      "name": "sd_drop",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.06
+    },
+    {
+      "name": "textfile_timer",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.29
+    },
+    {
+      "name": "icmp_probe",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.14
+    }
+  ]
+}

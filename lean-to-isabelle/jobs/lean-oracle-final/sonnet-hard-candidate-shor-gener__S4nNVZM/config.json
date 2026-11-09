@@ -1,0 +1,9 @@
+{
+    "task": {
+        "path": "lean-to-isabelle/sonnet-hard-candidate-shor-general",
+        "source": "lean-to-isabelle"
+    },
+    "trial_name": "sonnet-hard-candidate-shor-gener__S4nNVZM",
+    "trials_dir": "jobs/lean-oracle-final",
+    "job_id": "78200380-6d36-41a0-be1c-5651b0e81a2a"
+}

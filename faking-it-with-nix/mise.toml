@@ -1,0 +1,32 @@
+# Replica tasks take the Harbor task id: mise run prepare node17-reconstruction-hard
+[tasks.prepare]
+description = "Provision reference if changed, bake images, start shared builder, seed its store"
+run = "bash author/prepare.sh"
+
+[tasks.check-builder]
+description = "Check builder sandboxing and cache reuse using two tiny builds"
+run = "bash author/check-builder.sh"
+
+[tasks.check-tools]
+description = "Verify fast checker rejects syntax, option, type and IFD errors"
+run = "bash author/check-tools.sh"
+
+[tasks.check-oracle]
+description = "Parse and evaluate the oracle module without building or booting"
+run = "bash author/check-oracle.sh"
+
+[tasks.build-oracle]
+description = "Build/cache oracle VM only, without running behavioral checks"
+run = "bash author/build-oracle.sh"
+
+[tasks.check-reference]
+description = "Author-time control: frozen reference must pass every verifier check (not run per trial)"
+run = "bash author/check-reference.sh"
+
+[tasks.trial-stats]
+description = "Horizon/cost/score summary of claude-code trials: mise run trial-stats jobs/<job>"
+run = "uv run author/trial-stats.py"
+
+[tasks.publish]
+description = "Publishable layout: GHCR images, per-trial builder sidecar, no external network (add --push to push+pin)"
+run = "bash author/publish.sh"

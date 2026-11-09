@@ -1,0 +1,11 @@
+{
+    "task": {
+        "path": "third-attempt/sympy-state-space"
+    },
+    "trial_name": "sympy-state-space__j7cvhaj",
+    "trials_dir": "jobs/sympy-nop-final2",
+    "agent": {
+        "name": "nop"
+    },
+    "job_id": "c2a2c876-bb66-4cdf-9b2f-5326624efbcf"
+}

@@ -1,0 +1,8 @@
+{
+    "job_name": "node41-pull-oracle",
+    "tasks": [
+        {
+            "path": "node41-reconstruction-easy"
+        }
+    ]
+}

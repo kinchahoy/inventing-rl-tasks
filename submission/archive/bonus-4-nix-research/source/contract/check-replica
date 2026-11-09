@@ -1,0 +1,17 @@
+#!/bin/bash
+# Syntax and full VM derivation evaluation only; never build or boot a VM.
+set -euo pipefail
+SYNTAX_ONLY=0
+if [ "${1:-}" = --syntax-only ]; then SYNTAX_ONLY=1; shift; fi
+source /opt/contract/eval-options.sh
+COUNT=0
+while IFS= read -r -d '' file; do
+    echo "Parsing $file" >&2
+    nix-instantiate --parse "$file" >/dev/null
+    COUNT=$((COUNT + 1))
+done < <(find "$SUBMISSION" -type f -name '*.nix' -not -path '*/.git/*' -print0)
+echo "Syntax passed: $COUNT Nix files." >&2
+if [ "$SYNTAX_ONLY" = 1 ]; then exit 0; fi
+nix eval --json --option allow-import-from-derivation false "${EVAL_OPTIONS[@]}" \
+    drvPath
+echo 'Configuration evaluation passed. No build or VM boot was performed.' >&2

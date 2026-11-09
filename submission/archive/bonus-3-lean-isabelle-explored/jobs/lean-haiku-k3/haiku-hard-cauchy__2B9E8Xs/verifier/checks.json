@@ -1,0 +1,17 @@
+{
+  "reward": 0.0,
+  "checks": {
+    "theory_header": true,
+    "imports_allowed": true,
+    "imports": "Group_Axioms",
+    "no_forbidden_tokens": true,
+    "forbidden_found": "",
+    "theorems_present": true,
+    "theorems_missing": "",
+    "line_count": "767",
+    "within_line_limit": false,
+    "structured_isar_proof": true,
+    "isabelle_build_and_check": true,
+    "build_log": "Running Verify ...\nFinished Verify (0:00:03 elapsed time)\n0:00:07 elapsed time\n"
+  }
+}

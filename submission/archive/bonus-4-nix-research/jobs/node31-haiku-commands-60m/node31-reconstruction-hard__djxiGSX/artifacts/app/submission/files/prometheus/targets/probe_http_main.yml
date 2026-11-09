@@ -1,0 +1,2 @@
+- targets: ['http://127.0.0.1:19190/received', 'https://127.0.0.1/healthz']
+  labels: {cluster: lab}

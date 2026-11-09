@@ -1,0 +1,15 @@
+[project]
+name = "accel-env"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "accel-sdk-devel>=7.14.0a20260523",
+    "accel-sdk-device-gfx906>=7.14.0a20260523",
+    "accel[devel,device-gfx906,libraries]",
+    "torch>=2.12",
+]
+
+[[tool.uv.index]]
+name = "accel-multi-arch"
+url = "https://packages.lab.invalid/whl-multi-arch/"
+explicit = true

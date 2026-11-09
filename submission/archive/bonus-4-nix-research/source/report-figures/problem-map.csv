@@ -1,0 +1,26 @@
+group,attack,item,what_happened,found_by,fix_or_lesson
+verifier,all,21 verifier fixes,"too strict 9, fail-open 4, env/timing parity 4, harness/oracle bug 4, calibration 2, unstated requirement 2, short inputs 1","controls 9, LLM audit 8, model runs 2, re-grade 1, inspection 3",full table: author/verifier-fixes-all-attacks.md
+verifier,nix,node17 readiness,checks started at multi-user.target while httpd was still starting; credited a web server that never finished starting,"trajectory review, then re-grade",wait for empty systemctl list-jobs; 0.66 -> 0.43
+verifier,nix,fail-open denials,nop passed isolation checks because a missing service also 'denies',nop control,every denial check also asserts the allowed path
+verifier,nix,"literal paths (/bin/false, /usr/bin/id)",Ubuntu paths that NixOS lacks made checks too strict or fail-open,LLM audit,accept equivalents; deny with a command that exists
+task framing,nix,graded scope unclear (commands),agents skipped operator CLIs; prompt didn't say commands count,Haiku runs + ablation,added 'the commands people are likely to use for this machine's job' sentence to all prompts
+task framing,nix,qemu-vm fileSystems trap,NixOS qemu-vm module replaces fileSystems; extra mounts vanished,controls (node41),prompt states virtualisation.fileSystems
+task framing,nix,spec not in instruction,harbor check flags behavior_in_task_description on every task,harbor check,by design: the reference VM is the spec; defend in report
+task framing,lean,hidden 4-step gate,verifier required >= 4 Isar steps; prompt didn't say,review,prompt states the gate
+task framing,python,Lark scope sentence,prompt says forest ops are in scope; only Lark.parse is timed,review,"recorded, not fixed (all trials ran with it)"
+task framing,lean,answer key shipped,harbor check flagged the Lean proof given as reference,harbor check,paper-PDF variant
+difficulty surprise,nix,node23 solved,Haiku 1.0 on the DNS box: a few config files plus file-level settings are copyable,final k=3,kept as the bonus solved example
+difficulty surprise,nix,node41 easy,0.94 in 5 min,calibration,easy control
+difficulty surprise,nix,more time doesn't help,"120-min node17: +0.03, stopped at 47 min",ablation,"headroom is process, not budget"
+difficulty surprise,nix,"agents stop early, claiming parity",every trial stopped at 15-35 of 60 min; 2 of 9 cited a false sense of time,trajectory review,the skill to train: verify before claiming done
+difficulty surprise,nix,"nudges fix attention, not mental models",'compare systematically' fixed a timer miss; amtool config survived every nudge and Sonnet,ablations,mental-model gaps are the best training targets
+difficulty surprise,nix,"Sonnet better, differently","Sonnet read more carefully, never booted its build; Haiku tested more, read less",n=1 comparisons,complementary failure modes
+difficulty surprise,lean,"budget binds, bans don't",allowing metis didn't create passes; looser caps and 60 min did,k=3 at two cap settings,"tighten budgets, not tactic bans"
+difficulty surprise,python,correct but never faster,"Haiku always correct, never beat the single-core gate",k=3,multi-dimensional bars create headroom
+harness / infra,nix,build parity,solving image built as root; verifier with build users -> a 0.0 that wasn't the agent's fault,model run,nixbld users in the solving image + probe
+harness / infra,nix,harbor check download error,check_report.json empty (DownloadVerifierDirError),harbor check,verdicts read from the check agent's trajectory
+harness / infra,python,timing contamination,parallel runs and a host reboot corrupted timings; a setup timeout looked like a fail,"oracle runs, inspection","quiet dedicated host, sequential runs, exclude harness exceptions"
+harness / infra,lean,host crash,timing host crashed under load; lost Lean rounds 2-3,run monitoring,"report 1 round, not pass@3"
+harness / infra,all,model routing,non-Haiku models must use OpenRouter; wrong base URL sends keys to the wrong place,run setup,verify Harbor's credentials line and the in-container env before the agent starts
+harness / infra,nix,packaging,registries default to private; per-package visibility toggles,publish,Docker Hub + visibility API; pin images by digest
+harness / infra,nix,self-matching waiter,a queued run waited forever because its own command matched its pgrep,noticed overnight,"wait on job state, not process names"

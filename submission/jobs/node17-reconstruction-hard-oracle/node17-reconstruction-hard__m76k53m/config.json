@@ -1,0 +1,8 @@
+{
+    "task": {
+        "path": "node17-reconstruction-hard"
+    },
+    "trial_name": "node17-reconstruction-hard__m76k53m",
+    "trials_dir": "final/jobs/node17-reconstruction-hard-oracle",
+    "job_id": "36fe6a4c-bda7-4935-a786-c077db207e17"
+}

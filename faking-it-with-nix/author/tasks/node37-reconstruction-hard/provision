@@ -1,0 +1,81 @@
+#!/bin/bash
+# Ubuntu 22.04 + CINC reference. Interface: see author/tasks/README.md.
+set -euo pipefail
+: "${RECIPE:?}" "${OUT:?}"
+WORK=$OUT/work
+CREDS=$OUT/creds
+mkdir -p "$WORK" "$CREDS" "$OUT/reference"
+if [ ! -f "$CREDS/id_ed25519" ]; then
+    ssh-keygen -q -t ed25519 -N '' -f "$CREDS/id_ed25519"
+fi
+# Docker build contexts are read as the host user: hand fixture credentials back to the owner of /work.
+chown -R "$(stat -c %u:%g /work)" "$CREDS" "$OUT"
+# The existing, hashed Jammy download is shared with the easy task.
+if [ ! -f /work/.cache/jammy.img ]; then
+    curl -fL --retry 0 https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img -o /work/.cache/jammy.img.part
+    mv /work/.cache/jammy.img.part /work/.cache/jammy.img
+fi
+python3 "$RECIPE/make-seed.py" "$WORK/user-data" "$CREDS"
+printf 'instance-id: node37-build\nlocal-hostname: node37\n' > "$WORK/meta-data"
+# Everything the guest receives: cloud-init data and the base image.
+DIGEST=$(cat "$WORK/user-data" "$WORK/meta-data" <(sha256sum < /work/.cache/jammy.img) | sha256sum | cut -d' ' -f1)
+if [ -f "$OUT/reference/base.qcow2" ] && [ "$(cat "$WORK/input-digest" 2>/dev/null || true)" = "$DIGEST" ]; then
+    echo 'Reference inputs unchanged; reusing frozen disk.'
+    exit 0
+fi
+cloud-localds "$WORK/seed.iso" "$WORK/user-data" "$WORK/meta-data"
+if [ "${RESUME:-0}" != 1 ]; then
+    cp --reflink=auto /work/.cache/jammy.img "$WORK/building.qcow2"
+    qemu-img resize "$WORK/building.qcow2" 12G
+fi
+qemu-system-x86_64 -accel kvm -cpu host -smp 2 -m 3072 -display none -serial "file:$WORK/serial.log" \
+    -drive "file=$WORK/building.qcow2,if=virtio,format=qcow2" -drive "file=$WORK/seed.iso,if=virtio,format=raw,readonly=on" \
+    -netdev user,id=n,hostfwd=tcp:127.0.0.1:2222-:22 -device virtio-net-pci,netdev=n -pidfile "$WORK/qemu.pid" -daemonize
+cleanup() { if [ -f "$WORK/qemu.pid" ]; then kill "$(cat "$WORK/qemu.pid")" 2>/dev/null || true; fi; }
+trap cleanup EXIT
+SSH=(ssh -i "$CREDS/id_ed25519" -p 2222 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -o ConnectTimeout=3 root@127.0.0.1)
+if [ "${RESUME:-0}" = 1 ]; then
+    for i in $(seq 1 120); do
+        if "${SSH[@]}" true 2>/dev/null; then break; fi
+        sleep 1
+    done
+    "${SSH[@]}" 'cloud-init status --wait' || true
+    "${SSH[@]}" 'cat > /tmp/archive-seed.json' < "$WORK/user-data"
+    "${SSH[@]}" python3 - < /work/author/apply-seed.py
+    if ! "${SSH[@]}" bash /usr/local/sbin/setup-host; then
+        "${SSH[@]}" 'cat /var/log/host-setup.log; journalctl --no-pager -n 600 | grep -iE "nsd|exception|error|fatal|unknown|invalid|parse|cannot|refus" | cut -c1-300 | tail -40; sync'
+        exit 1
+    fi
+fi
+end=$((SECONDS + 1800))
+while ! "${SSH[@]}" test -f /var/lib/host-ready 2>/dev/null; do
+    if [ "$SECONDS" -ge "$end" ]; then echo 'Provisioning exceeded 30 minutes; disk and log preserved.' >&2; exit 1; fi
+    if "${SSH[@]}" test -f /var/lib/host-failed 2>/dev/null; then "${SSH[@]}" 'cat /var/log/host-setup.log; journalctl --no-pager -n 600 | grep -iE "nsd|exception|error|fatal|unknown|invalid|parse|cannot|refus" | cut -c1-300 | tail -40; sync'; exit 1; fi
+    sleep 5
+done
+"${SSH[@]}" cat /var/log/host-setup.log > "$WORK/convergence.log"
+# The kernel command line only changes on boot: reboot once and require the operator's parameters.
+"${SSH[@]}" 'sync; systemctl reboot' || true
+sleep 15
+for i in $(seq 1 120); do
+    if "${SSH[@]}" true 2>/dev/null; then break; fi
+    sleep 2
+done
+"${SSH[@]}" 'grep -q "intel_iommu=on iommu=pt pcie_aspm=off" /proc/cmdline && grep -q "crashkernel=" /proc/cmdline && ! grep -q "nomodeset" /proc/cmdline' \
+    || { echo 'Reference did not boot with the expected kernel command line.' >&2; exit 1; }
+"${SSH[@]}" 'dpkg-query -W' > "$WORK/packages.txt"
+# Remove bootstrap inputs, serialized cloud-init data and build logs from the
+# published guest. Operational configuration remains fully inspectable.
+"${SSH[@]}" 'rm -rf /opt/setup /var/lib/cloud/instances /var/lib/cloud/instance /var/cache/cinc.deb /tmp/archive-seed.json; rm -f /usr/local/sbin/setup-host /var/log/host-setup.log /var/log/cloud-init*.log; sync; systemctl poweroff' || true
+for i in $(seq 1 60); do [ ! -f "$WORK/qemu.pid" ] && break; sleep 1; done
+if [ -f "$WORK/qemu.pid" ]; then echo 'Guest did not shut down; refusing to freeze.' >&2; exit 1; fi
+trap - EXIT
+qemu-img convert -O qcow2 -c "$WORK/building.qcow2" "$OUT/reference/base.qcow2.tmp"
+mv "$OUT/reference/base.qcow2.tmp" "$OUT/reference/base.qcow2"
+printf '%s' "$DIGEST" > "$WORK/input-digest"
+python3 - "$OUT/reference/base.qcow2" "$DIGEST" "$RECIPE/reference-manifest.json" <<'PY'
+import hashlib, json, pathlib, sys
+p = pathlib.Path(sys.argv[1])
+# Public manifest deliberately excludes source identity. Full provenance is author-side.
+pathlib.Path(sys.argv[3]).write_text(json.dumps({'host': 'node37', 'inputs_sha256': sys.argv[2], 'image_sha256': hashlib.file_digest(p.open('rb'), 'sha256').hexdigest()}, indent=2) + '\n')
+PY

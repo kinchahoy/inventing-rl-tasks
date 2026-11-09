@@ -1,0 +1,18 @@
+{
+    "job_name": "lark-earley-haiku-k3-replacement",
+    "n_concurrent_trials": 1,
+    "agents": [
+        {
+            "name": "claude-code",
+            "model_name": "claude-haiku-5-5",
+            "kwargs": {
+                "reasoning_effort": "high"
+            }
+        }
+    ],
+    "tasks": [
+        {
+            "path": "third-attempt/lark-earley"
+        }
+    ]
+}

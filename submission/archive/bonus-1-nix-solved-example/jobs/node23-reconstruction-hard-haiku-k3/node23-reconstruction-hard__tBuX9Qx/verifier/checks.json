@@ -1,0 +1,165 @@
+{
+  "reward": 1.0,
+  "seconds": {
+    "build": 236.53,
+    "boot": 17.89
+  },
+  "checks": [
+    {
+      "name": "host_identity",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.08
+    },
+    {
+      "name": "accounts",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.38
+    },
+    {
+      "name": "sudo_policy",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.65
+    },
+    {
+      "name": "listeners",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.13
+    },
+    {
+      "name": "forwarded_answers",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.0
+    },
+    {
+      "name": "record_types",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.0
+    },
+    {
+      "name": "nxdomain_negative",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.0
+    },
+    {
+      "name": "internal_auth_zone",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.0
+    },
+    {
+      "name": "extra_hosts",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.0
+    },
+    {
+      "name": "any_chaos_refused",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.0
+    },
+    {
+      "name": "sinkhole",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.0
+    },
+    {
+      "name": "tcp_truncation",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.01
+    },
+    {
+      "name": "dot_service",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.01
+    },
+    {
+      "name": "acl_inside",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 4.24
+    },
+    {
+      "name": "recursor_version_string",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.17
+    },
+    {
+      "name": "positive_ttl_cap",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.0
+    },
+    {
+      "name": "wildcard_and_cname",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.0
+    },
+    {
+      "name": "dnsdist_cache",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.18
+    },
+    {
+      "name": "monitoring_api",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.28
+    },
+    {
+      "name": "nsd_identity_xfr",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.17
+    },
+    {
+      "name": "zone_content",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.14
+    },
+    {
+      "name": "persistent_storage",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.25
+    },
+    {
+      "name": "negative_ttl_override",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.0
+    },
+    {
+      "name": "local_resolver",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.24
+    },
+    {
+      "name": "socket_tuning",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.18
+    },
+    {
+      "name": "nsd_secondary",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.2
+    }
+  ]
+}

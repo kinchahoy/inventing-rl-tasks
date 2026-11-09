@@ -1,0 +1,119 @@
+{
+  "reward": 0.8888888888888888,
+  "seconds": {
+    "build": 239.42,
+    "boot": 17.97
+  },
+  "checks": [
+    {
+      "name": "host_identity",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.18
+    },
+    {
+      "name": "accounts",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.08
+    },
+    {
+      "name": "kernel_cmdline",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.04
+    },
+    {
+      "name": "module_policy",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.31
+    },
+    {
+      "name": "lockup_sysctl",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.11
+    },
+    {
+      "name": "sleep_policy",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.45
+    },
+    {
+      "name": "sleep_cleanup",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 37.89
+    },
+    {
+      "name": "accel_setup",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.1
+    },
+    {
+      "name": "idle_monitor",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.45
+    },
+    {
+      "name": "infer_unit",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.33
+    },
+    {
+      "name": "tool_env",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'stat -c %U /home/ember/accel-env/pyproject.toml; runuser -u ember -- bash -c '\"'\"'source ~/accel-env/env/activate.sh && echo \"$ACCEL_HOME|$ACCEL_PLATFORM|$ACCEL_ARCH|$BLAS_BACKEND_LT|${PATH%%:*}|${LD_LIBRARY_PATH%%:*}\"'\"'\"'; runuser -l ember -c accel-smi' exited 127:\nember\n/home/ember/accel-env/.venv/lib/python3/site-packages/_accel_sdk_devel|amd|gfx906|0|/home/ember/accel-env/.venv/lib/python3/site-packages/_accel_sdk_devel/bin|/home/ember/accel-env/.venv/lib/python3/site-packages/_accel_sdk_devel/lib\n-bash: line 1: accel-smi: command not found\n",
+      "origin": "recipe",
+      "seconds": 0.21
+    },
+    {
+      "name": "metrics_agent",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.28
+    },
+    {
+      "name": "operator_sudo",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.17
+    },
+    {
+      "name": "udev_i2c",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.23
+    },
+    {
+      "name": "cmdline_decoy",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.04
+    },
+    {
+      "name": "sysctl_decoy",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.04
+    },
+    {
+      "name": "sysstat_timer",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.06
+    },
+    {
+      "name": "etc_environment",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'printenv ACCEL_VISIBLE_DEVICES OMP_NUM_THREADS' exited 1:\n",
+      "origin": "complexifier",
+      "seconds": 0.04
+    }
+  ]
+}

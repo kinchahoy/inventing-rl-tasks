@@ -1,0 +1,14 @@
+{
+    "job_name": "node37-reconstruction-hard-nop",
+    "jobs_dir": "final/jobs",
+    "agents": [
+        {
+            "name": "nop"
+        }
+    ],
+    "tasks": [
+        {
+            "path": "node37-reconstruction-hard"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "task": {
+        "path": "/tmp/tmp.S8shPscPEN/node31-reconstruction-hard"
+    },
+    "trial_name": "node31-reconstruction-hard__V47Deg5",
+    "trials_dir": "jobs/node31-haiku-downscope-30m",
+    "agent_timeout_multiplier": 0.5,
+    "agent": {
+        "name": "claude-code",
+        "model_name": "anthropic/claude-haiku-5-5",
+        "kwargs": {
+            "reasoning_effort": "high"
+        }
+    },
+    "job_id": "34febf68-4916-4ed1-b1dc-cefb14a9b0ee"
+}

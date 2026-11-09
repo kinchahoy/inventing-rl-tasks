@@ -1,0 +1,173 @@
+{
+  "reward": 0.9259259259259259,
+  "seconds": {
+    "build": 368.53,
+    "boot": 18.17
+  },
+  "checks": [
+    {
+      "name": "host_identity",
+      "passed": false,
+      "detail": "['127.0.0.1       STREAM node31', '127.0.0.1       DGRAM  ', '127.0.0.1       RAW    ', '127.0.0.2       STREAM ', '127.0.0.2       DGRAM  ', '127.0.0.2       RAW    ']",
+      "origin": "recipe",
+      "seconds": 0.1
+    },
+    {
+      "name": "accounts",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.14
+    },
+    {
+      "name": "listeners",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.2
+    },
+    {
+      "name": "tls_and_redirect",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.03
+    },
+    {
+      "name": "proxy_auth",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.1
+    },
+    {
+      "name": "proxy_apis",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.06
+    },
+    {
+      "name": "prom_flags",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.22
+    },
+    {
+      "name": "prom_targets",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 8.79
+    },
+    {
+      "name": "prom_rules",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.08
+    },
+    {
+      "name": "recording_rules",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 2.53
+    },
+    {
+      "name": "alert_pipeline",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 10.53
+    },
+    {
+      "name": "sink_service",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.28
+    },
+    {
+      "name": "am_routing",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 12.77
+    },
+    {
+      "name": "am_grouping",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 11.45
+    },
+    {
+      "name": "am_inhibit",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 11.65
+    },
+    {
+      "name": "am_silence",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 11.57
+    },
+    {
+      "name": "am_resolved",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 18.97
+    },
+    {
+      "name": "amtool_operator",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'runuser -u reed -- sh -c '\"'\"'amtool alert query -o json'\"'\"'' exited 1:\namtool: error: required flag --alertmanager.url not provided\n",
+      "origin": "recipe",
+      "seconds": 0.48
+    },
+    {
+      "name": "operator_tools",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 1.96
+    },
+    {
+      "name": "blackbox_modules",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.44
+    },
+    {
+      "name": "probe_series",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.08
+    },
+    {
+      "name": "node_collectors",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.09
+    },
+    {
+      "name": "persistent_storage",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.35
+    },
+    {
+      "name": "rules_glob",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.21
+    },
+    {
+      "name": "sd_drop",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.08
+    },
+    {
+      "name": "textfile_timer",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.36
+    },
+    {
+      "name": "icmp_probe",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.18
+    }
+  ]
+}

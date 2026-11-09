@@ -1,0 +1,13 @@
+check,opus_v2,haiku_v2_timed_passes_of_3,haiku_no_clock,sonnet_30m_older_verifier,opus_wrong_haiku_right,note
+postgis,F,3,P,F,yes (clean),Opus worked on it (50 mentions) but ST_Point(0,0) fails: extension/types not set up in the tenant DB
+cgi_identity,F,0,P,F,only vs no-clock,CGI runs as www-data instead of the tenant (looked at suexec 31x)
+login_limits,F,0,P,P,only vs no-clock,never looked at limits.d / ulimit (0 mentions)
+log_rotation,F,0,P,P,only vs no-clock,never looked at logrotate (0 mentions)
+slice_limits,F,0,F,F,no,all models miss
+postgres_isolation,F,0,F,P,no,Sonnet only
+db_role_limits,F,0,F,–,no,all models miss
+sudo_log_policy,P,3,P,P,—,Opus right; Haiku v1 trials 0/3
+php_identity / php_pool_limits / php_* (6),P,2,P,P,—,Opus right on all PHP checks; Haiku 2/3
+wsgi_identity,P,2,P,F,—,
+sudo_decoy,P,2,P,P,—,
+loopback_services,P,2,P,P,—,

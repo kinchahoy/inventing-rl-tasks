@@ -1,0 +1,17 @@
+{
+    "task": {
+        "path": "/tmp/tmp.0NL0VONyFC/node17-reconstruction-hard"
+    },
+    "trial_name": "node17-reconstruction-hard__CHLNamF",
+    "trials_dir": "jobs/node17-sonnet-or-30m",
+    "agent_timeout_multiplier": 0.5,
+    "agent": {
+        "name": "claude-code",
+        "model_name": "openrouter/anthropic/claude-sonnet-5.5",
+        "base_url": "https://openrouter.ai/api",
+        "kwargs": {
+            "reasoning_effort": "high"
+        }
+    },
+    "job_id": "f59d8d2c-d72e-4893-b1b4-5709af50ae6f"
+}

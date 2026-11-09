@@ -1,0 +1,7 @@
+python3
+curl
+sysstat
+iproute2
+util-linux
+gawk
+kmod

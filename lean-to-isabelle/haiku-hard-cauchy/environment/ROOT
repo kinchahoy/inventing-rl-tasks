@@ -1,0 +1,5 @@
+session Submission = HOL +
+  options [quick_and_dirty = false]
+  theories
+    Group_Axioms
+    Cauchy

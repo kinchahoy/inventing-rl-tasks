@@ -1,0 +1,119 @@
+{
+  "reward": 0.8888888888888888,
+  "seconds": {
+    "build": 225.79,
+    "boot": 15.01
+  },
+  "checks": [
+    {
+      "name": "host_identity",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.22
+    },
+    {
+      "name": "accounts",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.08
+    },
+    {
+      "name": "kernel_cmdline",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.04
+    },
+    {
+      "name": "module_policy",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.3
+    },
+    {
+      "name": "lockup_sysctl",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.12
+    },
+    {
+      "name": "sleep_policy",
+      "passed": false,
+      "detail": "['masked', 'masked', 'masked', 'linked']",
+      "origin": "recipe",
+      "seconds": 0.16
+    },
+    {
+      "name": "sleep_cleanup",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 41.81
+    },
+    {
+      "name": "accel_setup",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.1
+    },
+    {
+      "name": "idle_monitor",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.43
+    },
+    {
+      "name": "infer_unit",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.38
+    },
+    {
+      "name": "tool_env",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'stat -c %U /home/ember/accel-env/pyproject.toml; runuser -u ember -- bash -c '\"'\"'source ~/accel-env/env/activate.sh && echo \"$ACCEL_HOME|$ACCEL_PLATFORM|$ACCEL_ARCH|$BLAS_BACKEND_LT|${PATH%%:*}|${LD_LIBRARY_PATH%%:*}\"'\"'\"'; runuser -l ember -c accel-smi' exited 127:\nember\n/home/ember/accel-env/.venv/lib/python3/site-packages/_accel_sdk_devel|amd|gfx906|0|/home/ember/accel-env/.venv/lib/python3/site-packages/_accel_sdk_devel/bin|/home/ember/accel-env/.venv/lib/python3/site-packages/_accel_sdk_devel/lib\n-bash: line 1: accel-smi: command not found\n",
+      "origin": "recipe",
+      "seconds": 0.24
+    },
+    {
+      "name": "metrics_agent",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.33
+    },
+    {
+      "name": "operator_sudo",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.23
+    },
+    {
+      "name": "udev_i2c",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.31
+    },
+    {
+      "name": "cmdline_decoy",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.04
+    },
+    {
+      "name": "sysctl_decoy",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.07
+    },
+    {
+      "name": "sysstat_timer",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.08
+    },
+    {
+      "name": "etc_environment",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.25
+    }
+  ]
+}

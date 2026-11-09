@@ -1,0 +1,226 @@
+{
+  "reward": 0.8,
+  "seconds": {
+    "build": 823.35,
+    "boot": 37.34
+  },
+  "checks": [
+    {
+      "name": "host_resolution",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.19
+    },
+    {
+      "name": "accounts",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.13
+    },
+    {
+      "name": "filesystem_ownership",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.1
+    },
+    {
+      "name": "private_isolation",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.41
+    },
+    {
+      "name": "sudo_log_policy",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.74
+    },
+    {
+      "name": "slice_limits",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'python3 -c '\"'\"'import os,pwd,subprocess; uid=pwd.getpwnam('\"'\"'\"'\"'\"'\"'\"'\"'amber'\"'\"'\"'\"'\"'\"'\"'\"').pw_uid; unit=f'\"'\"'\"'\"'\"'\"'\"'\"'user-{uid}.slice'\"'\"'\"'\"'\"'\"'\"'\"'; subprocess.run(['\"'\"'\"'\"'\"'\"'\"'\"'systemctl'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'start'\"'\"'\"'\"'\"'\"'\"'\"',unit],check=True); total=os.sysconf('\"'\"'\"'\"'\"'\"'\"'\"'SC_PHYS_PAGES'\"'\"'\"'\"'\"'\"'\"'\"')*os.sysconf('\"'\"'\"'\"'\"'\"'\"'\"'SC_PAGE_SIZE'\"'\"'\"'\"'\"'\"'\"'\"');\nfor prop,ratio in [('\"'\"'\"'\"'\"'\"'\"'\"'MemoryHigh'\"'\"'\"'\"'\"'\"'\"'\"',.8),('\"'\"'\"'\"'\"'\"'\"'\"'MemoryMax'\"'\"'\"'\"'\"'\"'\"'\"',.9)]:\n value=int(subprocess.check_output(['\"'\"'\"'\"'\"'\"'\"'\"'systemctl'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'show'\"'\"'\"'\"'\"'\"'\"'\"',unit,'\"'\"'\"'\"'\"'\"'\"'\"'--property='\"'\"'\"'\"'\"'\"'\"'\"'+prop,'\"'\"'\"'\"'\"'\"'\"'\"'--value'\"'\"'\"'\"'\"'\"'\"'\"'])); assert abs(value/total-ratio)<.01,(prop,value,total)'\"'\"'' exited 1:\nTraceback (most recent call last):\n  File \"<string>\", line 3, in <module>\n    value=int(subprocess.check_output(['systemctl','show',unit,'--property='+prop,'--value'])); assert abs(value/total-ratio)<.01,(prop,value,total)\nValueError: invalid literal for int() with base 10: b'infinity\\n'\n",
+      "origin": "recipe",
+      "seconds": 0.27
+    },
+    {
+      "name": "postgres_peer",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.22
+    },
+    {
+      "name": "postgres_password",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.33
+    },
+    {
+      "name": "postgres_isolation",
+      "passed": false,
+      "detail": "cross-database connect",
+      "origin": "recipe",
+      "seconds": 0.22
+    },
+    {
+      "name": "postgis",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'runuser -u amber -- sh -c '\"'\"'psql -X -d amber -tAc \"SELECT ST_Distance(ST_Point(0,0),ST_Point(3,4))\"'\"'\"'' exited 1:\nERROR:  function st_point(integer, integer) does not exist\nLINE 1: SELECT ST_Distance(ST_Point(0,0),ST_Point(3,4))\n                           ^\nHINT:  No function matches the given name and argument types. You might need to add explicit type casts.\n",
+      "origin": "recipe",
+      "seconds": 0.11
+    },
+    {
+      "name": "mysql_root_socket",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.09
+    },
+    {
+      "name": "mysql_password",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.31
+    },
+    {
+      "name": "mysql_isolation",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.32
+    },
+    {
+      "name": "cache_protocol",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.16
+    },
+    {
+      "name": "loopback_services",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.23
+    },
+    {
+      "name": "server_tuning",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.29
+    },
+    {
+      "name": "userdir_redirect",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.03
+    },
+    {
+      "name": "tls_aliases",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.05
+    },
+    {
+      "name": "http_redirects",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.04
+    },
+    {
+      "name": "static_range",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.11
+    },
+    {
+      "name": "php_identity",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.25
+    },
+    {
+      "name": "php_environment",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.21
+    },
+    {
+      "name": "php_open_basedir",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.24
+    },
+    {
+      "name": "php_pool_limits",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.22
+    },
+    {
+      "name": "php_postgres",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.23
+    },
+    {
+      "name": "php_mysql",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.24
+    },
+    {
+      "name": "cgi_identity",
+      "passed": false,
+      "detail": "(200, b'www-data\\n')",
+      "origin": "recipe",
+      "seconds": 0.18
+    },
+    {
+      "name": "wsgi_identity",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.38
+    },
+    {
+      "name": "proxy_header",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.11
+    },
+    {
+      "name": "htaccess_and_symlinks",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.44
+    },
+    {
+      "name": "persistent_storage",
+      "passed": true,
+      "origin": "recipe",
+      "seconds": 0.4
+    },
+    {
+      "name": "sudo_decoy",
+      "passed": true,
+      "origin": "complexifier",
+      "seconds": 0.07
+    },
+    {
+      "name": "login_limits",
+      "passed": false,
+      "detail": "('amber', [b'11765', b'524288'])",
+      "origin": "complexifier",
+      "seconds": 0.1
+    },
+    {
+      "name": "log_rotation",
+      "passed": false,
+      "detail": "Command /opt/runtime/guest 'python3 -c '\"'\"'import grp,re,subprocess\nshow=subprocess.run(['\"'\"'\"'\"'\"'\"'\"'\"'systemctl'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'show'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'logrotate.service'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'-p'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'ExecStart'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'--value'\"'\"'\"'\"'\"'\"'\"'\"'],capture_output=True,text=True,check=True).stdout\nargv=re.search(r'\"'\"'\"'\"'\"'\"'\"'\"'argv\\[\\]=([^;]+)'\"'\"'\"'\"'\"'\"'\"'\"',show).group(1).split()\nout=subprocess.run([argv[0],'\"'\"'\"'\"'\"'\"'\"'\"'-d'\"'\"'\"'\"'\"'\"'\"'\"','\"'\"'\"'\"'\"'\"'\"'\"'-f'\"'\"'\"'\"'\"'\"'\"'\"',*argv[1:]],capture_output=True,text=True)\nout=out.stdout+out.stderr; adm=grp.getgrnam('\"'\"'\"'\"'\"'\"'\"'\"'adm'\"'\"'\"'\"'\"'\"'\"'\"').gr_gid; log='\"'\"'\"'\"'\"'\"'\"'\"'/var/log/web/amber-access.log'\"'\"'\"'\"'\"'\"'\"'\"'\nassert f'\"'\"'\"'\"'\"'\"'\"'\"'rotating log {log}, log->rotateCount is 14'\"'\"'\"'\"'\"'\"'\"'\"' in out,out[-1500:]\n# Either recreate as root:adm 0640 and reopen logs, or copytruncate (same file, perms kept).\nrecreate=f'\"'\"'\"'\"'\"'\"'\"'\"'creating new {log} mode = 0640 uid = 0 gid = {adm}'\"'\"'\"'\"'\"'\"'\"'\"' in out and '\"'\"'\"'\"'\"'\"'\"'\"'running postrotate script'\"'\"'\"'\"'\"'\"'\"'\"' in out\nassert recreate or '\"'\"'\"'\"'\"'\"'\"'\"'copying'\"'\"'\"'\"'\"'\"'\"'\"' in out and '\"'\"'\"'\"'\"'\"'\"'\"'truncating'\"'\"'\"'\"'\"'\"'\"'\"' in out,out[-1500:]'\"'\"'' exited 1:\nTraceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    assert f'rotating log {log}, log->rotateCount is 14' in out,out[-1500:]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: warning: logrotate in debug mode does nothing except printing debug messages!  Consider using verbose mode (-v) instead if this is not what you want.\n\nreading config file /nix/store/k7zwkhlf9warkn7kdhagq0z69kc48y2i-logrotate.conf\nnote: 'monthly' overrides previously specified 'weekly'\nReading state from file: /var/lib/logrotate.status\nstate file /var/lib/logrotate.status does not exist\nAllocating hash table for state file, size 64 entries\n\nHandling 2 logs\n\nrotating pattern: \"/var/log/btmp\" forced from command line empty log files are not rotated, only log files >= 1048576 bytes are rotated, (1 rotations), old logs are removed\nconsidering log /var/log/btmp\nCreating new state\n  Now: 2026-11-04 08:58\n  Last rotated at 2026-11-04 08:00\n  log does not need rotating (log is empty)\n\nrotating pattern: \"/var/log/wtmp\" forced from command line empty log files are not rotated, only log files >= 1048576 bytes are rotated, (1 rotations), old logs are removed\nconsidering log /var/log/wtmp\nCreating new state\n  Now: 2026-11-04 08:58\n  Last rotated at 2026-11-04 08:00\n  log needs rotating\nrotating log /var/log/wtmp, log->rotateCount is 1\ndateext suffix '-20261104'\nglob pattern '-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'\nrenaming /var/log/wtmp.1 to /var/log/wtmp.2 (rotatecount 1, logstart 1, i 1), \nlog /var/log/wtmp.2 doesn't exist -- won't try to dispose of it\nrenaming /var/log/wtmp to /var/log/wtmp.1\ncreating new /var/log/wtmp mode = 0664 uid = 0 gid = 29\n\n",
+      "origin": "complexifier",
+      "seconds": 0.33
+    },
+    {
+      "name": "db_role_limits",
+      "passed": false,
+      "detail": "('amber', b'0')",
+      "origin": "complexifier",
+      "seconds": 0.2
+    }
+  ]
+}

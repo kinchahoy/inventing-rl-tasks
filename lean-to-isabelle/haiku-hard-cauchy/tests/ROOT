@@ -1,0 +1,7 @@
+session Verify = HOL +
+  options [quick_and_dirty = false, skip_proofs = false, timeout = 480]
+  theories
+    Group_Axioms
+    Canonical
+    Cauchy
+    Check

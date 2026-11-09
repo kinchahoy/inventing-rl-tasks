@@ -1,0 +1,35 @@
+global:
+  resolve_timeout: 20m
+route:
+  receiver: default
+  group_by: [alertname, cluster]
+  group_wait: 3s
+  group_interval: 5s
+  repeat_interval: 4h
+  routes:
+    - receiver: logger
+      continue: true
+      matchers: ['alertname=~".+"']
+    - receiver: watchdog
+      matchers: ['alertname="DeadMansSwitch"']
+      repeat_interval: 5m
+    - receiver: pager
+      matchers: ['severity="page"']
+    - receiver: ticket
+      matchers: ['severity="warning"']
+      repeat_interval: 72h
+inhibit_rules:
+  - source_matchers: ['severity="page"']
+    target_matchers: ['severity=~"warning|critical"']
+    equal: [instance]
+receivers:
+  - name: default
+    webhook_configs: [{url: 'http://127.0.0.1:19190/default', send_resolved: true}]
+  - name: logger
+    webhook_configs: [{url: 'http://127.0.0.1:19190/logger', send_resolved: true}]
+  - name: watchdog
+    webhook_configs: [{url: 'http://127.0.0.1:19190/watchdog', send_resolved: true}]
+  - name: pager
+    webhook_configs: [{url: 'http://127.0.0.1:19190/pager', send_resolved: true}]
+  - name: ticket
+    webhook_configs: [{url: 'http://127.0.0.1:19190/ticket', send_resolved: true}]

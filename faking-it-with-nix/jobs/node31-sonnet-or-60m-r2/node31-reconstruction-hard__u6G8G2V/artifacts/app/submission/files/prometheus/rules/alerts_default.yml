@@ -1,0 +1,17 @@
+groups:
+  - name: default_alerts
+    rules:
+      - alert: InstanceDown
+        expr: up == 0
+        for: 10s
+        labels: {severity: page, team: ops}
+        annotations: {summary: "{{ $labels.instance }} is down"}
+      - alert: ProbeFailed
+        expr: probe_success == 0
+        for: 30s
+        labels: {severity: warning, team: ops}
+        annotations: {summary: "probe of {{ $labels.instance }} failed"}
+      - alert: DeadMansSwitch
+        expr: vector(1)
+        labels: {severity: info, team: ops}
+        annotations: {summary: "pipeline watchdog"}
