@@ -5,7 +5,7 @@ _AI-drafted_ · map only; the per-family READMEs are unchanged.
 
 | Path | What |
 |---|---|
-| `submission/` | The submission as shipped (`samples/`, `jobs/`, `archive/`), minus the written report. `faking-it-with-nix/author/make-submission.sh --zip` rebuilds it from `author/submission-manifest.tsv`. |
+| `pack/` | The submission as shipped (`samples/`, `jobs/`, `archive/`), minus the written report. `faking-it-with-nix/author/make-pack.sh --zip` rebuilds it from `author/pack-manifest.tsv`. |
 | `faking-it-with-nix/` | Nix: reconstruct a running Ubuntu VM as a NixOS 26.05 module. Tasks node17/23/31/37 (+ node41 easy control), `author/` (recipes, Chef cookbooks, builder, verifier methods, timeline, real-host inventories), `ablations/`, `harbor-check/`, `backup/` (node29 draft), final job records. Start at its `README.md`. |
 | `python-shenanigans/` | Free-threaded Python speedup tasks (`series/third-attempt/`: lark-earley, sympy-state-space), the selection pipeline (`pipeline.md`) and job records. |
 | `lean-to-isabelle/` | Lean to Isabelle translation tasks, their generator (`quantum-src/gen.py`) and job records. |

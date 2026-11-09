@@ -1,6 +1,6 @@
 # Trajectory review (notes for the author; not report text)
 
-Sources: final/jobs/*-haiku-k3 (trajectory.json, verifier/checks.json, artifacts submissions), oracle replica.nix under node*/solution/submission/, author/missed-items.md. No keys copied. "Pass" = 1.0.
+Sources: runs/jobs/*-haiku-k3 (trajectory.json, verifier/checks.json, artifacts submissions), oracle replica.nix under node*/solution/submission/, author/missed-items.md. No keys copied. "Pass" = 1.0.
 
 ## 1. What the brief wants from trajectories
 - Headroom = pass@3 = 0 on the model under test; evidence is the 3 trials, so each failure must be examined.

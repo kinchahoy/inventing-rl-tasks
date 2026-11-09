@@ -117,8 +117,8 @@ Toolchain release/hash information is in `/opt/nix-release.txt`.
 
 - `mise run publish <task> [--push]` (`author/publish.sh`): publishable layout — images on Docker Hub (`REPLICA_REGISTRY=beginagain`, pinned by digest), a per-trial sandboxed builder sidecar with fixture keys (`author/fixtures/builder/`), no external network, the gateway `[environment.env]` block. Design and review: `author/packaging-plan.md`.
 - `mise run check-reference <task>` runs the reference control inside the verifier image the task pins.
-- `author/final-runs.sh <task>`: oracle, nop and the brief's `-k 3` Haiku run into `final/jobs/`.
-- `author/make-submission.sh [--zip]`: assembles `final/submission/` (samples, jobs, archive incl. a rebuild tree without `author/real/`, report placeholder).
+- `author/final-runs.sh <task>`: oracle, nop and the brief's `-k 3` Haiku run into `runs/jobs/`.
+- `author/make-pack.sh [--zip]`: assembles `runs/pack/` (samples, jobs, archive incl. a rebuild tree without `author/real/`, report placeholder).
 - Grader prerequisites: Linux x86-64, `/dev/kvm`, and Docker allowing the builder's `SYS_ADMIN` + unconfined seccomp/apparmor (needed for the Nix sandbox).
 
 ## Persistent builder and isolation

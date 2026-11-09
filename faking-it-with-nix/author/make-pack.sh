@@ -1,13 +1,13 @@
 #!/bin/bash
-# Build the zip layout from author/submission-manifest.tsv. Never deletes: the output dir must not exist.
-#   author/make-submission.sh            stage final/proposed/ as symlinks (review; no copies)
-#   author/make-submission.sh --copy     real copy into final/submission/ (dereferenced)
-#   author/make-submission.sh --zip      --copy, then final/submission.zip
+# Build the zip layout from author/pack-manifest.tsv. Never deletes: the output dir must not exist.
+#   author/make-pack.sh            stage runs/proposed/ as symlinks (review; no copies)
+#   author/make-pack.sh --copy     real copy into runs/pack/ (dereferenced)
+#   author/make-pack.sh --zip      --copy, then runs/pack.zip
 set -euo pipefail
 cd "$(dirname "$0")/.."
 ROOT=$(realpath ..)
 MODE=${1:-stage}
-case $MODE in stage) OUT=final/proposed ;; --copy | --zip) OUT=final/submission ;; *) echo "usage: $0 [--copy|--zip]" >&2; exit 2 ;; esac
+case $MODE in stage) OUT=runs/proposed ;; --copy | --zip) OUT=runs/pack ;; *) echo "usage: $0 [--copy|--zip]" >&2; exit 2 ;; esac
 [ ! -e "$OUT" ] || { echo "$OUT exists; move it aside first (this script never deletes)" >&2; exit 1; }
 IDENT='raistlin|inferencing\.net|mi50|nuc-?fileserver|nuc10|macbook|192\.168\.0\.(52|66|83)|tailscale|amd-clean|VR[-_](idle|gpu|llama)|coolercontrol|beszel'
 
@@ -31,7 +31,7 @@ while IFS=$'\t' read -r dest src label; do
         cp -rL "$ROOT/$src" "$OUT/$dest"
     fi
     [[ "$dest" == archive/* ]] && printf '| `%s` | %s |\n' "${dest#archive/}" "$label" >> "$index"
-done < author/submission-manifest.tsv
+done < author/pack-manifest.tsv
 printf 'Put the human-written report here (single file).\n' > "$OUT/report/PLACEHOLDER.txt"
 
 echo "--- samples: $(ls "$OUT/samples" | tr '\n' ' ')"
@@ -42,4 +42,4 @@ if [ "$MODE" != stage ]; then
     [ -z "$hits" ] || { echo "real-machine mentions (review):"; echo "$hits" | sed "s#^$OUT/#  #"; }
     [ "$pending" = 0 ] || { echo "refusing: $pending pending entries" >&2; exit 1; }
 fi
-if [ "$MODE" = --zip ]; then (cd "$OUT" && zip -qr ../submission.zip samples jobs archive report) && ls -la final/submission.zip; fi
+if [ "$MODE" = --zip ]; then (cd "$OUT" && zip -qr ../submission.zip samples jobs archive report) && ls -la runs/pack.zip; fi

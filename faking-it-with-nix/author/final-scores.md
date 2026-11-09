@@ -3,7 +3,7 @@
 Every score from the submission runs, including superseded ones. pass = reward 1.0; headroom = pass@3 = 0.
 Brief's command: `harbor run -p <task> -a claude-code -m claude-haiku-5-5 --ak reasoning_effort=high -k 3`.
 
-## Submitted runs (final/jobs)
+## Submitted runs (runs/jobs)
 
 | Task | Set | Verifier | Oracle | Nop | Haiku k=3 | pass@3 |
 |---|---|---|---|---|---|---|
@@ -12,7 +12,7 @@ Brief's command: `harbor run -p <task> -a claude-code -m claude-haiku-5-5 --ak r
 | node31 | samples | v1 | 1.0 | 0.0 | 0.93, 0.96, 0.96 | 0 |
 | node37 | samples | v1 | 1.0 | 0.0 | 0.89, 0.94, 0.89 | 0 |
 
-## Superseded: node17 v1 (unsettled boot) — final/superseded/node17-v1-boot-race
+## Superseded: node17 v1 (unsettled boot) — runs/superseded/node17-v1-boot-race
 
 v1 `Guest.ready()` returned as soon as `multi-user.target` was active, so checks could run while boot
 jobs were still in flight. Fix (v2): also wait until `systemctl list-jobs` is empty. node23/node31
@@ -31,10 +31,10 @@ every web check fails. A lenient-verifier bug, found by re-grading, not a flaky 
 | 6WDtNr9 | 0.71 | 0.71 | none |
 | aVqPFzU | 0.66 | 0.43 | -8 checks: php_environment, php_open_basedir, php_pool_limits, php_postgres, php_mysql, cgi_identity, wsgi_identity, proxy_header |
 | msYkvbq | 0.51 | 0.51 | none |
-| oracle | 1.0 | (re-run in final/jobs) | |
-| nop | 0.0 | (re-run in final/jobs) | |
+| oracle | 1.0 | (re-run in runs/jobs) | |
+| nop | 0.0 | (re-run in runs/jobs) | |
 
-Re-grades: final/regrade-v2/<trial>/ (author/regrade.sh: same submission, v2 verifier and builder
+Re-grades: runs/regrade-v2/<trial>/ (author/regrade.sh: same submission, v2 verifier and builder
 images by digest). The v2 reference check passed every check. v1 pass@3 was 0 and stays 0.
 
 ## Side runs (development jobs/, not submitted)

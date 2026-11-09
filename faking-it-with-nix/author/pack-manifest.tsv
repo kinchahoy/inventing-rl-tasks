@@ -10,21 +10,21 @@ samples/node31-reconstruction-hard	faking-it-with-nix/node31-reconstruction-hard
 samples/node37-reconstruction-hard	faking-it-with-nix/node37-reconstruction-hard	core (if final k=3 holds pass@3 = 0)
 #
 # ---- CORE: jobs/ = the three brief-mandated runs per retained task, exactly as Harbor wrote them ----
-jobs/node17-reconstruction-hard-oracle	faking-it-with-nix/final/jobs/node17-reconstruction-hard-oracle	verifier v2
-jobs/node17-reconstruction-hard-nop	faking-it-with-nix/final/jobs/node17-reconstruction-hard-nop	verifier v2
-jobs/node17-reconstruction-hard-haiku-k3	faking-it-with-nix/final/jobs/node17-reconstruction-hard-haiku-k3	verifier v2
-jobs/node31-reconstruction-hard-oracle	faking-it-with-nix/final/jobs/node31-reconstruction-hard-oracle
-jobs/node31-reconstruction-hard-nop	faking-it-with-nix/final/jobs/node31-reconstruction-hard-nop
-jobs/node31-reconstruction-hard-haiku-k3	faking-it-with-nix/final/jobs/node31-reconstruction-hard-haiku-k3
-jobs/node37-reconstruction-hard-oracle	faking-it-with-nix/final/jobs/node37-reconstruction-hard-oracle
-jobs/node37-reconstruction-hard-nop	faking-it-with-nix/final/jobs/node37-reconstruction-hard-nop
-jobs/node37-reconstruction-hard-haiku-k3	faking-it-with-nix/final/jobs/node37-reconstruction-hard-haiku-k3
+jobs/node17-reconstruction-hard-oracle	faking-it-with-nix/runs/jobs/node17-reconstruction-hard-oracle	verifier v2
+jobs/node17-reconstruction-hard-nop	faking-it-with-nix/runs/jobs/node17-reconstruction-hard-nop	verifier v2
+jobs/node17-reconstruction-hard-haiku-k3	faking-it-with-nix/runs/jobs/node17-reconstruction-hard-haiku-k3	verifier v2
+jobs/node31-reconstruction-hard-oracle	faking-it-with-nix/runs/jobs/node31-reconstruction-hard-oracle
+jobs/node31-reconstruction-hard-nop	faking-it-with-nix/runs/jobs/node31-reconstruction-hard-nop
+jobs/node31-reconstruction-hard-haiku-k3	faking-it-with-nix/runs/jobs/node31-reconstruction-hard-haiku-k3
+jobs/node37-reconstruction-hard-oracle	faking-it-with-nix/runs/jobs/node37-reconstruction-hard-oracle
+jobs/node37-reconstruction-hard-nop	faking-it-with-nix/runs/jobs/node37-reconstruction-hard-nop
+jobs/node37-reconstruction-hard-haiku-k3	faking-it-with-nix/runs/jobs/node37-reconstruction-hard-haiku-k3
 #
 # ---- BONUS 1: a solved Nix task (same format, smaller surface: shows the space is solvable) ----
 archive/bonus-1-nix-solved-example/node23-reconstruction-hard	faking-it-with-nix/node23-reconstruction-hard	Nix · DNS host · Haiku solved 1 of 3 (0.77, 0.96, 1.0)
-archive/bonus-1-nix-solved-example/jobs/node23-reconstruction-hard-oracle	faking-it-with-nix/final/jobs/node23-reconstruction-hard-oracle	oracle 1.0
-archive/bonus-1-nix-solved-example/jobs/node23-reconstruction-hard-nop	faking-it-with-nix/final/jobs/node23-reconstruction-hard-nop	nop 0.0
-archive/bonus-1-nix-solved-example/jobs/node23-reconstruction-hard-haiku-k3	faking-it-with-nix/final/jobs/node23-reconstruction-hard-haiku-k3	brief's k=3 command
+archive/bonus-1-nix-solved-example/jobs/node23-reconstruction-hard-oracle	faking-it-with-nix/runs/jobs/node23-reconstruction-hard-oracle	oracle 1.0
+archive/bonus-1-nix-solved-example/jobs/node23-reconstruction-hard-nop	faking-it-with-nix/runs/jobs/node23-reconstruction-hard-nop	nop 0.0
+archive/bonus-1-nix-solved-example/jobs/node23-reconstruction-hard-haiku-k3	faking-it-with-nix/runs/jobs/node23-reconstruction-hard-haiku-k3	brief's k=3 command
 #
 # ---- BONUS 2: second pack with headroom, different sub-domain (Python free-threading performance) ----
 archive/bonus-2-python-free-threading/sympy-state-space	python-shenanigans/series/third-attempt/sympy-state-space	Python · SymPy speedup · Haiku 0/3
@@ -58,10 +58,10 @@ archive/bonus-4-nix-research/jobs/node41-pull-oracle	faking-it-with-nix/jobs/nod
 archive/bonus-4-nix-research/jobs/node31-haiku-nudge-60m	faking-it-with-nix/jobs/node31-haiku-nudge-60m	ablation run · process nudge
 archive/bonus-4-nix-research/jobs/node31-haiku-downscope-30m	faking-it-with-nix/jobs/node31-haiku-downscope-30m	ablation run · downscope
 archive/bonus-4-nix-research/jobs/node31-haiku-commands-60m	faking-it-with-nix/jobs/node31-haiku-commands-60m	ablation run · commands wording
-archive/bonus-4-nix-research/jobs/node17-reconstruction-hard-oracle-v1	faking-it-with-nix/final/superseded/node17-v1-boot-race/node17-reconstruction-hard-oracle	node17 superseded · verifier v1 (lenient readiness)
-archive/bonus-4-nix-research/jobs/node17-reconstruction-hard-nop-v1	faking-it-with-nix/final/superseded/node17-v1-boot-race/node17-reconstruction-hard-nop	node17 superseded · verifier v1
-archive/bonus-4-nix-research/jobs/node17-reconstruction-hard-haiku-k3-v1	faking-it-with-nix/final/superseded/node17-v1-boot-race/node17-reconstruction-hard-haiku-k3	node17 superseded · v1 0.71, 0.66, 0.51
-archive/bonus-4-nix-research/regrades/node17-v1-trials-under-v2	faking-it-with-nix/final/regrade-v2	v1 submissions re-graded with v2: 0.71, 0.43, 0.51 (author/regrade.sh; not Harbor output)
+archive/bonus-4-nix-research/jobs/node17-reconstruction-hard-oracle-v1	faking-it-with-nix/runs/superseded/node17-v1-boot-race/node17-reconstruction-hard-oracle	node17 superseded · verifier v1 (lenient readiness)
+archive/bonus-4-nix-research/jobs/node17-reconstruction-hard-nop-v1	faking-it-with-nix/runs/superseded/node17-v1-boot-race/node17-reconstruction-hard-nop	node17 superseded · verifier v1
+archive/bonus-4-nix-research/jobs/node17-reconstruction-hard-haiku-k3-v1	faking-it-with-nix/runs/superseded/node17-v1-boot-race/node17-reconstruction-hard-haiku-k3	node17 superseded · v1 0.71, 0.66, 0.51
+archive/bonus-4-nix-research/regrades/node17-v1-trials-under-v2	faking-it-with-nix/runs/regrade-v2	v1 submissions re-graded with v2: 0.71, 0.43, 0.51 (author/regrade.sh; not Harbor output)
 archive/bonus-4-nix-research/jobs/node17-haiku-120m	faking-it-with-nix/jobs/node17-haiku-120m	120-min budget (more time does not help) · earlier verifier revision
 archive/bonus-4-nix-research/jobs/node17-sonnet-or-30m	faking-it-with-nix/jobs/node17-sonnet-or-30m	Sonnet 5.5 · earlier verifier revision
 archive/bonus-4-nix-research/jobs/node31-sonnet-or-60m	faking-it-with-nix/jobs/node31-sonnet-or-60m	Sonnet 5.5 · earlier verifier revision

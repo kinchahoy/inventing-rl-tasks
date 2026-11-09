@@ -3,7 +3,7 @@
 ::: {.ai}
 _AI-drafted_
 
-Paths mirror the original workspace, so scripts and `submission-manifest.tsv` run unchanged from here.
+Paths mirror the original workspace, so scripts and `pack-manifest.tsv` run unchanged from here.
 
 ## Not shipped (generated or private)
 
@@ -22,8 +22,8 @@ Linux with KVM (`/dev/kvm`), Docker with buildx, [Harbor](https://harborframewor
 2. Controls: `mise run check-reference <id>`, then `harbor run -p <id> -a oracle -y` (expect 1.0) and `-a nop -y` (expect 0.0).
 3. Model trials: `harbor run -p <id> -a claude-code -m anthropic/claude-haiku-5-5 --ak reasoning_effort=high --env-file ../.env -k 3 -y`. `author/final-runs.sh <id>` does steps 2 and 3.
 4. Summaries: `mise run trial-stats jobs/<job>`.
-5. Rebuild the submission tree: `author/make-submission.sh --copy` (or `--zip`; both refuse to overwrite `final/submission`).
-6. New box: `author/tasks/README.md` and `submission/archive/evidence/new-box-recipe.md`. Check design: `author/methods.md`, `author/complexify.md`, `author/verifier-fixes-all-attacks.md`.
+5. Rebuild the pack: `author/make-pack.sh --copy` (or `--zip`; both refuse to overwrite `runs/pack`).
+6. New box: `author/tasks/README.md` and `pack/archive/evidence/new-box-recipe.md`. Check design: `author/methods.md`, `author/complexify.md`, `author/verifier-fixes-all-attacks.md`.
 
 ## Python family
 
