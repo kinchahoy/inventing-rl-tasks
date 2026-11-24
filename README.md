@@ -5,7 +5,17 @@ _Human-drafted_
 
 ## Scalable reinforcement training (RL) tasks
 
-Benchmarks and RL tasks are in some ways converging, and are becoming critical to training and refining models. We're finally at a juncture where we can scale up interesting real world problems in a way that generates hard challenges for models and creates meaningful train signal.
+Benchmarks and RL tasks are in some ways converging, and are becoming critical to training and refining models. We're finally at a juncture where we can scale up interesting real world problems in a way that generates hard challenges for models and creates meaningful training signal.
+
+As a brief overview, there is huge value for problems of a particular shape for use in improving agentic models via reinforcement learning. Great RL tasks need to have a few properties:
+- A focus on fairly specific defined problem domains (so you can ensure diversity across the different domains you train on)
+- Problems that are grounded in real usage (i.e. there is some economic value in agents getting better at the problem)
+- Problems where models that can't quite solve the problem can still in some way obtain oracle answers and have accurate verifiers (i.e. you don't need 2028's model to check the answer of the 2026 era model or to confirm that the problem is in fact solvable)
+- You need scalability, you need to able to generate many diverse problems (not 100s like in model scoring benchmarks, but 1000s+)
+- Whole sets of problems should not become drastically more tractable with constant-length advice (i.e. a checklist or improved prompt)
+- The problem should be agentic (many steps) but not too expensive to score
+
+Finally and most importantly they must be appropriately difficult for the model you are looking to improve. You don't get much training signal from problems that agents can solve 90% of the time. In fact, because frontier problems are hardest to find, there is huge value in problems that have clearly measurable / assessable answers but frontier models cannot solve right now (i.e. 0% success at n=10 etc.). Of course, during any one training cycle, you want the model to be able to solve problems 5-30% of the time in order to get useful training signal.
 
 This repo inventories my explorations scaling out LLMs to solve interesting problems in a way that generates tasks that might be interesting reinforcement training or benchmarking problems.
 
