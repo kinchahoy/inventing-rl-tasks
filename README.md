@@ -19,7 +19,7 @@ Finally and most importantly they must be appropriately difficult for the model 
 
 This repo inventories my explorations scaling out LLMs to solve interesting problems in a way that generates tasks that might be interesting reinforcement training or benchmarking problems.
 
-### Replace a server with a functionally equivalent, reproducibly specified clone (e.g. using Nix)
+### 1. Replace a server with a functionally equivalent, reproducibly specified clone (e.g. using Nix)
 
 Nix and other reproducible infrastructure tools make building infrastructure simpler and more like assembling reliable building blocks rather than handcrafting everything. However, it's really quite hard to take an existing environment and drop in a replacement that uses reproducible infra tech. Personally, I've tried at various times to take homelab and other servers that have been configured over time and turn them into clean, configurable environments, and it's quite hard! This makes them an excellent challenge for agents, and one that is both useful in the real world and has many dimensions of complexity (there are weirdly configured servers out there that would be impossible to replicate short of a VM clone).
 
@@ -29,13 +29,13 @@ I'll write more about why this is an interesting problem space for agents in gen
 
 In early testing this problem is typically Haiku hard, and occasionally Opus hard (i.e. zero passes at n=3).
 
-### Steps towards generating useful proofs for amateurs: Terse Lean -> from first principles Isabelle proofs
+### 2. Steps towards generating useful proofs for amateurs: Terse Lean -> from first principles Isabelle proofs
 
 Lean proofs are especially hard for amateur mathematiciancs since they tend to tersely encode the proof based on other results. Isabelle/Isar is a proof system that uses more [human mathematician friendly structures](https://chatgpt.com/share/6af2227f-e1b4-83e8-9ed9-383a6188be77) in it's proof language. A fun challenge for agents is to take a tersely specificed Lean proof and translate them to an Isabelle proof (known area of research it turns out!), but also build the proof from first principles vs. networking into a broad set of existing results.
 
 Less well tested, but Haiku hard but not Opus hard (Opus 5.5 very good at writing Lean/Isabelle!)
 
-### Steps towards efficient autoparallelization of code: make python libraries efficiently use threads
+### 3. Steps towards efficient autoparallelization of code: make python libraries efficiently use threads
 
 [I've long hoped](https://news.ycombinator.com/item?id=49016447) that we'd be able to get a programming language that does a decent job of auto parallelizing arbirary code (without always expecting the code to be efficient, faster, or better). Agents of course significantly improve the potential to do this.
 
