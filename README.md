@@ -17,8 +17,7 @@ As a brief overview, there is huge value for problems of a particular shape for 
 
 Finally and most importantly they must be appropriately difficult for the model you are looking to improve. You don't get much training signal from problems that agents can solve 90% of the time. In fact, because frontier problems are hardest to find, there is huge value in problems that have clearly measurable / assessable answers but frontier models cannot solve right now (i.e. 0% success at n=10 etc.). Of course, during any one training cycle, you want the model to be able to solve problems 5-30% of the time in order to get useful training signal.
 
-_This repo inventories my explorations in creating scalable and novel reinforcement training problems.
-_
+_This repo inventories my explorations in creating scalable and novel reinforcement training problems._
 
 ### 1. Replace a server with a functionally equivalent, reproducibly specified clone (e.g. using Nix)
 
